@@ -53,8 +53,32 @@ for (int j = ny-1; j >= 0; j--)
 }
 ```
 
----
+## Blend Mode
+```blended_value = (1-t)*start_value + t*end_value```
+https://en.wikipedia.org/wiki/Blend_modes
 
+# Multisampling Antialiasing
+之前的图是每个像素点设置一个颜色值，相当于将像素中心位置的颜色设置给了整个像素。所以，如果两个像素点中心位置的颜色值相差比较大时，这两个像素点就会产生清晰的边界。那么问题来了，怎么使得两个像素点的边界模糊呢？
+书上的做法是：针对每个像素点随机采样100次，获得100个颜色值，然后将这100个颜色值的平均值设置为整个像素点的颜色值。
+
+``` c
+#include "ray.h"
+class camera {
+public:
+    camera() {
+        lower_left_corner = vec3(-2.0, -1.0, -1.0);
+        horizontal = vec3(4.0, 0.0, 0.0);
+        vertical = vec3(0.0, 2.0, 0.0);
+        origin = vec3(0.0, 0.0, 0.0);
+    }
+    ray get_ray(float u, float v) {return ray(origin, lower_left_corner + u*horizontal + v*vertical);}
+
+    vec3 lower_left_corner;
+    vec3 horizontal;
+    vec3 vertical;
+};
+```
+---
 ```c
 bool hit_sphere(const vec3& center, float radius, const ray& r){
     vec3 oc = r.origin() - center;
@@ -101,8 +125,3 @@ int main()
     }
 }
 ```
-## Blend Mode
-```blended_value = (1-t)*start_value + t*end_value```
-https://en.wikipedia.org/wiki/Blend_modes
-
-# Multisampling Antialiasing

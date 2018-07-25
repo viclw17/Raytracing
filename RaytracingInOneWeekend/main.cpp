@@ -84,8 +84,8 @@ vec3 color(const ray& r, hitable *world){
 }
 
 int main(){
-    int nx = 800;
-    int ny = 400;
+    int nx = 400;
+    int ny = 200;
     int ns = 100; /* 每个像素点区域采样ns次，此处ns=100 */
 
     // 将结果输出到文件
@@ -104,21 +104,26 @@ int main(){
         for(int i=0; i<nx; i++){
             vec3 col(0,0,0);
             // new changes for antialiasing(multi-sampling per pixel)
-            for(int s=0; s < ns; s++){
-                float u = float(i + drand48())/float(nx); // 0~1
-                float v = float(j + drand48())/float(ny);
+            //for(int s=0; s < ns; s++){
+                // float u = float(i + drand48())/float(nx); // 0~1
+                // float v = float(j + drand48())/float(ny);
+                float u = float(i) / float(nx);
+                float v = float(j) / float(ny);
                 ray r = cam.get_ray(u,v); // generate ray per sample
-                vec3 p = r.point_at_parameter(2.0);
-                col += color(r, world); // 根据光线对每一个像素点上色
-            }
+                vec3 p = r.point_at_parameter(1.0);
+                // col += color(r, world); // 根据光线对每一个像素点上色
+                col = unit_vector(p);
+                // col = 0.5*(col+vec3(1.0,1.0,1.0));
+                col = vec3(0.5*(col.z()+1.0), 0.5*(col.z()+1.0), 0.5*(col.z()+1.0));
+            //}
 
             /*
             将这个像素点区域的所有ns个随机采样点的颜色累加值除以ns获得其平均值，作为这个像素点区域最终的像素值。
             */
-            col /= float(ns);
+            //col /= float(ns);
 
             // gamma correction
-            col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
+            //col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
 
             int ir = int(255.99*col[0]);
             int ig = int(255.99*col[1]);
