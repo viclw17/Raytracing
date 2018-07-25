@@ -64,28 +64,44 @@ vec3 random_in_unit_sphere(){
     return p;
 }
 
-vec3 color(const ray& r, hitable *world){
-    hit_record rec;
-    if(world->hit(r, 0.001, MAXFLOAT, rec)){ // the ref. of rec is passed in, (numeric_limits<float>::max)()
-        vec3 target = rec.p + rec.normal + random_in_unit_sphere();
-        // return 0.5*vec3(rec.normal.x()+1, rec.normal.y()+1, rec.normal.z()+1); // draw normal coloration
+// vec3 color(const ray& r, hitable *world){
+//     hit_record rec;
+//     if(world->hit(r, 0.001, MAXFLOAT, rec)){ // the ref. of rec is passed in, (numeric_limits<float>::max)()
+//         vec3 target = rec.p + rec.normal + random_in_unit_sphere();
+//         // return 0.5*vec3(rec.normal.x()+1, rec.normal.y()+1, rec.normal.z()+1); // draw normal coloration
+//         return 0.5*color(ray(rec.p, target-rec.p), world);
+//     }
+//     else{
+//         // background
+//         vec3 unit_direction = unit_vector(r.direction());
+//         float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
+//         return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
+//     }
+// }
 
-        /*
-        撞击一次，乘以系数0.5。然后以反射光线（以P为起点，PM为方向向量）去撞击球，直到没有撞击到任何球，（下方else语句中）最后带着系数乘以背景颜色值作为球体该像素点的颜色*/
+bool hit_sphere(const vec3& center, float radius, const ray& r) {
+    vec3 oc = r.origin() - center;
+    float a = dot(r.direction(), r.direction());
+    float b = 2.0 * dot(oc, r.direction());
+    float c = dot(oc,oc) - radius*radius;
+    float discriminant = b*b - 4*a*c;
+    return (discriminant>0);
+}
 
-        return 0.5*color(ray(rec.p, target-rec.p), world);
-    }
-    else{
-        // background
-        vec3 unit_direction = unit_vector(r.direction());
-        float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
-        return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
-    }
+vec3 color(const ray& r) {
+    // draw blue sphere
+    if(hit_sphere(vec3(0,0,-1), 0.5, r))
+        return vec3(0,0,1);
+
+    // draw background
+    vec3 unit_direction = unit_vector(r.direction());
+    float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
+    return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
 }
 
 int main(){
-    int nx = 400;
-    int ny = 200;
+    int nx = 800;
+    int ny = 400;
     int ns = 100; /* 每个像素点区域采样ns次，此处ns=100 */
 
     // 将结果输出到文件
@@ -104,23 +120,25 @@ int main(){
         for(int i=0; i<nx; i++){
             vec3 col(0,0,0);
             // new changes for antialiasing(multi-sampling per pixel)
-            //for(int s=0; s < ns; s++){
-                // float u = float(i + drand48())/float(nx); // 0~1
-                // float v = float(j + drand48())/float(ny);
-                float u = float(i) / float(nx);
-                float v = float(j) / float(ny);
+            for(int s=0; s < ns; s++){
+                float u = float(i + drand48())/float(nx); // 0~1
+                float v = float(j + drand48())/float(ny);
+                // float u = float(i) / float(nx);
+                // float v = float(j) / float(ny);
                 ray r = cam.get_ray(u,v); // generate ray per sample
-                vec3 p = r.point_at_parameter(1.0);
+
+                // vec3 p = r.point_at_parameter(1.0);
+                // p = unit_vector(p);
+                // col = vec3(p.z(),p.z(),p.z());
+                col += color(r);
+
                 // col += color(r, world); // 根据光线对每一个像素点上色
-                col = unit_vector(p);
-                // col = 0.5*(col+vec3(1.0,1.0,1.0));
-                col = vec3(0.5*(col.z()+1.0), 0.5*(col.z()+1.0), 0.5*(col.z()+1.0));
-            //}
+            }
 
             /*
             将这个像素点区域的所有ns个随机采样点的颜色累加值除以ns获得其平均值，作为这个像素点区域最终的像素值。
             */
-            //col /= float(ns);
+            col /= float(ns);
 
             // gamma correction
             //col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
