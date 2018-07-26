@@ -3,11 +3,14 @@
 
 #include "ray.h"
 
+class material;
+
 /* 该结构体记录“撞点”处的信息：离光线起点的距离t、撞点的坐标向量p、撞点出的法向量normal。 */
 struct hit_record{
     float t;
     vec3 p;
     vec3 normal;
+    material *mat_ptr;
 };
 
 /* hitable这个类表示能够被光线撞上的任何物体。比如球体 */
