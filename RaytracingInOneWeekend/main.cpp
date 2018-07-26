@@ -31,13 +31,13 @@ float hit_sphere(const vec3& center, float radius, const ray& r){
 }
 */
 
-vec3 random_in_unit_sphere(){
-    vec3 p;
-    do{
-        p = 2.0*vec3(drand48(), drand48(), drand48()) - vec3(1,1,1);
-    } while (p.squared_length() >= 1.0);
-    return p;
-}
+// vec3 random_in_unit_sphere(){
+//     vec3 p;
+//     do{
+//         p = 2.0*vec3(drand48(), drand48(), drand48()) - vec3(1,1,1);
+//     } while (p.squared_length() >= 1.0);
+//     return p;
+// }
 
 vec3 color(const ray& r, hitable *world, int depth){
     hit_record rec;
@@ -63,7 +63,6 @@ vec3 color(const ray& r, hitable *world, int depth){
     }
 }
 
-
 ////////////////////////////////////////////////////////////
 // old test
 // bool hit_sphere(const vec3& center, float radius, const ray& r) {
@@ -87,9 +86,10 @@ vec3 color(const ray& r, hitable *world, int depth){
 //     return vec3(1.0,1.0,1.0);
 // }
 ////////////////////////////////////////////////////////////
+
 int main(){
-    int nx = 400;
-    int ny = 200;
+    int nx = 200;
+    int ny = 100;
     int ns = 100; /* 每个像素点区域采样ns次，此处ns=100 */
 
     // 将结果输出到文件
@@ -100,8 +100,8 @@ int main(){
     hitable *list[4]; // 一个储存有2个“指向hitable对象的指针”的数组
     list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8,0.3,0.3)));
     list[1] = new sphere(vec3(0,-100.5,-1), 100, new lambertian(vec3(0.8,0.8,0.0)));
-    list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2)));
-    list[3] = new sphere(vec3(-1,0,-1), 0.5, new metal(vec3(0.8,0.8,0.8)));
+    list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.3));
+    list[3] = new sphere(vec3(-1,0,-1), 0.5, new metal(vec3(0.8,0.8,0.8), 1.0));
     // world是一个指向hitable对象的指针变量
     hitable *world = new hitable_list(list, 4);
     camera cam;
