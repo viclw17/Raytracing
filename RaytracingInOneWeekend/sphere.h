@@ -5,7 +5,7 @@
 #include "material.h"
 
 /* : public hitable表示sphere继承hitable。即：sphere为hitable的子类 */
-class sphere : public hitable{
+class sphere : public hitable {
 public:
     sphere() {}
     /* 此处为使用 初始化列表(initializer list) 的构造函数来初始化成员变量*/
@@ -26,7 +26,7 @@ public:
         否，判断大根是否在范围内。
         也就是优先选小根，小根不行再考虑大根
         */
-        if(discriminant > 0){
+        if(discriminant > 0) {
             float temp = (-b - sqrt(discriminant)) / (2.0*a); // 小根
             if(temp < t_max && temp > t_min){
                 rec.t = temp;

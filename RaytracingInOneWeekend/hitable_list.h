@@ -7,6 +7,7 @@
 class hitable_list : public hitable{
 public:
     hitable_list() {}
+    /* hitable_list是所有能够被光线撞击的物体的列表/集合 */
     hitable_list(hitable **l, int n) {
         list = l;
         list_size = n;
@@ -29,6 +30,6 @@ public:
     }
 
     hitable **list;
-    int list_size; /* hitable_list是所有能够被光线撞击的物体的列表/集合 */
+    int list_size;
 };
 #endif

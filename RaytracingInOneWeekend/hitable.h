@@ -19,12 +19,11 @@ class hitable{
 public:
     /*
     hit()在此被声明为虚函数，则hitable为抽象类。抽象类的子类中必须实现其虚函数。
-
-    纯虚函数是在基类中声明的虚函数，它在基类中没有定义，但要求任何派生类都要定义自己的实现方法。在基类中实现纯虚函数的方法是在函数原型后加“=0”
-
-    同时含有纯虚拟函数的类称为抽象类，它不能生成对象。
+    纯虚函数是在基类中声明的虚函数，它在基类中没有定义，但要求任何派生类都要定义自己的实现方法。
+    在基类中实现纯虚函数的方法是在函数原型后加“=0”
+    含有纯虚拟函数的类称为抽象类，它不能生成对象。
     */
-    virtual bool hit(const ray& r, float t_min, float t_max, hit_record& rec) const = 0; // “=0”
+    virtual bool hit(const ray& r, float t_min, float t_max, hit_record& rec) const = 0;
 };
 
 #endif
