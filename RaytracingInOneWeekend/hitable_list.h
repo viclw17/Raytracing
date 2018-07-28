@@ -3,7 +3,6 @@
 
 #include "hitable.h"
 
-/* : public hitable表示hitable_list继承hitable。即：sphere为hitable的子类 */
 class hitable_list : public hitable{
 public:
     hitable_list() {}
@@ -14,6 +13,7 @@ public:
     }
 
     // bool virtual hit(const ray& r, float t_min, float t_max, hit_record& rec) const;
+
     bool virtual hit(const ray& r, float t_min, float t_max, hit_record& rec) const {
         hit_record temp_rec;
         bool hit_anything = false;

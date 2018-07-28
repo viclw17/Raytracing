@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <limits>
+#include <limits> // std::numeric_limits
 // #include "vec3.h"
 // #include "ray.h" // including vec3.h
 #include "sphere.h"
@@ -13,33 +13,13 @@
 
 using namespace std;
 
-// 注意hit_sphere()函数的返回值类型由bool变成float
-/*
-float hit_sphere(const vec3& center, float radius, const ray& r){
-    vec3 oc = r.origin() - center; // A-C
-    float a = dot(r.direction(), r.direction());
-    float b = 2.0 * dot(oc, r.direction());
-    float c = dot(oc,oc) - radius*radius;
-    float discriminant = b*b - 4*a*c;
-    // return (discriminant>0);
-    if(discriminant < 0){
-        return -1.0;
-    }
-    else{
-        return (-b - sqrt(discriminant)) / (2.0*a);
-    }
-}
-*/
-
 // r: reference to a Ray object
 // world: pointer to a Hitable object
 vec3 color(const ray& r, hitable *world, int depth) {
     hit_record rec;
-    // the ref. of rec is passed in, (numeric_limits<float>::max)()
-    if(world->hit(r, 0.001, MAXFLOAT, rec)) {
-        // vec3 target = rec.p + rec.normal + random_in_unit_sphere();
-        // return 0.5*vec3(rec.normal.x()+1, rec.normal.y()+1, rec.normal.z()+1);
-        // return 0.5*color(ray(rec.p, target-rec.p), world);
+    // the ref. of rec is passed in
+    if(world->hit(r, 0.001, numeric_limits<float>::max(), rec)) { //MAXFLOAT
+
         ray scattered;
         vec3 attenuation;
         if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
@@ -101,8 +81,9 @@ int main() {
         for(int i=0; i<nx; i++) {
             vec3 col(0,0,0);
             for(int s=0; s < ns; s++) {
-                float u = float(i + drand48())/float(nx); // 0~1
-                float v = float(j + drand48())/float(ny);
+				float random = rand() % (100) / (float)(100); // drand48()
+                float u = float(i + random)/float(nx); // 0~1 
+                float v = float(j + random)/float(ny);
                 // float u = float(i) / float(nx);
                 // float v = float(j) / float(ny);
                 ray r = cam.get_ray(u,v); // generate ray per sample

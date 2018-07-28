@@ -1,0 +1,26 @@
+﻿  hitable_list.cpp
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\vec3.h(68): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\vec3.h(160): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\hitable_list.h(22): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Compiling...
+  main.cpp
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\vec3.h(68): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\vec3.h(160): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\sphere.h(20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\sphere.h(31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\sphere.h(39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\hitable_list.h(22): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\main.cpp(21): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\main.cpp(34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\main.cpp(35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\main.cpp(35): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\main.cpp(73): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\main.cpp(74): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\main.cpp(75): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\archiact212\desktop\raytracing\raytracinginoneweekend\main.cpp(76): warning C4305: 'argument': truncation from 'double' to 'float'
+  Generating Code...
+main.obj : error LNK2005: "class vec3 __cdecl random_in_unit_sphere(void)" (?random_in_unit_sphere@@YA?AVvec3@@XZ) already defined in lambertian.obj
+metal.obj : error LNK2005: "class vec3 __cdecl random_in_unit_sphere(void)" (?random_in_unit_sphere@@YA?AVvec3@@XZ) already defined in lambertian.obj
+metal.obj : error LNK2005: "class vec3 __cdecl reflect(class vec3 const &,class vec3 const &)" (?reflect@@YA?AVvec3@@ABV1@0@Z) already defined in main.obj
+C:\Users\Archiact212\Desktop\Raytracing\RaytracingInOneWeekend\Solution1\Debug\Project1.exe : fatal error LNK1169: one or more multiply defined symbols found

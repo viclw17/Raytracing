@@ -13,6 +13,7 @@ public:
 
     /* 必须实现父类的虚函数。在此出声明，后续在sphere.cpp中具体实现 */
     // bool virtual hit(const ray& r, float t_min, float t_max, hit_record& rec) const;
+
     bool virtual hit(const ray& r, float t_min, float t_max, hit_record& rec) const {
         vec3 oc = r.origin() - center; // A-C
         float a = dot(r.direction(), r.direction());
@@ -32,10 +33,10 @@ public:
                 rec.t = temp;
                 rec.p = r.point_at_parameter(rec.t);
                 rec.normal = (rec.p - center) / radius;
-                rec.mat_ptr = ma;
+                rec.mat_ptr = ma; // material
                 return true;
             }
-            temp = (-b + sqrt(discriminant)) / (2.0*a);
+            temp = (-b + sqrt(discriminant)) / (2.0*a); // 大根
             if(temp < t_max && temp > t_min) {
                 rec.t = temp;
                 rec.p = r.point_at_parameter(rec.t);
