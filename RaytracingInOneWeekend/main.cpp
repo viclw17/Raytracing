@@ -16,7 +16,7 @@ using namespace std;
 vec3 color(const ray& r, hitable *world, int depth) {
     hit_record rec;
     // the ref. of rec is passed in, numeric_limits<float>::max()
-    if(world->hit(r, 0.001, MAXFLOAT, rec)) {
+    if(world->hit(r, 0.001, numeric_limits<float>::max(), rec)) { // MAXFLOAT
         ray scattered;
         vec3 attenuation;
         if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
@@ -108,4 +108,5 @@ int main() {
         }
     }
     cout << "Image output succeeded! :)" << "\n";
+	system("pause");
 }
