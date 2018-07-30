@@ -3,7 +3,7 @@
 
 #include "material.h"
 
-vec3 random_in_unit_sphere(){
+vec3 random_in_unit_sphere() {
     vec3 p;
     do{
 		float random = rand() % (100) / (float)(100); // drand48()
@@ -14,10 +14,7 @@ vec3 random_in_unit_sphere(){
 
 class lambertian : public material {
 public:
-    // init with color
-    lambertian(const vec3& a) : albedo(a) {}
-
-    // virtual bool scatter(const ray& r_in, const hit_record& rec, vec3& attenuation, ray& scattered) const;
+    lambertian(const vec3& a) : albedo(a) {} // init with color
 
     // pass in:
     // incident ray ref./hit record ref./attenuation color ref./scattered ray ref.

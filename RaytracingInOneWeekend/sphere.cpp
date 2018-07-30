@@ -1,5 +1,5 @@
-#include "sphere.h"
-
+//#include "sphere.h"
+//
 // 实现父类的虚函数
 // bool sphere::hit(const ray& r, float t_min, float t_max, hit_record& rec) const {
 //     vec3 oc = r.origin() - center; // A-C

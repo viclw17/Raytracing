@@ -1,12 +1,10 @@
 #include <iostream>
 #include <fstream>
-#include <limits> // std::numeric_limits
-// #include "vec3.h"
-// #include "ray.h" // including vec3.h
+#include <limits>
+
 #include "sphere.h"
 #include "hitable_list.h" // including hitable.h which includes ray.h
 #include "camera.h"
-#include "float.h"
 
 #include "metal.h"
 #include "lambertian.h"
@@ -17,9 +15,8 @@ using namespace std;
 // world: pointer to a Hitable object
 vec3 color(const ray& r, hitable *world, int depth) {
     hit_record rec;
-    // the ref. of rec is passed in
-    if(world->hit(r, 0.001, numeric_limits<float>::max(), rec)) { //MAXFLOAT
-
+    // the ref. of rec is passed in, numeric_limits<float>::max()
+    if(world->hit(r, 0.001, MAXFLOAT, rec)) {
         ray scattered;
         vec3 attenuation;
         if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
@@ -69,7 +66,7 @@ int main() {
     outfile << "P3\n" << nx << " " << ny << "\n255\n";
     //std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    hitable *list[4]; // 一个储存有2个“指向hitable对象的指针”的数组
+    hitable *list[4]; // 一个储存有4个“指向hitable对象的指针”的数组
     list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8,0.3,0.3)));
     list[1] = new sphere(vec3(0,-100.5,-1), 100, new lambertian(vec3(0.8,0.8,0.0)));
     list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.3));
@@ -82,7 +79,7 @@ int main() {
             vec3 col(0,0,0);
             for(int s=0; s < ns; s++) {
 				float random = rand() % (100) / (float)(100); // drand48()
-                float u = float(i + random)/float(nx); // 0~1 
+                float u = float(i + random)/float(nx); // 0~1
                 float v = float(j + random)/float(ny);
                 // float u = float(i) / float(nx);
                 // float v = float(j) / float(ny);
@@ -94,7 +91,7 @@ int main() {
                 // col = vec3(p.z(),p.z(),p.z());
                 // col += color(r);
 
-                col += color(r, world, 0); // 根据光线对每一个像素点上色
+                col += color(r, world, 0);
             }
 
             col /= float(ns);
