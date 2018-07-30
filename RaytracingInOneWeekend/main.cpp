@@ -1,45 +1,22 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
-// #include "vec3.h"
-// #include "ray.h" // including vec3.h
+
 #include "sphere.h"
 #include "hitable_list.h" // including hitable.h which includes ray.h
 #include "camera.h"
-#include "float.h"
 
 #include "metal.h"
 #include "lambertian.h"
 
 using namespace std;
 
-// 注意hit_sphere()函数的返回值类型由bool变成float
-/*
-float hit_sphere(const vec3& center, float radius, const ray& r){
-    vec3 oc = r.origin() - center; // A-C
-    float a = dot(r.direction(), r.direction());
-    float b = 2.0 * dot(oc, r.direction());
-    float c = dot(oc,oc) - radius*radius;
-    float discriminant = b*b - 4*a*c;
-    // return (discriminant>0);
-    if(discriminant < 0){
-        return -1.0;
-    }
-    else{
-        return (-b - sqrt(discriminant)) / (2.0*a);
-    }
-}
-*/
-
 // r: reference to a Ray object
 // world: pointer to a Hitable object
 vec3 color(const ray& r, hitable *world, int depth) {
     hit_record rec;
-    // the ref. of rec is passed in, (numeric_limits<float>::max)()
+    // the ref. of rec is passed in, numeric_limits<float>::max()
     if(world->hit(r, 0.001, MAXFLOAT, rec)) {
-        // vec3 target = rec.p + rec.normal + random_in_unit_sphere();
-        // return 0.5*vec3(rec.normal.x()+1, rec.normal.y()+1, rec.normal.z()+1);
-        // return 0.5*color(ray(rec.p, target-rec.p), world);
         ray scattered;
         vec3 attenuation;
         if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
@@ -89,7 +66,7 @@ int main() {
     outfile << "P3\n" << nx << " " << ny << "\n255\n";
     //std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    hitable *list[4]; // 一个储存有2个“指向hitable对象的指针”的数组
+    hitable *list[4]; // 一个储存有4个“指向hitable对象的指针”的数组
     list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8,0.3,0.3)));
     list[1] = new sphere(vec3(0,-100.5,-1), 100, new lambertian(vec3(0.8,0.8,0.0)));
     list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.3));
@@ -113,7 +90,7 @@ int main() {
                 // col = vec3(p.z(),p.z(),p.z());
                 // col += color(r);
 
-                col += color(r, world, 0); // 根据光线对每一个像素点上色
+                col += color(r, world, 0);
             }
 
             col /= float(ns);
