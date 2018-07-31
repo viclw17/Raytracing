@@ -8,6 +8,7 @@
 
 #include "metal.h"
 #include "lambertian.h"
+#include "dielectric.h"
 
 using namespace std;
 
@@ -20,7 +21,9 @@ vec3 color(const ray& r, hitable *world, int depth) {
         ray scattered;
         vec3 attenuation;
         if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
+             /*获取反射光线向量scattered和反射衰减向量attenuation*/
             return attenuation*color(scattered, world, depth+1);
+            /*反射光线的强度需要乘以反射衰减向量（对应坐标相乘作为新的向量）。然后反射光线就扮演之前“原始光线”的角色。如果再次撞击到小球，就再次反射，直到不再撞击到任何球为止*/
         }
         else {
             return vec3(0,0,0);
@@ -30,6 +33,9 @@ vec3 color(const ray& r, hitable *world, int depth) {
         vec3 unit_direction = unit_vector(r.direction());
         float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
         return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
+        /*注意这里，原始光线和反射光线最后都会跑到这里来。
+        背景的颜色：原始光线的方向向量的映射
+        漫反射材料和镜面材料的颜色：最后一次反射光线的方向向量的映射 *  所有反射衰减系数的乘积。漫反射和镜面反射的区别在于，漫反射的每次反射方向是随机的。*/
     }
 }
 
@@ -67,10 +73,14 @@ int main() {
     //std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
     hitable *list[4]; // 一个储存有4个“指向hitable对象的指针”的数组
-    list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8,0.3,0.3)));
+    // list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8,0.3,0.3)));
+    // list[1] = new sphere(vec3(0,-100.5,-1), 100, new lambertian(vec3(0.8,0.8,0.0)));
+    // list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.3));
+    // list[3] = new sphere(vec3(-1,0,-1), 0.5, new metal(vec3(0.8,0.8,0.8), 1.0));
+    list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
     list[1] = new sphere(vec3(0,-100.5,-1), 100, new lambertian(vec3(0.8,0.8,0.0)));
-    list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.3));
-    list[3] = new sphere(vec3(-1,0,-1), 0.5, new metal(vec3(0.8,0.8,0.8), 1.0));
+    list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.0));
+    list[3] = new sphere(vec3(-1,0,-1), 0.5, new dielectric(1.5));
     // world是一个指向hitable对象的指针变量
     hitable *world = new hitable_list(list, 4);
     camera cam;
