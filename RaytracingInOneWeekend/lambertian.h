@@ -6,8 +6,11 @@
 vec3 random_in_unit_sphere() {
     vec3 p;
     do{
-		float random = rand() % (100) / (float)(100); // drand48()
-        p = 2.0*vec3(random, random, random) - vec3(1,1,1);
+		vec3 random_vector = vec3(
+			rand() % (100) / (float)(100), // drand48()
+			rand() % (100) / (float)(100),
+			rand() % (100) / (float)(100));
+        p = 2.0 * random_vector - vec3(1,1,1);
     } while (p.squared_length() >= 1.0);
     return p;
 }

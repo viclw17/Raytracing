@@ -111,6 +111,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\camera.h" />
+    <ClInclude Include="..\..\..\dielectric.h" />
     <ClInclude Include="..\..\..\hitable.h" />
     <ClInclude Include="..\..\..\hitable_list.h" />
     <ClInclude Include="..\..\..\lambertian.h" />
@@ -121,12 +122,7 @@
     <ClInclude Include="..\..\..\vec3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\hitable_list.cpp" />
-    <ClCompile Include="..\..\..\lambertian.cpp" />
     <ClCompile Include="..\..\..\main.cpp" />
-    <ClCompile Include="..\..\..\metal.cpp" />
-    <ClCompile Include="..\..\..\ray.cpp" />
-    <ClCompile Include="..\..\..\sphere.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
