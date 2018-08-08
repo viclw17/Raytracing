@@ -17,11 +17,13 @@ using namespace std;
 vec3 color(const ray& r, hitable *world, int depth) {
     hit_record rec;
     // the ref. of rec is passed in, numeric_limits<float>::max()
-    if(world->hit(r, 0.001, MAXFLOAT, rec)) {
+    if(world->hit(r, 0.001, numeric_limits<float>::max(), rec)) { // MAXFLOAT
         ray scattered;
         vec3 attenuation;
         if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
+             /*获取反射光线向量scattered和反射衰减向量attenuation*/
             return attenuation*color(scattered, world, depth+1);
+            /*反射光线的强度需要乘以反射衰减向量（对应坐标相乘作为新的向量）。然后反射光线就扮演之前“原始光线”的角色。如果再次撞击到小球，就再次反射，直到不再撞击到任何球为止*/
         }
         else {
             return vec3(0,0,0);
@@ -31,6 +33,9 @@ vec3 color(const ray& r, hitable *world, int depth) {
         vec3 unit_direction = unit_vector(r.direction());
         float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
         return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
+        /*注意这里，原始光线和反射光线最后都会跑到这里来。
+        背景的颜色：原始光线的方向向量的映射
+        漫反射材料和镜面材料的颜色：最后一次反射光线的方向向量的映射 *  所有反射衰减系数的乘积。漫反射和镜面反射的区别在于，漫反射的每次反射方向是随机的。*/
     }
 }
 
@@ -61,56 +66,31 @@ vec3 color(const ray& r, hitable *world, int depth) {
 int main() {
     int nx = 200;
     int ny = 100;
-    // nx = 800;
-    // ny = 400;
     int ns = 100;
 
     ofstream outfile("test.ppm", ios_base::out);
     outfile << "P3\n" << nx << " " << ny << "\n255\n";
     //std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    int sphere_num = 4;
-    hitable *list[sphere_num]; // 一个储存有4个“指向hitable对象的指针”的数组
-
-    float big_r = 5000.0;
-    float z = -1.0;
-
-    // metal
+    hitable *list[4]; // 一个储存有4个“指向hitable对象的指针”的数组
     // list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8,0.3,0.3)));
     // list[1] = new sphere(vec3(0,-100.5,-1), 100, new lambertian(vec3(0.8,0.8,0.0)));
-    // list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.5));
-    // list[3] = new sphere(vec3(-1,0,-1), 0.5, new metal(vec3(0.8,0.8,0.8), 0.0));
-
-    // list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
-    // list[1] = new sphere(vec3(-1.1,0,-1.5), 0.5, new metal(vec3(0.8,0.3,0.3), 0.3));
-    // list[2] = new sphere(vec3(0,0,-1.4), 0.5, new metal(vec3(0.8,0.8,0.8), 0.0));
-    // list[3] = new sphere(vec3(1.1,0,-1.5), 0.5, new lambertian(vec3(0.8,0.6,0.2)));
-
-    // dielectric
-    // list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
-    // list[1] = new sphere(vec3(0,-100.5,-1), 100, new lambertian(vec3(0.8,0.8,0.0)));
-    // list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.0));
-    // list[3] = new sphere(vec3(-1,0,-1), 0.5, new dielectric(1.5));
-
-
-    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
-    list[1] = new sphere(vec3(0,0,z), 0.5, new dielectric(1.5));
-    list[2] = new sphere(vec3(-.7,0,z-.5), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
-    list[3] = new sphere(vec3(.7,0,z-.5), 0.5, new lambertian(vec3(0.8,0.6,0.2)));
-
-
-
-
-
+    // list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.3));
+    // list[3] = new sphere(vec3(-1,0,-1), 0.5, new metal(vec3(0.8,0.8,0.8), 1.0));
+    list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
+    list[1] = new sphere(vec3(0,-100.5,-1), 100, new lambertian(vec3(0.8,0.8,0.0)));
+    list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.0));
+    list[3] = new sphere(vec3(-1,0,-1), 0.5, new dielectric(1.5));
     // world是一个指向hitable对象的指针变量
-    hitable *world = new hitable_list(list, sphere_num);
+    hitable *world = new hitable_list(list, 4);
     camera cam;
     for(int j=ny-1; j>=0; j--) {
         for(int i=0; i<nx; i++) {
             vec3 col(0,0,0);
             for(int s=0; s < ns; s++) {
-                float u = float(i + drand48())/float(nx); // 0~1
-                float v = float(j + drand48())/float(ny);
+				float random = rand() % (100) / (float)(100); // drand48()
+                float u = float(i + random)/float(nx); // 0~1
+                float v = float(j + random)/float(ny);
                 // float u = float(i) / float(nx);
                 // float v = float(j) / float(ny);
                 ray r = cam.get_ray(u,v); // generate ray per sample
@@ -138,4 +118,5 @@ int main() {
         }
     }
     cout << "Image output succeeded! :)" << "\n";
+	system("pause");
 }

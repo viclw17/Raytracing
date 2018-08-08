@@ -52,7 +52,8 @@ public:
         if (dot(r_in.direction(), rec.normal) > 0){
             outward_normal = -rec.normal;
             ni_over_nt = ref_idx;
-            cosine = ref_idx * dot(r_in.direction(), rec.normal) /r_in.direction().length();
+            // cosine = dot(r_in.direction(), rec.normal) /r_in.direction().length();
+            cosine = dot(unit_vector(r_in.direction()), rec.normal);
         }
         // 光线是从空气射入球体气
         // 所以，入射时的法向量和球的法向量方向同向；
@@ -61,7 +62,8 @@ public:
         else{
             outward_normal = rec.normal;
             ni_over_nt = 1.0 / ref_idx;
-            cosine = -dot(r_in.direction(), rec.normal) / r_in.direction().length();
+            // cosine = -dot(r_in.direction(), rec.normal) / r_in.direction().length();
+            cosine = -dot(unit_vector(r_in.direction()), rec.normal);
         }
 
         if(refract(r_in.direction(), outward_normal, ni_over_nt, refracted)){
@@ -70,7 +72,7 @@ public:
         }
         // 出现全反射
         else{
-            scattered = ray(rec.p, reflected); // reflected
+            // scattered = ray(rec.p, reflected); // reflected
             // return false;
             reflect_prob = 1.0;
         }
