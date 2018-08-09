@@ -1,3 +1,6 @@
+#ifndef DIELECTRICH
+#define DIELECTRICH
+
 #include "material.h"
 #include "metal.h"
 //#include "log.h"
@@ -91,3 +94,5 @@ public:
     vec3 albedo;
     float ref_idx;
 };
+
+#endif
