@@ -26,7 +26,7 @@ float schlick(float cosine, float ref_idx) {
 
 class dielectric : public material {
 public:
-    dielectric(float ri) : ref_idx(ri) {}
+    dielectric(const vec3& a, float ri) : albedo(a), ref_idx(ri) {}
 
 //    virtual bool scatter(const ray& r_in, const hit_record& rec, vec3& attenuation, ray& scattered) const;
 
@@ -41,7 +41,7 @@ public:
         vec3 reflected = reflect(r_in.direction(), rec.normal);
         // ni_over_nt为入射介质的折射指数和折射介质的折射指数的比值
         float ni_over_nt;
-        attenuation = vec3(1.0,1.0,1.0);
+        attenuation = albedo;
         vec3 refracted;
         float reflect_prob;
         float cosine;
@@ -77,6 +77,8 @@ public:
             reflect_prob = 1.0;
         }
 
+        // if reflect_prob smaller, more Refraction
+        // bigger, more reflection
         if(rand() % (100) / (float)(100) < reflect_prob) { // drand48()
             scattered = ray(rec.p, reflected);
         }
@@ -86,5 +88,6 @@ public:
         return true;
     }
 
+    vec3 albedo;
     float ref_idx;
 };

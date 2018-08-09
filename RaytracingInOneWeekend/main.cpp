@@ -61,8 +61,8 @@ vec3 color(const ray& r, hitable *world, int depth) {
 int main() {
     int nx = 200;
     int ny = 100;
-    // nx = 800;
-    // ny = 400;
+    nx = 800;
+    ny = 400;
     int ns = 100;
 
     ofstream outfile("test.ppm", ios_base::out);
@@ -94,9 +94,12 @@ int main() {
 
 
     list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
-    list[1] = new sphere(vec3(0,0,z), 0.5, new dielectric(1.5));
+    list[1] = new sphere(vec3(0,0,z), 0.5, new dielectric(vec3(1,1,1), 1));
     list[2] = new sphere(vec3(-.7,0,z-.5), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
     list[3] = new sphere(vec3(.7,0,z-.5), 0.5, new lambertian(vec3(0.8,0.6,0.2)));
+    // list[1] = new sphere(vec3(0,0,z), 0.5, new dielectric(vec3(0.8,0.5,0.5), 1.5));
+    // list[2] = new sphere(vec3(-.7,0,z-.5), 0.5, new dielectric(vec3(0.1,0.2,0.5), 1.5));
+    // list[3] = new sphere(vec3(.7,0,z-.5), 0.5, new dielectric(vec3(0.8,0.6,0.2), 1.5));
 
 
 
