@@ -3,11 +3,12 @@
 #include <limits>
 
 #include "sphere.h"
-#include "hitable_list.h" // including hitable.h which includes ray.h
+#include "hitable_list.h"
 #include "camera.h"
 
-#include "metal.h"
+// materials
 #include "lambertian.h"
+#include "metal.h"
 #include "dielectric.h"
 
 using namespace std;
@@ -81,10 +82,10 @@ int main() {
 //    list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.5));
 //    list[3] = new sphere(vec3(-1,0,-1), 0.5, new metal(vec3(0.8,0.8,0.8), 0.0));
     
-    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
-    list[1] = new sphere(vec3(-1.1,0,-1.5), 0.5, new metal(vec3(0.8,0.3,0.3), 0.3));
-    list[2] = new sphere(vec3(0,0,-1.4), 0.5, new metal(vec3(0.8,0.8,0.8), 0.0));
-    list[3] = new sphere(vec3(1.1,0,-1.5), 0.5, new lambertian(vec3(0.8,0.6,0.2)));
+//    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
+//    list[1] = new sphere(vec3(-1.1,0,-1.5), 0.5, new metal(vec3(0.8,0.3,0.3), 0.3));
+//    list[2] = new sphere(vec3(0,0,-1.4), 0.5, new metal(vec3(0.8,0.8,0.8), 0.0));
+//    list[3] = new sphere(vec3(1.1,0,-1.5), 0.5, new lambertian(vec3(0.8,0.6,0.2)));
     
     // dielectric
 //    list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
@@ -92,19 +93,29 @@ int main() {
 //    list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.0));
 //    list[3] = new sphere(vec3(-1,0,-1), 0.5, new dielectric(1.5));
     
-    
 //    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
-//    list[1] = new sphere(vec3(0,0,z), 0.5, new dielectric(1.5));
-//    list[2] = new sphere(vec3(-.7,0,z-.5), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
-//    list[3] = new sphere(vec3(.7,0,z-.5), 0.5, new lambertian(vec3(0.8,0.6,0.2)));
-
-
+//    list[1] = new sphere(vec3(0,0,z), 0.5, new dielectric(vec3(0.8,0.7,0.5), 1.5));
+//    list[2] = new sphere(vec3(-.7,0,z-0.5), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
+//    list[3] = new sphere(vec3( .7,0,z-0.5), 0.5, new metal(vec3(0.8,0.2,0.2), 0.5));
     
-
+    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
+    list[1] = new sphere(vec3(-1,0,z), 0.5, new dielectric(vec3(1,1,1), 1.5));
+    list[2] = new sphere(vec3(0,0,z), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
+    list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.8,0.8), 0.5));
+    list[4] = new sphere(vec3(-1,0,z), -0.45, new dielectric(vec3(1,1,1), 1.5));
+    
+    // greyscale
+//    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
+//    list[1] = new sphere(vec3(0,0,z), 0.5, new dielectric(vec3(.8,.8,.8), 1.5));
+//    list[2] = new sphere(vec3(-1.1,0,z), 0.5, new lambertian(vec3(.5,.5,.5)));
+//    list[3] = new sphere(vec3( 1.1,0,z), 0.5, new metal(vec3(.8,.8,.8), 0.5));
 
     // world是一个指向hitable对象的指针变量
     hitable *world = new hitable_list(list, sphere_num);
-    camera cam;
+    
+//    camera cam;
+    camera cam(vec3(-2,2,1), vec3(0,0,-1),vec3(0,1,0), 40, float(nx)/float(ny));
+    
     for(int j=ny-1; j>=0; j--) {
         for(int i=0; i<nx; i++) {
             vec3 col(0,0,0);
@@ -137,5 +148,5 @@ int main() {
             //std::cout << ir << " " << ig << " " << ib << "\n";
         }
     }
-    cout << "Image output succeeded! :)" << "\n";
+    cout << "Image output succeeded! :)" << endl;
 }
