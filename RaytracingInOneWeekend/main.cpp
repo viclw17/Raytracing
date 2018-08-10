@@ -2,6 +2,9 @@
 #include <fstream>
 #include <limits>
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include "sphere.h"
 #include "hitable_list.h" // including hitable.h which includes ray.h
 #include "camera.h"
@@ -18,6 +21,7 @@ vec3 color(const ray& r, hitable *world, int depth) {
     hit_record rec;
 	// PC - numeric_limits<float>::max()
 	// Mac - MAXFLOAT
+	// In C++: use std::numeric_limits<float>::max(defined in <limits>).You may still use C's FLT_MAX, but include <cfloat> instead.
     if(world->hit(r, 0.001, numeric_limits<float>::max(), rec)) {
         ray scattered;
         vec3 attenuation;
@@ -62,15 +66,15 @@ vec3 color(const ray& r, hitable *world, int depth) {
 int main() {
     int nx = 200;
     int ny = 100;
-    //nx = 800;
-    //ny = 400;
+    nx = 800;
+    ny = 400;
     int ns = 100;
 
     ofstream outfile("test.ppm", ios_base::out);
     outfile << "P3\n" << nx << " " << ny << "\n255\n";
     //std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    const int sphere_num = 4;
+    const int sphere_num = 5;
     hitable *list[sphere_num]; // 一个储存有4个“指向hitable对象的指针”的数组
 
     float big_r = 5000.0;
@@ -103,7 +107,7 @@ int main() {
 	list[1] = new sphere(vec3(-1, 0, z), 0.5, new dielectric(vec3(1, 1, 1), 1.5));
 	list[2] = new sphere(vec3(0, 0, z), 0.5, new lambertian(vec3(0.1, 0.2, 0.5)));
 	list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.5));
-	//list[4] = new sphere(vec3(-1, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));
+	list[4] = new sphere(vec3(-1, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));
 
 	// greyscale
 //    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
@@ -113,9 +117,18 @@ int main() {
 
     // world是一个指向hitable对象的指针变量
     hitable *world = new hitable_list(list, sphere_num);
-    camera cam;
-    for(int j=ny-1; j>=0; j--) {
+
+    //camera cam;
+	camera cam(vec3(-2, 2, 1), vec3(0, 0, -1), vec3(0, 1, 0), 40, float(nx) / float(ny));
+    
+	int total = nx*ny;
+	int current = 0;
+	int counter = 0;
+	cout << "Image outputing ..." << endl;
+
+	for(int j=ny-1; j>=0; j--) {
         for(int i=0; i<nx; i++) {
+			counter++;
             vec3 col(0,0,0);
             for(int s=0; s < ns; s++) {
                 float u = float(i + rand() % (100) / (float)(100))/float(nx); // 0~1
@@ -133,6 +146,15 @@ int main() {
                 col += color(r, world, 0);
             }
 
+			int mod = counter / (total / 100);
+			
+			if (current != mod) {
+				current = mod;
+				//cout << "*";
+				cout << '\b' << '\b' << '\b' << current << "%";
+				//cout << counter << endl;
+			}
+
             col /= float(ns);
 
             // gamma correction
@@ -146,6 +168,7 @@ int main() {
             //std::cout << ir << " " << ig << " " << ib << "\n";
         }
     }
+	cout << endl;
     cout << "Image output succeeded! :)" << "\n";
-	system("pause");
+	//system("pause");
 }
