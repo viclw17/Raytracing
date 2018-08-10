@@ -105,12 +105,12 @@ int main() {
 //    list[2] = new sphere(vec3(0,0,z), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
 //    list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
     
-    // blue white
+    // blue white, glass
     list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
     list[1] = new sphere(vec3(-1,0,z), 0.5, new dielectric(vec3(1,1,1), 1.5));
     list[2] = new sphere(vec3(0,0,z), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
     list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.8,0.8), 0.5));
-    list[4] = new sphere(vec3(-1,0,z), -0.45, new dielectric(vec3(1,1,1), 1.5));
+//    list[4] = new sphere(vec3(-1,0,z), -0.45, new dielectric(vec3(1,1,1), 1.5));
     
     // greyscale
 //    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
