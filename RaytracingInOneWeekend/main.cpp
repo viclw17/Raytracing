@@ -103,11 +103,11 @@ int main() {
 //    list[3] = new sphere(vec3( .7,0,z-0.5), 0.5, new metal(vec3(0.8,0.2,0.2), 0.5));
 
 	// blue white
-	list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(1, 1, 1)));
-	list[1] = new sphere(vec3(-1, 0, z), 0.5, new dielectric(vec3(1, 1, 1), 1.5));
-	list[2] = new sphere(vec3(0, 0, z), 0.5, new lambertian(vec3(0.1, 0.2, 0.5)));
+	list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
+	list[1] = new sphere(vec3(-1.001, 0, z), 0.5, new dielectric(vec3(1, 1, 1), 1.5));
+	list[2] = new sphere(vec3(0, 0, z), 0.5, new lambertian(vec3(.8,.8,.8)));
 	list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.5));
-	list[4] = new sphere(vec3(-1, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));
+	list[4] = new sphere(vec3(-1.001, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));
 
 	// greyscale
 //    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
