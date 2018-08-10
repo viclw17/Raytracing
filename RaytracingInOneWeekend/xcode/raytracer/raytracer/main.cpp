@@ -70,7 +70,7 @@ int main() {
     outfile << "P3\n" << nx << " " << ny << "\n255\n";
     //std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    int sphere_num = 4;
+    int sphere_num = 5;
     hitable *list[sphere_num]; // 一个储存有4个“指向hitable对象的指针”的数组
     
     float big_r = 5000.0;
@@ -93,11 +93,19 @@ int main() {
 //    list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.0));
 //    list[3] = new sphere(vec3(-1,0,-1), 0.5, new dielectric(1.5));
     
+    // center 3 spheres
 //    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
 //    list[1] = new sphere(vec3(0,0,z), 0.5, new dielectric(vec3(0.8,0.7,0.5), 1.5));
 //    list[2] = new sphere(vec3(-.7,0,z-0.5), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
 //    list[3] = new sphere(vec3( .7,0,z-0.5), 0.5, new metal(vec3(0.8,0.2,0.2), 0.5));
     
+    // 3 colors
+//    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
+//    list[1] = new sphere(vec3(-1,0,z), 0.5, new dielectric(vec3(0.9,0.8,0.5), 1.5));
+//    list[2] = new sphere(vec3(0,0,z), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
+//    list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
+    
+    // blue white
     list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
     list[1] = new sphere(vec3(-1,0,z), 0.5, new dielectric(vec3(1,1,1), 1.5));
     list[2] = new sphere(vec3(0,0,z), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
@@ -114,10 +122,16 @@ int main() {
     hitable *world = new hitable_list(list, sphere_num);
     
 //    camera cam;
-    camera cam(vec3(-2,2,1), vec3(0,0,-1),vec3(0,1,0), 40, float(nx)/float(ny));
+    camera cam(vec3(-2, 2, 1), vec3(0, 0, -1), vec3(0, 1, 0), 40, float(nx) / float(ny));
+    
+    int total = nx*ny;
+    int current = 0;
+    int counter = 0;
+    cout << "Image outputing ..." << endl;
     
     for(int j=ny-1; j>=0; j--) {
         for(int i=0; i<nx; i++) {
+            counter++;
             vec3 col(0,0,0);
             for(int s=0; s < ns; s++) {
                 float u = float(i + drand48())/float(nx); // 0~1
@@ -134,6 +148,13 @@ int main() {
 
                 col += color(r, world, 0);
             }
+            
+            int mod = counter / (total / 10);
+            
+            if (current != mod) {
+                current = mod;
+                cout << "*";
+            }
 
             col /= float(ns);
 
@@ -148,5 +169,6 @@ int main() {
             //std::cout << ir << " " << ig << " " << ib << "\n";
         }
     }
+    cout << endl;
     cout << "Image output succeeded! :)" << endl;
 }
