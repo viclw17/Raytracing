@@ -29,8 +29,8 @@ Zavie
 // #ifdef GL_ES
 // precision mediump float;
 // #endif
-#define SAMPLES 2
-#define MAXDEPTH 2
+#define SAMPLES 10
+#define MAXDEPTH 4
 // #define SAMPLES 8
 // #define MAXDEPTH 4
 
@@ -261,7 +261,8 @@ vec3 debug_radiance(Ray r) {
 			cos_a = mix(cos_a_max, 1., rand()); // mix!
             sin_a = sqrt(1. - cos_a*cos_a);
 			l = jitter(l0, phi, sin_a, cos_a);
-            l = cosWeightedRandomHemisphereDirection(l0); // test
+            //l = cosWeightedRandomHemisphereDirection(l0); // test
+            //l = RandomHemisphereDirection(l0);
 
             // Shoot shadow ray
             // Check for occlusion with shadow ray
@@ -278,8 +279,9 @@ vec3 debug_radiance(Ray r) {
 			r2 = rand();       // get random value, (0,1)
             r2s = sqrt(r2);    // r2 sqrt, get random distance from center
 			d = jitter(nl, r1, r2s, sqrt(1. - r2));
-            d = cosWeightedRandomHemisphereDirection(nl); // test
-            // d = vec3(0,0,0); // test
+            //d = cosWeightedRandomHemisphereDirection(nl); // test
+            //d = RandomHemisphereDirection(l0);
+            //d = vec3(0,0,0); // test
 			r = Ray(x, d); // new ray
 
 		} else if (obj.refl == SPEC) {

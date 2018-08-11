@@ -106,7 +106,7 @@ int main() {
 	list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
 	list[1] = new sphere(vec3(-1.001, 0, z), 0.5, new dielectric(vec3(1, 1, 1), 1.5));
 	list[2] = new sphere(vec3(0, 0, z), 0.5, new lambertian(vec3(.8,.8,.8)));
-	list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.5));
+	list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.5)); //0.5
 	list[4] = new sphere(vec3(-1.001, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));
 
 	// greyscale
@@ -119,7 +119,12 @@ int main() {
     hitable *world = new hitable_list(list, sphere_num);
 
     //camera cam;
-	camera cam(vec3(-2, 2, 1), vec3(0, 0, -1), vec3(0, 1, 0), 40, float(nx) / float(ny));
+	//camera cam(vec3(-2, 2, 1), vec3(0, 0, -1), vec3(0, 1, 0), 40, float(nx) / float(ny));
+	vec3 lookfrom(3, 3, 2);
+	vec3 lookat(0, 0, -1);
+	float dist_to_focus = (lookfrom - lookat).length();
+	float aperture = .5;
+	camera cam(lookfrom, lookat, vec3(0, 1, 0), 20, float(nx) / float(ny), aperture, dist_to_focus);
     
 	int total = nx*ny;
 	int current = 0;
