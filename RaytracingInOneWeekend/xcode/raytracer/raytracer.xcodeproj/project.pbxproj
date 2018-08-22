@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9998EAA5211C0A9D007B8F5B /* hitable_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9998EAA3211C0A9D007B8F5B /* hitable_list.cpp */; };
 		9998EAA8211C0ABF007B8F5B /* dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9998EAA7211C0ABF007B8F5B /* dielectric.cpp */; };
+		9998EAAA211FAE71007B8F5B /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9998EAA9211FAE71007B8F5B /* camera.cpp */; };
 		99F8139D210EF4050017292E /* metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99F8138E210EF4040017292E /* metal.cpp */; };
 		99F8139F210EF4050017292E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99F81390210EF4040017292E /* main.cpp */; };
 		99F813A0210EF4050017292E /* lambertian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99F81395210EF4050017292E /* lambertian.cpp */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		9998EAA3211C0A9D007B8F5B /* hitable_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hitable_list.cpp; sourceTree = "<group>"; };
 		9998EAA7211C0ABF007B8F5B /* dielectric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dielectric.cpp; sourceTree = "<group>"; };
+		9998EAA9211FAE71007B8F5B /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
 		99F8136B210EE0AD0017292E /* raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F8138E210EF4040017292E /* metal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = metal.cpp; sourceTree = "<group>"; };
 		99F81390210EF4040017292E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				99F81391210EF4050017292E /* material.h */,
 				99F81392210EF4050017292E /* hitable.h */,
 				99F81393210EF4050017292E /* camera.h */,
+				9998EAA9211FAE71007B8F5B /* camera.cpp */,
 				99F81396210EF4050017292E /* ray.h */,
 				99F81399210EF4050017292E /* vec3.h */,
 				99F81390210EF4040017292E /* main.cpp */,
@@ -153,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9998EAAA211FAE71007B8F5B /* camera.cpp in Sources */,
 				99F813A1210EF4050017292E /* sphere.cpp in Sources */,
 				99F8139F210EF4050017292E /* main.cpp in Sources */,
 				99F813A0210EF4050017292E /* lambertian.cpp in Sources */,

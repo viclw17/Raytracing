@@ -62,19 +62,27 @@ vec3 color(const ray& r, hitable *world, int depth) {
 int main() {
     int nx = 200;
     int ny = 100;
-    nx = 800;
-    ny = 400;
+//    nx = 800;
+//    ny = 400;
+//    nx = 1000;
+//    ny = 500;
     int ns = 100;
 
     ofstream outfile("test.ppm", ios_base::out);
     outfile << "P3\n" << nx << " " << ny << "\n255\n";
     //std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    int sphere_num = 5;
+    int sphere_num = 4;
     hitable *list[sphere_num]; // 一个储存有4个“指向hitable对象的指针”的数组
     
     float big_r = 5000.0;
     float z = -1.0;
+    
+    // diffuse
+//    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(.5,.5,.5)));
+//    list[1] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
+//    list[2] = new sphere(vec3(1,0,-1), 0.5, new lambertian(vec3(.7,.7,.7)));
+//    list[3] = new sphere(vec3(-1,0,-1), 0.5, new lambertian(vec3(1,1,1)));
     
     // metal
 //    list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8,0.3,0.3)));
@@ -82,10 +90,10 @@ int main() {
 //    list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.5));
 //    list[3] = new sphere(vec3(-1,0,-1), 0.5, new metal(vec3(0.8,0.8,0.8), 0.0));
     
-//    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
-//    list[1] = new sphere(vec3(-1.1,0,-1.5), 0.5, new metal(vec3(0.8,0.3,0.3), 0.3));
-//    list[2] = new sphere(vec3(0,0,-1.4), 0.5, new metal(vec3(0.8,0.8,0.8), 0.0));
-//    list[3] = new sphere(vec3(1.1,0,-1.5), 0.5, new lambertian(vec3(0.8,0.6,0.2)));
+//    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(.5,.5,.5)));
+//    list[1] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8,0.3,0.3)));
+//    list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.5));
+//    list[3] = new sphere(vec3(-1,0,-1), 0.5, new metal(vec3(0.8,0.8,0.8), 0.0));
     
     // dielectric
 //    list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
@@ -106,23 +114,29 @@ int main() {
 //    list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
     
     // blue white, glass
-    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
-    list[1] = new sphere(vec3(-1,0,z), 0.5, new dielectric(vec3(1,1,1), 1.5));
-    list[2] = new sphere(vec3(0,0,z), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
-    list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.8,0.8), 0.5));
-//    list[4] = new sphere(vec3(-1,0,z), -0.45, new dielectric(vec3(1,1,1), 1.5));
-    
-    // greyscale
-//    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
-//    list[1] = new sphere(vec3(0,0,z), 0.5, new dielectric(vec3(.8,.8,.8), 1.5));
-//    list[2] = new sphere(vec3(-1.1,0,z), 0.5, new lambertian(vec3(.5,.5,.5)));
-//    list[3] = new sphere(vec3( 1.1,0,z), 0.5, new metal(vec3(.8,.8,.8), 0.5));
+    list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
+    list[1] = new sphere(vec3(0, 0, z), 0.5, new dielectric(vec3(.9,.9,.9), 1.5));
+    list[2] = new sphere(vec3(-1.001, 0, z), 0.5, new lambertian(vec3(.8,.8,.8)));
+    list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.3)); //0.5
+//    list[4] = new sphere(vec3(0, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));
 
     // world是一个指向hitable对象的指针变量
     hitable *world = new hitable_list(list, sphere_num);
     
-//    camera cam;
-    camera cam(vec3(-2, 2, 1), vec3(0, 0, -1), vec3(0, 1, 0), 40, float(nx) / float(ny));
+    // Camera angled
+    vec3 lookfrom(-2, 1.5, 1);//(3, 3, 2);
+    vec3 lookat(-0.2, 0, -1);
+    float dist_to_focus = (lookfrom - lookat).length();
+    float aperture = .01; // 0.5
+    float theta = 40;//20
+//    camera cam(lookfrom, lookat, vec3(0, 1, 0), theta, float(nx) / float(ny), aperture, dist_to_focus);
+    
+    // Camera facing
+    lookfrom = vec3(0,1,1.5);
+    lookat = vec3(0, 0, -1);
+    dist_to_focus = (lookfrom - lookat).length();
+    camera cam(lookfrom, lookat, vec3(0, 1, 0), theta, float(nx) / float(ny), aperture, dist_to_focus);
+    
     
     int total = nx*ny;
     int current = 0;

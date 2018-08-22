@@ -364,7 +364,7 @@ vec3 radiance(Ray r) {
 				vec3 l = jitter(l0, 2.*PI*rand(), sqrt(1. - cosa*cosa), cosa);
 
 				if (scene_intersect(Ray(x, l), t, s, id) == i) { // Ray(x, l), origin, direction
-					float omega = 2. * PI * (1. - cos_a_max);
+					float omega = 2. * PI * (1. - cos_a_max); // PI from cancelling
 					e += (s.e * clamp(dot(l, n),0.,1.) * omega) / PI;
 				}
 			// }

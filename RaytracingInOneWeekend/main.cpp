@@ -66,8 +66,8 @@ vec3 color(const ray& r, hitable *world, int depth) {
 int main() {
     int nx = 200;
     int ny = 100;
-    nx = 800;
-    ny = 400;
+    //nx = 800;
+    //ny = 400;
     int ns = 100;
 
     ofstream outfile("test.ppm", ios_base::out);
