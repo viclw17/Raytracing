@@ -79,6 +79,7 @@
 		99F8136D210EE0AD0017292E /* raytracer */ = {
 			isa = PBXGroup;
 			children = (
+				99F81390210EF4040017292E /* main.cpp */,
 				9998EAA7211C0ABF007B8F5B /* dielectric.cpp */,
 				99F813A6211001D20017292E /* dielectric.h */,
 				9998EAA3211C0A9D007B8F5B /* hitable_list.cpp */,
@@ -95,7 +96,6 @@
 				9998EAA9211FAE71007B8F5B /* camera.cpp */,
 				99F81396210EF4050017292E /* ray.h */,
 				99F81399210EF4050017292E /* vec3.h */,
-				99F81390210EF4040017292E /* main.cpp */,
 			);
 			path = raytracer;
 			sourceTree = "<group>";
