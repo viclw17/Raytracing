@@ -1,5 +1,5 @@
-#ifndef CAMERAH
-#define CAMERAH
+#ifndef CAMERA_H
+#define CAMERA_H
 
 #include "ray.h"
 
@@ -37,4 +37,4 @@ public:
     vec3 u, v, w;
     float lens_radius;
 };
-#endif
+#endif // CAMERA_H

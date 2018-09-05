@@ -1,5 +1,5 @@
-#ifndef DIELECTRICH
-#define DIELECTRICH
+#ifndef DIELECTRIC_H
+#define DIELECTRIC_H
 
 #include "material.h"
 #include "metal.h"
@@ -17,4 +17,4 @@ public:
     vec3 albedo;
     float ref_idx;
 };
-#endif
+#endif // DIELECTRIC_H

@@ -1,5 +1,5 @@
-#ifndef RAYH
-#define RAYH
+#ifndef RAY_H
+#define RAY_H
 #include "vec3.h"
 
 class ray{
@@ -13,4 +13,4 @@ public:
     vec3 A;
     vec3 B;
 };
-#endif
+#endif // RAY_H

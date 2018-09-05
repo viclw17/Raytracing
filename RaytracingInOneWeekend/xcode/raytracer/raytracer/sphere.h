@@ -1,5 +1,5 @@
-#ifndef SPHEREH
-#define SPHEREH
+#ifndef SPHERE_H
+#define SPHERE_H
 
 #include "hitable.h"
 #include "material.h"
@@ -18,4 +18,4 @@ public:
     float radius;
     material *ma;
 };
-#endif
+#endif // SPHERE_H

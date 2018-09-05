@@ -1,5 +1,5 @@
-#ifndef HITABLELISTH
-#define HITABLELISTH
+#ifndef HITABLELIST_H
+#define c
 
 #include "hitable.h"
 
@@ -18,4 +18,4 @@ public:
     hitable **list;
     int list_size;
 };
-#endif
+#endif // HITABLELIST_H
