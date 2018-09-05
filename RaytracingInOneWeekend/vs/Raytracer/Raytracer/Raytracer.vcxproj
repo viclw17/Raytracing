@@ -18,6 +18,27 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\camera.cpp" />
+    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\dielectric.cpp" />
+    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\hitable_list.cpp" />
+    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\lambertian.cpp" />
+    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\main.cpp" />
+    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\metal.cpp" />
+    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\sphere.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\camera.h" />
+    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\dielectric.h" />
+    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\hitable.h" />
+    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\hitable_list.h" />
+    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\lambertian.h" />
+    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\material.h" />
+    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\metal.h" />
+    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\ray.h" />
+    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\sphere.h" />
+    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\vec3.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D9C93E58-D152-486B-A387-7B866D92274F}</ProjectGuid>
     <RootNamespace>Raytracer</RootNamespace>
@@ -109,21 +130,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\camera.h" />
-    <ClInclude Include="..\..\..\dielectric.h" />
-    <ClInclude Include="..\..\..\hitable.h" />
-    <ClInclude Include="..\..\..\hitable_list.h" />
-    <ClInclude Include="..\..\..\lambertian.h" />
-    <ClInclude Include="..\..\..\material.h" />
-    <ClInclude Include="..\..\..\metal.h" />
-    <ClInclude Include="..\..\..\ray.h" />
-    <ClInclude Include="..\..\..\sphere.h" />
-    <ClInclude Include="..\..\..\vec3.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
