@@ -13,8 +13,10 @@ using namespace std;
 // world: pointer to a Hitable object
 vec3 color(const ray& r, hitable *world, int depth) {
     hit_record rec;
-    // the ref. of rec is passed in, numeric_limits<float>::max()
-    if(world->hit(r, 0.001, MAXFLOAT, rec)) {
+	// PC - numeric_limits<float>::max()
+	// Mac - MAXFLOAT
+	// In C++: use std::numeric_limits<float>::max(defined in <limits>).You may still use C's FLT_MAX, but include <cfloat> instead.
+    if(world->hit(r, 0.001, numeric_limits<float>::max(), rec)) {
         ray scattered;
         vec3 attenuation;
         if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
@@ -109,12 +111,12 @@ hitable *random_scene() {
 int main() {
     int nx = 100;
     int ny = 50;
-    nx = 200;
+    /*nx = 200;
     ny = 100;
     nx = 800;
-    ny = 400;
-//    nx = 1000;
-//    ny = 500;
+    ny = 400;*/
+	nx = 1000;
+	ny = 500;
     int ns = 100;
 
     ofstream outfile("test.ppm", ios_base::out);
@@ -221,8 +223,8 @@ int main() {
             counter++;
             vec3 col(0,0,0);
             for(int s=0; s < ns; s++) {
-                float u = float(i + drand48())/float(nx); // 0~1
-                float v = float(j + drand48())/float(ny);
+                float u = float(i + rand() % (100) / (float)(100))/float(nx); // 0~1
+                float v = float(j + rand() % (100) / (float)(100))/float(ny); // xcode: drand48()
                 // float u = float(i) / float(nx);
                 // float v = float(j) / float(ny);
                 ray r = cam.get_ray(u,v); // generate ray per sample
