@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9998EAA5211C0A9D007B8F5B /* hitable_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9998EAA3211C0A9D007B8F5B /* hitable_list.cpp */; };
-		9998EAA8211C0ABF007B8F5B /* dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9998EAA7211C0ABF007B8F5B /* dielectric.cpp */; };
-		9998EAAA211FAE71007B8F5B /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9998EAA9211FAE71007B8F5B /* camera.cpp */; };
-		99F8139D210EF4050017292E /* metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99F8138E210EF4040017292E /* metal.cpp */; };
-		99F8139F210EF4050017292E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99F81390210EF4040017292E /* main.cpp */; };
-		99F813A0210EF4050017292E /* lambertian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99F81395210EF4050017292E /* lambertian.cpp */; };
-		99F813A1210EF4050017292E /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99F81398210EF4050017292E /* sphere.cpp */; };
+		999D2988214502D700EDC13D /* dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999D2977214502D700EDC13D /* dielectric.cpp */; };
+		999D2989214502D700EDC13D /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999D297A214502D700EDC13D /* sphere.cpp */; };
+		999D298A214502D700EDC13D /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 999D297B214502D700EDC13D /* Makefile */; };
+		999D298B214502D700EDC13D /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999D2981214502D700EDC13D /* camera.cpp */; };
+		999D298C214502D700EDC13D /* hitable_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999D2984214502D700EDC13D /* hitable_list.cpp */; };
+		999D298D214502D700EDC13D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999D2985214502D700EDC13D /* main.cpp */; };
+		999D298E214502D700EDC13D /* lambertian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999D2986214502D700EDC13D /* lambertian.cpp */; };
+		999D298F214502D700EDC13D /* metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999D2987214502D700EDC13D /* metal.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,24 +30,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9998EAA3211C0A9D007B8F5B /* hitable_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hitable_list.cpp; sourceTree = "<group>"; };
-		9998EAA7211C0ABF007B8F5B /* dielectric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dielectric.cpp; sourceTree = "<group>"; };
-		9998EAA9211FAE71007B8F5B /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
+		999D2976214502D700EDC13D /* metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = metal.h; path = ../../code/metal.h; sourceTree = "<group>"; };
+		999D2977214502D700EDC13D /* dielectric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dielectric.cpp; path = ../../code/dielectric.cpp; sourceTree = "<group>"; };
+		999D2978214502D700EDC13D /* material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = material.h; path = ../../code/material.h; sourceTree = "<group>"; };
+		999D2979214502D700EDC13D /* lambertian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lambertian.h; path = ../../code/lambertian.h; sourceTree = "<group>"; };
+		999D297A214502D700EDC13D /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sphere.cpp; path = ../../code/sphere.cpp; sourceTree = "<group>"; };
+		999D297B214502D700EDC13D /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = ../../code/Makefile; sourceTree = "<group>"; };
+		999D297C214502D700EDC13D /* ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ray.h; path = ../../code/ray.h; sourceTree = "<group>"; };
+		999D297D214502D700EDC13D /* hitable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hitable.h; path = ../../code/hitable.h; sourceTree = "<group>"; };
+		999D297E214502D700EDC13D /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vec3.h; path = ../../code/vec3.h; sourceTree = "<group>"; };
+		999D297F214502D700EDC13D /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = ../../code/camera.h; sourceTree = "<group>"; };
+		999D2980214502D700EDC13D /* hitable_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hitable_list.h; path = ../../code/hitable_list.h; sourceTree = "<group>"; };
+		999D2981214502D700EDC13D /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera.cpp; path = ../../code/camera.cpp; sourceTree = "<group>"; };
+		999D2982214502D700EDC13D /* sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sphere.h; path = ../../code/sphere.h; sourceTree = "<group>"; };
+		999D2983214502D700EDC13D /* dielectric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dielectric.h; path = ../../code/dielectric.h; sourceTree = "<group>"; };
+		999D2984214502D700EDC13D /* hitable_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hitable_list.cpp; path = ../../code/hitable_list.cpp; sourceTree = "<group>"; };
+		999D2985214502D700EDC13D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../code/main.cpp; sourceTree = "<group>"; };
+		999D2986214502D700EDC13D /* lambertian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lambertian.cpp; path = ../../code/lambertian.cpp; sourceTree = "<group>"; };
+		999D2987214502D700EDC13D /* metal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = metal.cpp; path = ../../code/metal.cpp; sourceTree = "<group>"; };
 		99F8136B210EE0AD0017292E /* raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
-		99F8138E210EF4040017292E /* metal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = metal.cpp; sourceTree = "<group>"; };
-		99F81390210EF4040017292E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		99F81391210EF4050017292E /* material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
-		99F81392210EF4050017292E /* hitable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hitable.h; sourceTree = "<group>"; };
-		99F81393210EF4050017292E /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
-		99F81394210EF4050017292E /* hitable_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hitable_list.h; sourceTree = "<group>"; };
-		99F81395210EF4050017292E /* lambertian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lambertian.cpp; sourceTree = "<group>"; };
-		99F81396210EF4050017292E /* ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ray.h; sourceTree = "<group>"; };
-		99F81397210EF4050017292E /* lambertian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lambertian.h; sourceTree = "<group>"; };
-		99F81398210EF4050017292E /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sphere.cpp; sourceTree = "<group>"; };
-		99F81399210EF4050017292E /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec3.h; sourceTree = "<group>"; };
-		99F8139A210EF4050017292E /* sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sphere.h; sourceTree = "<group>"; };
-		99F8139B210EF4050017292E /* metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metal.h; sourceTree = "<group>"; };
-		99F813A6211001D20017292E /* dielectric.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dielectric.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +65,24 @@
 		99F81362210EE0AD0017292E = {
 			isa = PBXGroup;
 			children = (
-				99F8136D210EE0AD0017292E /* raytracer */,
+				999D2981214502D700EDC13D /* camera.cpp */,
+				999D297F214502D700EDC13D /* camera.h */,
+				999D2977214502D700EDC13D /* dielectric.cpp */,
+				999D2983214502D700EDC13D /* dielectric.h */,
+				999D2984214502D700EDC13D /* hitable_list.cpp */,
+				999D2980214502D700EDC13D /* hitable_list.h */,
+				999D297D214502D700EDC13D /* hitable.h */,
+				999D2986214502D700EDC13D /* lambertian.cpp */,
+				999D2979214502D700EDC13D /* lambertian.h */,
+				999D2985214502D700EDC13D /* main.cpp */,
+				999D297B214502D700EDC13D /* Makefile */,
+				999D2978214502D700EDC13D /* material.h */,
+				999D2987214502D700EDC13D /* metal.cpp */,
+				999D2976214502D700EDC13D /* metal.h */,
+				999D297C214502D700EDC13D /* ray.h */,
+				999D297A214502D700EDC13D /* sphere.cpp */,
+				999D2982214502D700EDC13D /* sphere.h */,
+				999D297E214502D700EDC13D /* vec3.h */,
 				99F8136C210EE0AD0017292E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,30 +93,6 @@
 				99F8136B210EE0AD0017292E /* raytracer */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		99F8136D210EE0AD0017292E /* raytracer */ = {
-			isa = PBXGroup;
-			children = (
-				99F81390210EF4040017292E /* main.cpp */,
-				9998EAA7211C0ABF007B8F5B /* dielectric.cpp */,
-				99F813A6211001D20017292E /* dielectric.h */,
-				99F81392210EF4050017292E /* hitable.h */,
-				9998EAA3211C0A9D007B8F5B /* hitable_list.cpp */,
-				99F81394210EF4050017292E /* hitable_list.h */,
-				99F81391210EF4050017292E /* material.h */,
-				99F81395210EF4050017292E /* lambertian.cpp */,
-				99F81397210EF4050017292E /* lambertian.h */,
-				99F8138E210EF4040017292E /* metal.cpp */,
-				99F8139B210EF4050017292E /* metal.h */,
-				99F81398210EF4050017292E /* sphere.cpp */,
-				99F8139A210EF4050017292E /* sphere.h */,
-				99F81393210EF4050017292E /* camera.h */,
-				9998EAA9211FAE71007B8F5B /* camera.cpp */,
-				99F81396210EF4050017292E /* ray.h */,
-				99F81399210EF4050017292E /* vec3.h */,
-			);
-			path = raytracer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,13 +151,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9998EAAA211FAE71007B8F5B /* camera.cpp in Sources */,
-				99F813A1210EF4050017292E /* sphere.cpp in Sources */,
-				99F8139F210EF4050017292E /* main.cpp in Sources */,
-				99F813A0210EF4050017292E /* lambertian.cpp in Sources */,
-				9998EAA8211C0ABF007B8F5B /* dielectric.cpp in Sources */,
-				99F8139D210EF4050017292E /* metal.cpp in Sources */,
-				9998EAA5211C0A9D007B8F5B /* hitable_list.cpp in Sources */,
+				999D298B214502D700EDC13D /* camera.cpp in Sources */,
+				999D298A214502D700EDC13D /* Makefile in Sources */,
+				999D298D214502D700EDC13D /* main.cpp in Sources */,
+				999D2989214502D700EDC13D /* sphere.cpp in Sources */,
+				999D298E214502D700EDC13D /* lambertian.cpp in Sources */,
+				999D298F214502D700EDC13D /* metal.cpp in Sources */,
+				999D298C214502D700EDC13D /* hitable_list.cpp in Sources */,
+				999D2988214502D700EDC13D /* dielectric.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

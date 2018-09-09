@@ -1,5 +1,5 @@
 #ifndef HITABLELIST_H
-#define c
+#define HITABLELIST_H
 
 #include "hitable.h"
 

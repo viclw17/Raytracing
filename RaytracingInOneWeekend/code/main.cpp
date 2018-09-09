@@ -77,34 +77,42 @@ hitable *random_scene() {
                 /*避免小球的位置和最前面的大球的位置太靠近*/
                 if (choose_mat < 0.8) {     //diffuse
                     /*材料阀值小于0.8，则设置为漫反射球，漫反射球的衰减系数x,y,z都是（0，1）之间的随机数的平方*/
-                    list[i++] = new sphere(center, 0.2,
-                                           new lambertian(vec3(
-                                                               (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100)),
-                                                               (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100)),
-                                                               (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100)))));
+                    list[i++] =
+                    new sphere(center, 0.2,
+                        new lambertian(
+                            vec3(
+                                (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100)),
+                                (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100)),
+                                (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100))
+                            )
+                        )
+                    );
                 }
                 else if (choose_mat < 0.95) {
                     /*材料阀值大于等于0.8小于0.95，则设置为镜面反射球，镜面反射球的衰减系数x,y,z及模糊系数都是（0，1）之间的随机数加一再除以2*/
-                    list[i++] = new sphere(center, 0.2,
-                                           new metal(vec3(0.5*(1+(rand()%(100)/(float)(100))),
-                                                          0.5*(1+(rand()%(100)/(float)(100))),
-                                                          0.5*(1+(rand()%(100)/(float)(100)))),
-                                                     0.5*(1+(rand()%(100)/(float)(100)))));
-                                           }
-                                           else {
-                                               /*材料阀值大于等于0.95，则设置为介质球*/
-                                               list[i++] = new sphere(center, 0.2, new dielectric(vec3(1, 1, 1),1.5));
-                                           }
-                                           }
-                                           }
-                                           }
-                                           
-                                           list[i++] = new sphere(vec3(0, 1, 0), 1.0, new dielectric(vec3(1, 1, 1),1.5));
-                                           list[i++] = new sphere(vec3(-4, 1, 0), 1.0, new lambertian(vec3(0.4, 0.2, 0.1)));
-                                           list[i++] = new sphere(vec3(4, 1, 0), 1.0, new metal(vec3(0.7, 0.6, 0.5), 0.0));
-                    /*定义三个大球*/
-                                           return new hitable_list(list, i);
-                                           }
+                    list[i++] =
+                    new sphere(center, 0.2,
+                        new metal(
+                            vec3(
+                                0.5*(1+(rand()%(100)/(float)(100))),
+                                0.5*(1+(rand()%(100)/(float)(100))),
+                                0.5*(1+(rand()%(100)/(float)(100)))),
+                            0.5*(1+(rand()%(100)/(float)(100)))));
+                }
+                else {
+                    /*材料阀值大于等于0.95，则设置为介质球*/
+                    list[i++] = new sphere(center, 0.2, new dielectric(vec3(1, 1,  1),1.5));
+                }
+            }
+        }
+    }
+    list[i++] = new sphere(vec3(0, 1, 0), 1.0, new dielectric(vec3(1, 1,  1),1.5));
+    list[i++] = new sphere(vec3(-4, 1, 0), 1.0, new lambertian(vec3(0.4, 0.2,  0.1)));
+    list[i++] = new sphere(vec3(4, 1, 0), 1.0, new metal(vec3(0.7, 0.6, 0.5),  0.0));
+    /*定义三个大球*/
+
+    return new hitable_list(list, i);
+    }
 
 ////////////////////////////////////////////////////////////
 
@@ -114,28 +122,30 @@ int main() {
     /*nx = 200;
     ny = 100;
     nx = 800;
-    ny = 400;*/
+    ny = 400;
 	nx = 1000;
-	ny = 500;
+	ny = 500;*/
     int ns = 100;
 
     ofstream outfile("test.ppm", ios_base::out);
     outfile << "P3\n" << nx << " " << ny << "\n255\n";
     //std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-//    int sphere_num = 4;
-//    hitable *list[sphere_num]; // 一个储存有4个“指向hitable对象的指针”的数组
-//    float big_r = 5000.0;
-//    float z = -1.0;
-    
+    ///*
+    int sphere_num = 4;
+    hitable *list[sphere_num]; // 一个储存有4个“指向hitable对象的指针”的数组
+    float big_r = 5000.0;
+    float z = -1.0;
+    //*/
+
     // diffuse, blog arrangement
-    /*
+    ///*
     list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(.5,.5,.5)));
     list[1] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
     list[2] = new sphere(vec3(1,0,-1), 0.5, new lambertian(vec3(.7,.7,.7)));
     list[3] = new sphere(vec3(-1,0,-1), 0.5, new lambertian(vec3(1,1,1)));
-    */
-    
+    //*/
+
     // metal, book default arrangement
     /*
     list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8,0.3,0.3)));
@@ -150,7 +160,7 @@ int main() {
     list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.5));
     list[3] = new sphere(vec3(-1,0,-1), 0.5, new metal(vec3(0.8,0.8,0.8), 0.0));
     */
-    
+
     // dielectric, book default arrangement
     /*
     list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
@@ -158,7 +168,7 @@ int main() {
     list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.0));
     list[3] = new sphere(vec3(-1,0,-1), 0.5, new dielectric(vec3(1, 1, 1),1.5));
     */
-    
+
     // white background, 3 colors, 3 materials, pyramid
     /*
     list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
@@ -166,7 +176,7 @@ int main() {
     list[2] = new sphere(vec3(-.7,0,z-0.5), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
     list[3] = new sphere(vec3( .7,0,z-0.5), 0.5, new metal(vec3(0.8,0.2,0.2), 0.5));
     */
-    
+
     // white background, 3 colors, 3 materials
     /*
     list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
@@ -174,7 +184,7 @@ int main() {
     list[2] = new sphere(vec3(0,0,z), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
     list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
     */
-    
+
     // blue background, white color, 3 materials
     /*
     list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
@@ -185,9 +195,10 @@ int main() {
     */
 
     // world是一个指向hitable对象的指针变量
-    hitable *world;// = new hitable_list(list, sphere_num);
-    world = random_scene();
-    
+    hitable *world;
+    world = new hitable_list(list, sphere_num);
+    //world = random_scene();
+
     ////////////////////////////////////////////////////////////
     // Camera angled
     /*
@@ -197,27 +208,31 @@ int main() {
     float aperture = .01; // 0.5
     float theta = 40;//20
     //camera cam(lookfrom, lookat, vec3(0, 1, 0), theta, float(nx) / float(ny), aperture, dist_to_focus);
-    
+    */
+
     // Camera facing forward
-    lookfrom = vec3(0,1,1.5);
-    lookat = vec3(0, 0, -1);
-    dist_to_focus = (lookfrom - lookat).length();
+    vec3 lookfrom = vec3(0,1,1.5);
+    vec3 lookat = vec3(0, 0, -1);
+    float dist_to_focus = (lookfrom - lookat).length();
+    float aperture = .01; // 0.5
+    float theta = 40;//20
     camera cam(lookfrom, lookat, vec3(0, 1, 0), theta, float(nx) / float(ny), aperture, dist_to_focus);
-     */
-    
+
     // Camera, cover image
+    /*
     vec3 lookfrom(11,2,3);
     vec3 lookat(0,0.6,0);
     float dist_to_focus = (lookfrom - lookat).length();
     float aperture = 0.0;
     camera cam(lookfrom, lookat, vec3(0,1,0), 20, float(nx)/float(ny), aperture,0.7*dist_to_focus);
+    */
     ////////////////////////////////////////////////////////////
 
     int total = nx*ny;
     int current = 0;
     int counter = 0;
     cout << "Image outputing ..." << endl;
-    
+
     for(int j=ny-1; j>=0; j--) {
         for(int i=0; i<nx; i++) {
             counter++;
@@ -237,9 +252,9 @@ int main() {
 
                 col += color(r, world, 0);
             }
-            
+
             int mod = counter / (total / 10);
-            
+
             if (current != mod) {
                 current = mod;
                 cout << "*";
