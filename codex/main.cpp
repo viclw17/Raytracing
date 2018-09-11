@@ -25,7 +25,7 @@ int main(const int argc, const char* argv[]){
 
     // Deallocate memory
     delete turner;
-    turner = nullptr;
+    turner = nullptr; // to avoid accidentally referring to the deallocated memory block
 
     return 0;
 }
