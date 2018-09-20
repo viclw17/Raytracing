@@ -21,7 +21,10 @@ public:
             vertexArray[t*3+1],
             vertexArray[t*3+2]);
     }
-}
+    int size() const {
+        return vertexArray.size() / 3;
+    }
+};
 
 class IndexedTriangleList {
 public:
