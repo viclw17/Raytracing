@@ -15,57 +15,57 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\camera.cpp">
+    <ClCompile Include="..\..\..\code\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\dielectric.cpp">
+    <ClCompile Include="..\..\..\code\dielectric.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\hitable_list.cpp">
+    <ClCompile Include="..\..\..\code\hitable_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\lambertian.cpp">
+    <ClCompile Include="..\..\..\code\lambertian.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\main.cpp">
+    <ClCompile Include="..\..\..\code\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\metal.cpp">
+    <ClCompile Include="..\..\..\code\metal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\xcode\raytracer\raytracer\sphere.cpp">
+    <ClCompile Include="..\..\..\code\sphere.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\camera.h">
+    <ClInclude Include="..\..\..\code\camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\dielectric.h">
+    <ClInclude Include="..\..\..\code\dielectric.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\hitable.h">
+    <ClInclude Include="..\..\..\code\hitable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\hitable_list.h">
+    <ClInclude Include="..\..\..\code\hitable_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\lambertian.h">
+    <ClInclude Include="..\..\..\code\lambertian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\material.h">
+    <ClInclude Include="..\..\..\code\material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\metal.h">
+    <ClInclude Include="..\..\..\code\metal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\ray.h">
+    <ClInclude Include="..\..\..\code\ray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\sphere.h">
+    <ClInclude Include="..\..\..\code\sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\xcode\raytracer\raytracer\vec3.h">
+    <ClInclude Include="..\..\..\code\vec3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
