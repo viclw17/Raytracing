@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="hitable">
+    <Position X="1.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\hitable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="material">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\material.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="sphere">
+    <Position X="2.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEAAACAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\sphere.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dielectric">
+    <Position X="5.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQEAAAAAAAAAAAAAAAIAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\dielectric.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lambertian">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\lambertian.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="metal">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQEAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\metal.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="hitable_list">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAIAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\hitable_list.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="camera">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAEAAAgAAAAABAAAAAAEAQAACAABAABoAACAAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\camera.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ray">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAABAAAIAAAgIAAAAAAAAAAAAAAAAAAAAEAAIAEAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\ray.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="vec3" Collapsed="true">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAEAAAQgAAAEAAAAKAQBhIQAAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\vec3.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="hit_record">
+    <Position X="4.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAEQAAAAAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\hitable.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
