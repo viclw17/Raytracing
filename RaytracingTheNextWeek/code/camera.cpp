@@ -8,10 +8,11 @@ vec3 random_in_unit_disk() {
     return p;
 }
 
+// add time to construct ray
 ray camera::get_ray(float s, float t) {
     vec3 rd = lens_radius*random_in_unit_disk();
     vec3 offset = u * rd.x() + v * rd.y();
-	float time = time0 + (rand() % (100)) * (time1 - time0);
+	float time = time0 + (rand() % (100) / (float)(100)) * (time1 - time0);
     return ray(
 		origin + offset, 
 		lower_left_corner + s*horizontal + t*vertical - origin - offset,

@@ -23,6 +23,8 @@ public:
 		float aperture, float focus_dist,
 		float t0, float t1) { 
 
+		origin = lookfrom;
+
 		time0 = t0;
 		time1 = t1;
         
@@ -37,7 +39,6 @@ public:
         lower_left_corner = origin - half_width*focus_dist*u - half_height*focus_dist*v - focus_dist*w;
         horizontal = 2 * half_width*focus_dist*u;
         vertical = 2 * half_height*focus_dist*v;
-		origin = lookfrom;
 
 		lens_radius = aperture / 2;
     }

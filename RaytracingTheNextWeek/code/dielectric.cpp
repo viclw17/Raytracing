@@ -56,10 +56,10 @@ bool dielectric::scatter(const ray& r_in, const hit_record& rec, vec3& attenuati
     }
     
     if(rand() % (100) / (float)(100) < reflect_prob) { // xcode: drand48()
-        scattered = ray(rec.p, reflected);
+        scattered = ray(rec.p, reflected, r_in.time());
     }
     else {
-        scattered = ray(rec.p, refracted);
+        scattered = ray(rec.p, refracted, r_in.time());
     }
     
     return true;

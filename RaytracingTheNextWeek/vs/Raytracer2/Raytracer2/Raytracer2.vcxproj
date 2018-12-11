@@ -122,6 +122,7 @@
     <ClInclude Include="..\..\..\code\lambertian.h" />
     <ClInclude Include="..\..\..\code\material.h" />
     <ClInclude Include="..\..\..\code\metal.h" />
+    <ClInclude Include="..\..\..\code\moving_sphere.h" />
     <ClInclude Include="..\..\..\code\ray.h" />
     <ClInclude Include="..\..\..\code\sphere.h" />
     <ClInclude Include="..\..\..\code\vec3.h" />

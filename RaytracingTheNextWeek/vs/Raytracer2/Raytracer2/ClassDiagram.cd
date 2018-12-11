@@ -70,8 +70,15 @@
       <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\vec3.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="moving_sphere">
+    <Position X="4.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAGAAACAAAAggAAACAAAEAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\moving_sphere.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="hit_record">
-    <Position X="4.75" Y="5.5" Width="1.5" />
+    <Position X="4.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAEQAAAAAAAA=</HashCode>
       <FileName>D:\Git\Raytracing\RaytracingTheNextWeek\code\hitable.h</FileName>

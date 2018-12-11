@@ -2,6 +2,7 @@
 #include <fstream>
 #include <limits>
 #include "sphere.h"
+#include "moving_sphere.h"
 #include "hitable_list.h"
 #include "camera.h"
 #include "lambertian.h"
@@ -9,19 +10,20 @@
 #include "dielectric.h"
 using namespace std;
 
-#define TESTSCENE 7
-//1 // diffuse, blogpost scene
-//2 // metal, book scene
-//3 // metal, blogpost scene
-//4 // dielectric, book scene
-//5 // dielectric, white background, 3 colors, 3 materials, pyramid
-//6 // dielectric, white background, 3 colors, 3 materials
-//7 // dielectric, blogpost scene
-//0 // cover image scene
-#define TESTCAM 1
-//1 // Camera angled
-//2 // Camera facing forward	
-//0 // Camera cover image
+#define TESTSCENE 8
+// 1 // diffuse, blogpost scene
+// 2 // metal, book scene
+// 3 // metal, blogpost scene
+// 4 // dielectric, book scene
+// 5 // dielectric, white background, 3 colors, 3 materials, pyramid
+// 6 // dielectric, white background, 3 colors, 3 materials
+// 7 // dielectric, blogpost scene
+// 8
+// 0 // cover image scene
+#define TESTCAM 2
+// 1 // Camera angled
+// 2 // Camera facing forward	
+// 0 // Camera cover image
 
 
 // r: reference to a Ray object
@@ -120,6 +122,7 @@ int main() {
 	// msaa
 	int ns = 50;
 	//ns = 1;
+	ns = 20;
 
     // create scene
     int sphere_num = 4;
@@ -176,6 +179,13 @@ int main() {
     list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.3)); //0.5
     //list[4] = new sphere(vec3(0, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));r
 
+	#elif TESTSCENE == 8 // dielectric, blogpost scene
+	vec3 motion_offset = vec3(0, 0.5*(rand() % (100) / (float)(100)), 0);
+	list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
+	list[1] = new moving_sphere(vec3(0, 0, z), vec3(0, 0, z) + motion_offset, 0.0, 1.0, 0.5, new dielectric(vec3(.9, .9, .9), 1.5));
+	list[2] = new moving_sphere(vec3(-1.001, 0, z), vec3(-1.001, 0, z) + motion_offset, 0.0, 1.0, 0.5, new lambertian(vec3(.8, .8, .8)));
+	list[3] = new moving_sphere(vec3(1, 0, z), vec3(1, 0, z) + motion_offset, 0.0, 1.0, 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.3));
+
 	#elif TESTSCENE == 0 // cover image scene
 	world = random_scene();
 	
@@ -187,24 +197,24 @@ int main() {
     vec3 lookfrom(-2, 1.5, 1);//(3, 3, 2);
     vec3 lookat(-0.2, 0, -1);
     float dist_to_focus = (lookfrom - lookat).length();
-	float aperture = 0.5;
-    float theta = 40;//20
-    camera cam(lookfrom, lookat, vec3(0, 1, 0), theta, float(nx) / float(ny), aperture, dist_to_focus);
+	float aperture = 0;// 0.5;
+    float vfov = 40;//20
+    camera cam(lookfrom, lookat, vec3(0, 1, 0), vfov, float(nx) / float(ny), aperture, dist_to_focus, 0.0, 1.0);
 
 	#elif TESTCAM == 2 // Camera facing forward	
     vec3 lookfrom = vec3(0,1,1.5);
     vec3 lookat = vec3(0, 0, -1);
     float dist_to_focus = (lookfrom - lookat).length();
-    float aperture = .01; // 0.5
-    float theta = 40;//20
-    camera cam(lookfrom, lookat, vec3(0, 1, 0), theta, float(nx) / float(ny), aperture, dist_to_focus);
+    float aperture = 0.01;
+	float vfov = 40;
+    camera cam(lookfrom, lookat, vec3(0, 1, 0), vfov, float(nx) / float(ny), aperture, dist_to_focus, 0.0, 1.0);
 	
 	#elif TESTCAM == 0 // Camera cover image
     vec3 lookfrom(11,2,3);
     vec3 lookat(0,0.6,0);
     float dist_to_focus = (lookfrom - lookat).length();
     float aperture = 0.0;
-    camera cam(lookfrom, lookat, vec3(0,1,0), 20, float(nx)/float(ny), aperture,0.7*dist_to_focus);
+    camera cam(lookfrom, lookat, vec3(0,1,0), 20, float(nx)/float(ny), aperture,0.7*dist_to_focus, 0.0, 1.0);
 	
 	#endif //TESTCAM
 
