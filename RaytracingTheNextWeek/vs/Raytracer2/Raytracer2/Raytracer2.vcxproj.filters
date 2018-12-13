@@ -48,6 +48,9 @@
     <ClInclude Include="..\..\..\code\moving_sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aabb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\code\camera.cpp">
@@ -69,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\code\sphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aabb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

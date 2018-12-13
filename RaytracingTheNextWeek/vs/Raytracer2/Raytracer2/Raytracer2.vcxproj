@@ -126,6 +126,7 @@
     <ClInclude Include="..\..\..\code\ray.h" />
     <ClInclude Include="..\..\..\code\sphere.h" />
     <ClInclude Include="..\..\..\code\vec3.h" />
+    <ClInclude Include="aabb.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\code\camera.cpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="..\..\..\code\main.cpp" />
     <ClCompile Include="..\..\..\code\metal.cpp" />
     <ClCompile Include="..\..\..\code\sphere.cpp" />
+    <ClCompile Include="aabb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
