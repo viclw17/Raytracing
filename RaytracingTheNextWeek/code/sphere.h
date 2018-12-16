@@ -13,6 +13,7 @@ public:
 
     /* 必须实现父类的虚函数。在此出声明，后续在sphere.cpp中具体实现 */
     bool virtual hit(const ray& r, float t_min, float t_max, hit_record& rec) const;
+	bool virtual bounding_box(float t0, float t1, aabb& box) const;
 
     vec3 center;
     float radius;

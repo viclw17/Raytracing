@@ -1,6 +1,6 @@
 # Raytracing
-Raytracing Study
+Raytracing study.
 
-<img src="https://raw.githubusercontent.com/viclw17/Raytracing/images/RaytracingInOneWeekend/images/ppm-test/cover-1.jpg" width="1024"/>
-
-<!-- <img src="https://raw.githubusercontent.com/viclw17/Raytracing/images/RaytracingInOneWeekend/images/ppm-test/3mat-angled-4.jpg" width="1024"/> -->
+[Ray Tracing in One Weekend](https://github.com/petershirley/raytracinginoneweekend/)
+[Ray Tracing: The Next Week](https://github.com/petershirley/raytracingthenextweek)
+[Ray Tracing: The Rest Of Your Life](https://github.com/petershirley/raytracingtherestofyourlife)

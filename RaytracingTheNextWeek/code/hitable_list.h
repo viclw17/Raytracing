@@ -14,8 +14,10 @@ public:
     }
 
     bool virtual hit(const ray& r, float t_min, float t_max, hit_record& rec) const;
+	bool virtual bounding_box(float t0, float t1, aabb& box) const;
 
     hitable **list;
     int list_size;
 };
 #endif // HITABLELIST_H
+

@@ -10,7 +10,7 @@
 #include "dielectric.h"
 using namespace std;
 
-#define TESTSCENE 8
+#define TESTSCENE 7
 // 1 // diffuse, blogpost scene
 // 2 // metal, book scene
 // 3 // metal, blogpost scene
@@ -18,7 +18,7 @@ using namespace std;
 // 5 // dielectric, white background, 3 colors, 3 materials, pyramid
 // 6 // dielectric, white background, 3 colors, 3 materials
 // 7 // dielectric, blogpost scene
-// 8
+// 8 // motion blur
 // 0 // cover image scene
 #define TESTCAM 2
 // 1 // Camera angled
@@ -112,10 +112,10 @@ int main() {
 	// resolution
 	int nx = 100;
 	int ny = 50;
-	//nx = 200;
-	//ny = 100;
-	nx = 800;
-	ny = 400;
+	nx = 200;
+	ny = 100;
+	//nx = 800;
+	//ny = 400;
 	//nx = 1000;
 	//ny = 500;
 
