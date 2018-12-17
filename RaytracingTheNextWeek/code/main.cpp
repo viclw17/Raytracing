@@ -5,6 +5,9 @@
 #include "moving_sphere.h"
 #include "hitable_list.h"
 #include "camera.h"
+
+#include "constant_texture.h"
+#include "checker_texture.h"
 #include "lambertian.h"
 #include "metal.h"
 #include "dielectric.h"
@@ -55,7 +58,7 @@ hitable *random_scene() {
     int n = 500;
     hitable **list = new hitable *[n+1];
     /*定义一个包含n+1个元素的数组，数组的每个元素是指向hitable对象的指针。然后将数组的指针赋值给list。所以，list是指针的指针。*/
-    list[0] = new sphere(vec3(0,-1000,0), 1000, new lambertian(vec3(0.5, 0.5, 0.5)));
+    list[0] = new sphere(vec3(0,-1000,0), 1000, new lambertian(new constant_texture(vec3(0.5, 0.5, 0.5))));
     /*先创建一个中心在（0，-1000，0）半径为1000的超大漫射球，将其指针保存在list的第一个元素中。*/
     int i = 1;
     for (int a = -11; a < 11; a++) {
@@ -72,12 +75,12 @@ hitable *random_scene() {
                     /*材料阀值小于0.8，则设置为漫反射球，漫反射球的衰减系数x,y,z都是（0，1）之间的随机数的平方*/
                     list[i++] =
                     new sphere(center, 0.2,
-                        new lambertian(
+                        new lambertian(new constant_texture(
                             vec3(
                                 (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100)),
                                 (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100)),
                                 (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100))
-                            )
+                            ))
                         )
                     );
                 }
@@ -100,7 +103,7 @@ hitable *random_scene() {
         }
     }
     list[i++] = new sphere(vec3(0, 1, 0), 1.0, new dielectric(vec3(1, 1,  1),1.5));
-    list[i++] = new sphere(vec3(-4, 1, 0), 1.0, new lambertian(vec3(0.4, 0.2,  0.1)));
+    list[i++] = new sphere(vec3(-4, 1, 0), 1.0, new lambertian(new constant_texture(vec3(0.4, 0.2,  0.1))));
     list[i++] = new sphere(vec3(4, 1, 0), 1.0, new metal(vec3(0.7, 0.6, 0.5),  0.0));
     /*定义三个大球*/
 
@@ -173,9 +176,10 @@ int main() {
     list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
 
 	#elif TESTSCENE == 7 // dielectric, blogpost scene
-    list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
+	texture *checker = new checker_texture(new constant_texture(vec3(.1, .1, .1)), new constant_texture(vec3(.5, .5, .5)));
+    list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(checker));// new constant_texture(vec3(0.1, 0.2, 0.5))
     list[1] = new sphere(vec3(0, 0, z), 0.5, new dielectric(vec3(.9,.9,.9), 1.5));
-    list[2] = new sphere(vec3(-1.001, 0, z), 0.5, new lambertian(vec3(.8,.8,.8)));
+    list[2] = new sphere(vec3(-1.001, 0, z), 0.5, new lambertian(new constant_texture(vec3(.8, .8, .8)))); // vec3(.8, .8, .8)
     list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.3)); //0.5
     //list[4] = new sphere(vec3(0, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));r
 
@@ -205,7 +209,7 @@ int main() {
     vec3 lookfrom = vec3(0,1,1.5);
     vec3 lookat = vec3(0, 0, -1);
     float dist_to_focus = (lookfrom - lookat).length();
-    float aperture = 0.01;
+	float aperture = .01;//0.01;
 	float vfov = 40;
     camera cam(lookfrom, lookat, vec3(0, 1, 0), vfov, float(nx) / float(ny), aperture, dist_to_focus, 0.0, 1.0);
 	
