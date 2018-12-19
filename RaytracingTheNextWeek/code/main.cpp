@@ -13,7 +13,7 @@
 #include "dielectric.h"
 using namespace std;
 
-#define TESTSCENE 7
+#define TESTSCENE 9
 // 1 // diffuse, blogpost scene
 // 2 // metal, book scene
 // 3 // metal, blogpost scene
@@ -175,7 +175,7 @@ int main() {
     list[2] = new sphere(vec3(0,0,z), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
     list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
 
-	#elif TESTSCENE == 7 // dielectric, blogpost scene
+	#elif TESTSCENE == 7 // checker, blogpost scene
 	texture *checker = new checker_texture(new constant_texture(vec3(.1, .1, .1)), new constant_texture(vec3(.5, .5, .5)));
     list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(checker));// new constant_texture(vec3(0.1, 0.2, 0.5))
     list[1] = new sphere(vec3(0, 0, z), 0.5, new dielectric(vec3(.9,.9,.9), 1.5));
@@ -189,6 +189,13 @@ int main() {
 	list[1] = new moving_sphere(vec3(0, 0, z), vec3(0, 0, z) + motion_offset, 0.0, 1.0, 0.5, new dielectric(vec3(.9, .9, .9), 1.5));
 	list[2] = new moving_sphere(vec3(-1.001, 0, z), vec3(-1.001, 0, z) + motion_offset, 0.0, 1.0, 0.5, new lambertian(vec3(.8, .8, .8)));
 	list[3] = new moving_sphere(vec3(1, 0, z), vec3(1, 0, z) + motion_offset, 0.0, 1.0, 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.3));
+
+	#elif TESTSCENE == 9 // escher
+	vec3 motion_offset = vec3(0, 0.5*(rand() % (100) / (float)(100)), 0);
+	list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
+	list[1] = new sphere(vec3(0, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.01));
+	list[2] = new sphere(vec3(-1.001, 0, z), 0.5, new dielectric(vec3(.9, .9, .9), 1.5));
+	list[3] = new sphere(vec3(1, 0, z), 0.5, new lambertian(new constant_texture(vec3(.8, .8, .8))));
 
 	#elif TESTSCENE == 0 // cover image scene
 	world = random_scene();
