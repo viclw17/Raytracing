@@ -8,12 +8,13 @@
 
 #include "constant_texture.h"
 #include "checker_texture.h"
+#include "noise_texture.h"
 #include "lambertian.h"
 #include "metal.h"
 #include "dielectric.h"
 using namespace std;
 
-#define TESTSCENE 9
+#define TESTSCENE 10
 // 1 // diffuse, blogpost scene
 // 2 // metal, book scene
 // 3 // metal, blogpost scene
@@ -24,7 +25,7 @@ using namespace std;
 // 8 // blogpost scene, motion blur
 // 9 // escher
 // 0 // cover image scene
-#define TESTCAM 3
+#define TESTCAM 0
 // 1 // Camera angled
 // 2 // Camera facing forward	
 // 3 // Camera escher	
@@ -51,8 +52,10 @@ vec3 color(const ray& r, hitable *world, int depth) {
     else {
         vec3 unit_direction = unit_vector(r.direction());
         float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
-       // return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
-		return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * vec3(.81, .81, .8);
+        return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
+
+		// escher env color
+		//return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * vec3(.81, .81, .8);
     }
 }
 
@@ -113,6 +116,14 @@ hitable *random_scene() {
     return new hitable_list(list, i);
     }
 
+hitable *two_perlin_spheres() {
+	texture *pertext = new noise_texture();
+	hitable **list = new hitable*[2];
+	list[0] = new sphere(vec3(0, -1000, 0), 1000, new lambertian(pertext));
+	list[1] = new sphere(vec3(0, 2, 0), 2, new lambertian(pertext));
+	return new hitable_list(list, 2);
+}
+
 ////////////////////////////////////////////////////////////
 int main() {
 	// resolution
@@ -121,8 +132,8 @@ int main() {
 	nx = 200;
 	ny = 100;
 
-	//nx = 800;
-	//ny = 400;
+	nx = 800;
+	ny = 400;
 	//nx = 1000;
 	//ny = 500;
 
@@ -199,6 +210,9 @@ int main() {
 	list[1] = new sphere(vec3(   0, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.01));
 	list[2] = new sphere(vec3(-1.15, 0, z), 0.5, new dielectric(vec3(.9, .9, .9), 1.5));
 	list[3] = new sphere(vec3( 1.15, 0, z), 0.5, new lambertian(new constant_texture(vec3(.8, .8, .8))));
+
+	#elif TESTSCENE == 10 // perlin
+	world = two_perlin_spheres();
 
 	#elif TESTSCENE == 0 // cover image scene
 	world = random_scene();

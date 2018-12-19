@@ -129,6 +129,8 @@
     <ClInclude Include="..\..\..\code\material.h" />
     <ClInclude Include="..\..\..\code\metal.h" />
     <ClInclude Include="..\..\..\code\moving_sphere.h" />
+    <ClInclude Include="..\..\..\code\noise_texture.h" />
+    <ClInclude Include="..\..\..\code\perlin.h" />
     <ClInclude Include="..\..\..\code\ray.h" />
     <ClInclude Include="..\..\..\code\sphere.h" />
     <ClInclude Include="..\..\..\code\texture.h" />
