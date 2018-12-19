@@ -20,12 +20,14 @@ using namespace std;
 // 4 // dielectric, book scene
 // 5 // dielectric, white background, 3 colors, 3 materials, pyramid
 // 6 // dielectric, white background, 3 colors, 3 materials
-// 7 // dielectric, blogpost scene
-// 8 // motion blur
+// 7 // blogpost scene, checker texture
+// 8 // blogpost scene, motion blur
+// 9 // escher
 // 0 // cover image scene
-#define TESTCAM 2
+#define TESTCAM 3
 // 1 // Camera angled
 // 2 // Camera facing forward	
+// 3 // Camera escher	
 // 0 // Camera cover image
 
 
@@ -49,7 +51,8 @@ vec3 color(const ray& r, hitable *world, int depth) {
     else {
         vec3 unit_direction = unit_vector(r.direction());
         float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
-        return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
+       // return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
+		return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * vec3(.81, .81, .8);
     }
 }
 
@@ -117,6 +120,7 @@ int main() {
 	int ny = 50;
 	nx = 200;
 	ny = 100;
+
 	//nx = 800;
 	//ny = 400;
 	//nx = 1000;
@@ -175,7 +179,7 @@ int main() {
     list[2] = new sphere(vec3(0,0,z), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
     list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
 
-	#elif TESTSCENE == 7 // checker, blogpost scene
+	#elif TESTSCENE == 7 // checker texture
 	texture *checker = new checker_texture(new constant_texture(vec3(.1, .1, .1)), new constant_texture(vec3(.5, .5, .5)));
     list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(checker));// new constant_texture(vec3(0.1, 0.2, 0.5))
     list[1] = new sphere(vec3(0, 0, z), 0.5, new dielectric(vec3(.9,.9,.9), 1.5));
@@ -191,11 +195,10 @@ int main() {
 	list[3] = new moving_sphere(vec3(1, 0, z), vec3(1, 0, z) + motion_offset, 0.0, 1.0, 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.3));
 
 	#elif TESTSCENE == 9 // escher
-	vec3 motion_offset = vec3(0, 0.5*(rand() % (100) / (float)(100)), 0);
-	list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
-	list[1] = new sphere(vec3(0, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.01));
-	list[2] = new sphere(vec3(-1.001, 0, z), 0.5, new dielectric(vec3(.9, .9, .9), 1.5));
-	list[3] = new sphere(vec3(1, 0, z), 0.5, new lambertian(new constant_texture(vec3(.8, .8, .8))));
+	list[0] = new sphere(vec3(0, -(1000 + 0.5), z), 1000, new metal(vec3(0.5, 0.2, 0.2), 0.1));
+	list[1] = new sphere(vec3(   0, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.01));
+	list[2] = new sphere(vec3(-1.15, 0, z), 0.5, new dielectric(vec3(.9, .9, .9), 1.5));
+	list[3] = new sphere(vec3( 1.15, 0, z), 0.5, new lambertian(new constant_texture(vec3(.8, .8, .8))));
 
 	#elif TESTSCENE == 0 // cover image scene
 	world = random_scene();
@@ -219,6 +222,14 @@ int main() {
 	float aperture = .01;//0.01;
 	float vfov = 40;
     camera cam(lookfrom, lookat, vec3(0, 1, 0), vfov, float(nx) / float(ny), aperture, dist_to_focus, 0.0, 1.0);
+
+	#elif TESTCAM == 3 // Camera escher
+	vec3 lookfrom = vec3(0, 3.5, 6);
+	vec3 lookat = vec3(0, 0, -1);
+	float dist_to_focus = (lookfrom - lookat).length();
+	float aperture = .01;//0.01;
+	float vfov = 20; // human eye
+	camera cam(lookfrom, lookat, vec3(0, 1, 0), vfov, float(nx) / float(ny), aperture, dist_to_focus, 0.0, 1.0);
 	
 	#elif TESTCAM == 0 // Camera cover image
     vec3 lookfrom(11,2,3);
