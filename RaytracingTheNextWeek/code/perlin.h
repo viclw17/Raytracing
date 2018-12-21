@@ -42,7 +42,6 @@ inline float perlin_interp(vec3 c[2][2][2], float u, float v, float w) {
 	return accum; // make sure not negative!!!
 }
 
-
 class perlin {
 public:
 	float noise(const vec3& p) const {
@@ -79,6 +78,18 @@ public:
 		// add lerp
 		//return trilinear_interp(c, u, v, w);
 		return perlin_interp(c, u, v, w);
+	}
+
+	float turb(const vec3& p, int depth = 7) const {
+		float accum = 0;
+		vec3 temp_p = p;
+		float weight = 1.;
+		for (int i = 0; i < depth; i++) {
+			accum += weight * noise(temp_p);
+			weight *= 0.5;
+			temp_p *= 2;
+		}
+		return fabs(accum); // ABS
 	}
 
 	//static float *ranfloat;
