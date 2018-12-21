@@ -7,8 +7,7 @@ float drand48() {
 	return (rand() % (100) / (float)(100));
 }
 
-/*
-inline float trilinear_interp(float c[2][2][2], float u, float v, float w) {
+/*inline float trilinear_interp(float c[2][2][2], float u, float v, float w) {
 	float accum = 0;
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 2; j++) {
@@ -23,6 +22,7 @@ inline float trilinear_interp(float c[2][2][2], float u, float v, float w) {
 	return accum;
 }*/
 
+
 inline float perlin_interp(vec3 c[2][2][2], float u, float v, float w) {
 	float uu = u * u*(3 - 2 * u);
 	float vv = v * v*(3 - 2 * v);
@@ -35,12 +35,13 @@ inline float perlin_interp(vec3 c[2][2][2], float u, float v, float w) {
 				accum +=
 					(i*uu + (1 - i)*(1 - uu))*
 					(j*vv + (1 - j)*(1 - vv))*
-					(k*ww + (1 - k)*(1 - ww))*dot(c[i][j][k],weight_v);
+					(k*ww + (1 - k)*(1 - ww))*dot(c[i][j][k], weight_v);
 			}
 		}
-	}
-	return accum;
+	}	
+	return accum; // make sure not negative!!!
 }
+
 
 class perlin {
 public:
@@ -87,8 +88,7 @@ public:
 	static int *perm_z;
 };
 
-/*
-static float* perlin_generate() {
+/*static float* perlin_generate() {
 	float * p = new float[256];
 	for (int i = 0; i < 256; ++i)
 		p[i] = drand48();
