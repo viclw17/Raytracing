@@ -1,29 +1,14 @@
   // original code by Reinder Nijhoff 2014
 // https://www.shadertoy.com/view/4tl3z4
 
-//#version 150
-//#version 300 es
-//out vec4 fragColor;
-
 #ifdef GL_ES
 precision mediump float;
 #endif
 
-// the shader book
-// uniform vec2     u_resolution;   // Canvas size (width,height)
-// uniform vec2     u_mouse;        // mouse position in screen pixels
-// uniform float    u_time;         // Time in seconds since load
-
-// shadertoy
-// uniform vec3     iResolution;    // viewport resolution (in pixels)
-// uniform vec4     iMouse;         // mouse pixel coords. xy: current, zw: click
-// uniform float    iTime;          // shader playback time (in seconds)
-
-// glsl-preview
-// uniform vec2     iResolution;    // size of the preview
-// uniform vec2     iMouse;         // cursor in normalized coordinates [0, 1)
-// uniform float    iGlobalTime;    // clock in seconds
-
+uniform vec2 iResolution;
+uniform vec2 iMouse;
+uniform float iGlobalTime;
+float iTime = iGlobalTime;
 vec2 resolution = iResolution;
 vec2 mouse      = iMouse;
 float time      = iGlobalTime;

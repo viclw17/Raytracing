@@ -1,8 +1,3 @@
-// re-map shadertoy variables
-vec2 resolution = iResolution;
-vec2 mouse      = iMouse;
-float time      = iGlobalTime;
-
 // Two structs are used. Ray structs represent light rays. In this example
 // a simple ray struct is used with only two fields. More fields are used in
 // more advanced ray tracers.
@@ -30,7 +25,23 @@ vec4 diffuse(in vec3 surface, in vec3 center, in vec4 color, in vec3 litePos) {
 	return color * max(0.0, dot(n, l));
 }
 
-// https://en.wikipedia.org/wiki/Line%E2%80%93sphere_intersection
+/*
+float hit_sphere(const vec3& center, float radius, const ray& r){
+    vec3 oc = r.origin() - center;
+    float a = dot(r.direction(), r.direction());
+    float b = 2.0 * dot(oc, r.direction());
+    float c = dot(oc,oc) - radius*radius;
+    float discriminant = b*b - 4*a*c;
+    if(discriminant < 0){
+        return -1.0;
+    }
+    else{
+        return (-b - sqrt(discriminant)) / (2.0*a);
+    }
+}
+*/
+
+// https://en.wikipedia.org/wiki/Line% E2%80%93sphere_intersection
 float intersectSphere(in Ray ray, in Sphere sphere) {
 	// Sphere center to ray origin
 	vec3 co = ray.origin - sphere.center;
@@ -61,13 +72,14 @@ The result is gathered as an "out" variable in prevision of future addition of m
 */
 
 // fragColor = gl_FragColor
-// fragCoord = gl_FragColor
+// fragCoord = gl_FragCoord
 
+// change function mainImage to main()
 // function main takes no parameters and returns no values.
 void main(){
 	/*
 	 fragCoord represents the centre of a pixel.
-	 For example, a resolution of 800Ã—600, the bottom-left pixel would
+	 For example, a resolution of 800x600, the bottom-left pixel would
 	 be (0.5,0.5) and the top-right pixel would be (799.5, 599.5).
 	 */
 
@@ -80,6 +92,7 @@ void main(){
     // This coordinate system is a common convention
 	x = x * 2.0 - 1.0;
 	y = y * 2.0 - 1.0;
+
     y = y * (iResolution.y/iResolution.x);
 
     // For raytracing, we need a ray - i.e. a direction and a point of origin

@@ -26,9 +26,15 @@ Zavie
 // Play with the two following values to change quality.
 // You want as many samples as your GPU can bear. :)
 
-// #ifdef GL_ES
-// precision mediump float;
-// #endif
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 iResolution;
+uniform vec2 iMouse;
+uniform float iGlobalTime;
+float iTime = iGlobalTime;
+
 #define SAMPLES 10
 #define MAXDEPTH 4
 // #define SAMPLES 8

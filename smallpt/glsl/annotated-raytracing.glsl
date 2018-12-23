@@ -1,4 +1,10 @@
+//https://www.tinycranes.com/blog/2015/05/annotated-realtime-raytracing/
+
+uniform vec2 iResolution;
+uniform vec2 iMouse;
+uniform float iGlobalTime;
 float iTime = iGlobalTime;
+
 // Ray tracing is a topic I have always wanted to explore, but never really had
 // the opportunity to do so until now. What exactly is ray tracing? Consider a
 // lamp hanging from the ceiling. Light is constantly being emitted from the
