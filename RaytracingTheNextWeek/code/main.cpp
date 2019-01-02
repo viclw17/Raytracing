@@ -129,11 +129,10 @@ int main() {
 	// resolution
 	int nx = 100;
 	int ny = 50;
-	nx = 200;
-	ny = 100;
-
-	nx = 800;
-	ny = 400;
+	//nx = 200;
+	//ny = 100;
+	//nx = 800;
+	//ny = 400;
 	//nx = 1000;
 	//ny = 500;
 
