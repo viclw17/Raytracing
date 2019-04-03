@@ -24,8 +24,9 @@ using namespace std;
 // 7 // blogpost scene, checker texture
 // 8 // blogpost scene, motion blur
 // 9 // escher
+// 10 // perlin
 // 0 // cover image scene
-#define TESTCAM 0
+#define TESTCAM 2
 // 1 // Camera angled
 // 2 // Camera facing forward	
 // 3 // Camera escher	
