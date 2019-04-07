@@ -2,9 +2,6 @@
 #define METAL_H
 
 #include "material.h"
-#include "lambertian.h"
-
-vec3 reflect(const vec3& v, const vec3& n);
 
 class metal : public material {
 public:

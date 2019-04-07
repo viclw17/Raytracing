@@ -2,9 +2,6 @@
 #define DIELECTRIC_H
 
 #include "material.h"
-#include "metal.h"
-
-bool refract(const vec3& v, const vec3& n, float ni_over_nt, vec3& refracted);
 
 float schlick(float cosine, float ref_idx);
 
