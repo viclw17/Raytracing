@@ -6,22 +6,28 @@
 #include "hitable_list.h"
 #include "camera.h"
 
-#include "constant_texture.h"
-#include "checker_texture.h"
-#include "noise_texture.h"
 #include "lambertian.h"
 #include "metal.h"
 #include "dielectric.h"
+
+#include "constant_texture.h"
+#include "checker_texture.h"
+#include "noise_texture.h"
+#include "image_texture.h"
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 using namespace std;
 
-#define TESTSCENE 10
+#define TESTSCENE 7
 // 1 // diffuse, blogpost scene
 // 2 // metal, book scene
 // 3 // metal, blogpost scene
 // 4 // dielectric, book scene
 // 5 // dielectric, white background, 3 colors, 3 materials, pyramid
 // 6 // dielectric, white background, 3 colors, 3 materials
-// 7 // blogpost scene, checker texture
+// 7 // blogpost scene, textures
 // 8 // blogpost scene, motion blur
 // 9 // escher
 // 10 // perlin
@@ -29,8 +35,8 @@ using namespace std;
 #define TESTCAM 2
 // 1 // Camera angled
 // 2 // Camera facing forward	
-// 3 // Camera escher	
-// 0 // Camera cover image
+// 3 // Camera escher 3 spheres	
+// 0 // Camera cover image / perlin
 
 
 // r: reference to a Ray object
@@ -40,23 +46,26 @@ vec3 color(const ray& r, hitable *world, int depth) {
 	// PC - numeric_limits<float>::max()
 	// Mac - MAXFLOAT
 	// In C++: use std::numeric_limits<float>::max(defined in <limits>).You may still use C's FLT_MAX, but include <cfloat> instead.
-    if(world->hit(r, 0.001, numeric_limits<float>::max(), rec)) {
+	if(world->hit(r, 0.001, numeric_limits<float>::max(), rec)) {
         ray scattered;
         vec3 attenuation;
         if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
-            return attenuation*color(scattered, world, depth+1);
+			return  attenuation * color(scattered, world, depth + 1);
         }
         else {
             return vec3(0,0,0);
         }
     }
     else {
+		// sky box
         vec3 unit_direction = unit_vector(r.direction());
         float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
         return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
-
+		
 		// escher env color
 		//return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * vec3(.81, .81, .8);
+
+		//return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * vec3(.8, .8, .8);
     }
 }
 
@@ -130,8 +139,8 @@ int main() {
 	// resolution
 	int nx = 100;
 	int ny = 50;
-	//nx = 200;
-	//ny = 100;
+	nx = 200;
+	ny = 100;
 	//nx = 800;
 	//ny = 400;
 	//nx = 1000;
@@ -139,12 +148,12 @@ int main() {
 
 	// msaa
 	int ns = 50;
-	//ns = 1;
-	ns = 20;
+	ns = 1;
+	//ns = 20;
 
     // create scene
-    int sphere_num = 4;
-    hitable *list[4]; // 一个储存有4个“指向hitable对象的指针”的数组
+    int sphere_num = 5;
+    hitable *list[5]; // 一个储存有4个“指向hitable对象的指针”的数组
     float big_r = 5000.0; // ground sphere
     float z = -1.0; // sphere z position
 
@@ -188,15 +197,37 @@ int main() {
     list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(1,1,1)));
     list[1] = new sphere(vec3(-1,0,z), 0.5, new dielectric(vec3(0.9,0.8,0.5), 1.5));
     list[2] = new sphere(vec3(0,0,z), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
-    list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
+    list[3] = new sphere(vec3( 10,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
 
-	#elif TESTSCENE == 7 // checker texture
-	texture *checker = new checker_texture(new constant_texture(vec3(.1, .1, .1)), new constant_texture(vec3(.5, .5, .5)));
-    list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(checker));// new constant_texture(vec3(0.1, 0.2, 0.5))
-    list[1] = new sphere(vec3(0, 0, z), 0.5, new dielectric(vec3(.9,.9,.9), 1.5));
-    list[2] = new sphere(vec3(-1.001, 0, z), 0.5, new lambertian(new constant_texture(vec3(.8, .8, .8)))); // vec3(.8, .8, .8)
-    list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.3)); //0.5
-    //list[4] = new sphere(vec3(0, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));r
+	#elif TESTSCENE == 7 // textures
+	texture *checker = new checker_texture(
+		new constant_texture(vec3(.1, .1, .1)), 
+		new constant_texture(vec3(.5, .5, .5)));
+	// floor sphere
+	list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(checker));
+	int nx1 = 1000, ny1 = 500;
+	int nx2 = 1024, ny2 = 512;
+	int nx3 = 960,  ny3 = 480;
+	int nx4 = 2048, ny4 = 1024;
+	int nn = 3;
+	// unsigned char *data = stbi_load(filename, &x, &y, &n, 0);
+	// ... process data if not NULL ...
+	// ... x = width, y = height, n = # 8-bit components per pixel ...
+	// ... replace '0' with '1'..'4' to force that many components per pixel
+	// ... but 'n' will always be the number that it would have been if you said 0
+	unsigned char *tex_data1 = stbi_load("earth.jpg", &nx1, &ny1, &nn, 0); // pass by reference
+	unsigned char *tex_data2 = stbi_load("moon.jpg", &nx2, &ny2, &nn, 0);
+	unsigned char *tex_data3 = stbi_load("mars.jpg", &nx3, &ny3, &nn, 0);
+	unsigned char *tex_data4 = stbi_load("jupiter.jpg", &nx4, &ny4, &nn, 0);
+	// image_texture(unsigned char *pixels, int A, int B) : data(pixels), nx(A), ny(B) {}
+	material *earth_mat   = new lambertian(new image_texture(tex_data1, nx1, ny1)); // pass by copy
+	material *moon_mat    = new lambertian(new image_texture(tex_data2, nx2, ny2));
+	material *mars_mat    = new lambertian(new image_texture(tex_data3, nx3, ny3));
+	material *jupiter_mat = new lambertian(new image_texture(tex_data4, nx4, ny4));
+	list[1] = new sphere(vec3(-.8, 0, z),    0.5, earth_mat);
+	list[2] = new sphere(vec3(-.1, -0.3, z), 0.2, moon_mat);
+	list[3] = new sphere(vec3(.8, -0.2, z),  0.3, mars_mat);																								   //list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.3)); //0.5
+	list[4] = new sphere(vec3(.3, .5, z-1),    1, jupiter_mat);
 
 	#elif TESTSCENE == 8 // dielectric, blogpost scene
 	vec3 motion_offset = vec3(0, 0.5*(rand() % (100) / (float)(100)), 0);

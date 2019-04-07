@@ -2,12 +2,29 @@
 #define HITABLE_H
 
 #include "aabb.h"
+//#include <math.h> // M_PI
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 class material;
 
-/* 该结构体记录“撞点”处的信息：离光线起点的距离t、撞点的坐标向量p、撞点出的法向量normal。 */
+static void get_sphere_uv(const vec3& p, float& u, float& v){
+	float phi = atan2(p.z(), p.x());
+	float theta = asin(p.y());
+	u = 1 - (phi + M_PI) / (2 * M_PI);
+	v = (theta + M_PI / 2) / M_PI;
+}
+
+/* 该结构体记录“撞点”处的信息：离光线起点的距离t、撞点的坐标向量p、撞点出的法向量normal。
+(and now also with texture uv infomation!) */
 struct hit_record{
     float t;
+
+	float u;
+	float v;
+
     vec3 p;
     vec3 normal;
     material *mat_ptr;
