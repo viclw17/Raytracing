@@ -20,13 +20,10 @@ static void get_sphere_uv(const vec3& p, float& u, float& v){
 /* 该结构体记录“撞点”处的信息：离光线起点的距离t、撞点的坐标向量p、撞点出的法向量normal。
 (and now also with texture uv infomation!) */
 struct hit_record{
-    float t;
-
-	float u;
-	float v;
-
-    vec3 p;
-    vec3 normal;
+    float t;		// hit point distance parameter for ray
+    vec3 p;			// hit point position info, calculated with rec.p = r.point_at_parameter(rec.t);
+    vec3 normal;	// hit point normal info for shading
+	float u, v;		// uv info for image texturing
     material *mat_ptr;
 };
 

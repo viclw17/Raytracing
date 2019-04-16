@@ -1,6 +1,7 @@
 #include "sphere.h"
 
 // 实现父类的虚函数
+// intersection
  bool sphere::hit(const ray& r, float t_min, float t_max, hit_record& rec) const {
      vec3 oc = r.origin() - center; // A-C
      float a = dot(r.direction(), r.direction());
@@ -44,10 +45,4 @@
 	 return true;
  }
 
- //void get_sphere_uv(const vec3& p, float& u, float& v) {
-	// float phi = atan2(p.z(), p.x());
-	// float theta = asin(p.y());
-	// u = 1 - (phi + M_PI) / (2 * M_PI);
-	// v = (theta + M_PI / 2) / M_PI;
- //}
 
