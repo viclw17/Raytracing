@@ -22,32 +22,32 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{A8E9FCEE-0716-432A-8F17-77C022A2F59E}</ProjectGuid>
     <RootNamespace>Raytracer2</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -123,8 +123,10 @@
     <ClInclude Include="..\..\..\code\checker_texture.h" />
     <ClInclude Include="..\..\..\code\constant_texture.h" />
     <ClInclude Include="..\..\..\code\dielectric.h" />
+    <ClInclude Include="..\..\..\code\diffuse_light.h" />
     <ClInclude Include="..\..\..\code\hitable.h" />
     <ClInclude Include="..\..\..\code\hitable_list.h" />
+    <ClInclude Include="..\..\..\code\image_texture.h" />
     <ClInclude Include="..\..\..\code\lambertian.h" />
     <ClInclude Include="..\..\..\code\material.h" />
     <ClInclude Include="..\..\..\code\metal.h" />
@@ -135,7 +137,7 @@
     <ClInclude Include="..\..\..\code\sphere.h" />
     <ClInclude Include="..\..\..\code\texture.h" />
     <ClInclude Include="..\..\..\code\vec3.h" />
-    <ClInclude Include="image_texture.h" />
+    <ClInclude Include="..\..\..\code\xy_rect.h" />
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>

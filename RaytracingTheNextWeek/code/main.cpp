@@ -2,6 +2,7 @@
 #include <fstream>
 #include <limits>
 #include "sphere.h"
+#include "xy_rect.h"
 #include "moving_sphere.h"
 #include "hitable_list.h"
 #include "camera.h"
@@ -9,6 +10,7 @@
 #include "lambertian.h"
 #include "metal.h"
 #include "dielectric.h"
+#include "diffuse_light.h"
 
 #include "constant_texture.h"
 #include "checker_texture.h"
@@ -20,7 +22,7 @@
 
 using namespace std;
 
-#define TESTSCENE 7
+#define TESTSCENE 11
 // 1 // diffuse, blogpost scene
 // 2 // metal, book scene
 // 3 // metal, blogpost scene
@@ -31,16 +33,15 @@ using namespace std;
 // 8 // blogpost scene, motion blur
 // 9 // escher
 // 10 // perlin
+// 11 // light
 // 0 // cover image scene
-#define TESTCAM 2
+#define TESTCAM 0
 // 1 // Camera angled
 // 2 // Camera facing forward	
 // 3 // Camera escher 3 spheres	
-// 0 // Camera cover image / perlin
-
+// 0 // Camera cover image / 2 spheres
 
 // r: reference to a Ray object
-// world: pointer to a Hitable object
 vec3 color(const ray& r, hitable *world, int depth) {
     hit_record rec;
 	// PC - numeric_limits<float>::max()
@@ -49,14 +50,17 @@ vec3 color(const ray& r, hitable *world, int depth) {
 	if(world->hit(r, 0.001, numeric_limits<float>::max(), rec)) {
         ray scattered;
         vec3 attenuation;
+		vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
         if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
-			return  attenuation * color(scattered, world, depth + 1);
+			return emitted + attenuation * color(scattered, world, depth + 1);
         }
         else {
-            return vec3(0,0,0);
+			return emitted;// vec3(0, 0, 0);
         }
     }
     else {
+		return vec3(0, 0, 0);
+
 		// sky box
         vec3 unit_direction = unit_vector(r.direction());
         float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
@@ -69,7 +73,7 @@ vec3 color(const ray& r, hitable *world, int depth) {
     }
 }
 
-// Cover image
+// Cover image scene
 hitable *random_scene() {
     int n = 500;
     hitable **list = new hitable *[n+1];
@@ -126,13 +130,28 @@ hitable *random_scene() {
     return new hitable_list(list, i);
     }
 
-hitable *two_perlin_spheres() {
+// Two spheres scene
+hitable *two_spheres_scene() {
 	texture *pertext = new noise_texture(5.);
 	hitable **list = new hitable*[2];
+	//hitable *list[2]; ?
+	hitable *two_spheres_scene = new hitable_list(list, 2);
 	list[0] = new sphere(vec3(0, -1000, 0), 1000, new lambertian(pertext));
 	list[1] = new sphere(vec3(0, 2, 0), 2, new lambertian(pertext));
-	return new hitable_list(list, 2);
+	
+	return two_spheres_scene;
 }
+
+hitable* simple_light() {
+	texture* pertext = new noise_texture(4.);
+	hitable** list = new hitable * [4];
+	list[0] = new sphere(vec3(0, -1000, 0), 1000, new lambertian(pertext));
+	list[1] = new sphere(vec3(0, 2, 0), 2, new lambertian(pertext));
+	list[2] = new sphere(vec3(0, 7, 0), 2, new diffuse_light(new constant_texture(vec3(4,4,4))));
+	list[3] = new xy_rect(3,5,1,3,-2, new diffuse_light(new constant_texture(vec3(4, 4, 4))));
+	return new hitable_list(list, 4);
+}
+
 
 ////////////////////////////////////////////////////////////
 int main() {
@@ -141,33 +160,31 @@ int main() {
 	int ny = 50;
 	nx = 200;
 	ny = 100;
-	//nx = 800;
-	//ny = 400;
+	nx = 800;
+	ny = 400;
 	//nx = 1000;
 	//ny = 500;
 
 	// msaa
-	int ns = 50;
-	ns = 1;
+	int ns = 1;
 	//ns = 20;
+	ns = 50;
 
     // create scene
-    int sphere_num = 5;
-    hitable *list[5]; // 一个储存有4个“指向hitable对象的指针”的数组
+    const int sphere_num = 5;
+	//hitable **list = new hitable *[sphere_num];
+    hitable *list[sphere_num]; // 一个储存有sphere_num个“指向hitable对象的指针”的数组
     float big_r = 5000.0; // ground sphere
     float z = -1.0; // sphere z position
-
-	// create world
-	hitable *world;
-	world = new hitable_list(list, sphere_num);
+	hitable *world = new hitable_list(list, sphere_num);
     
 	////////////////////////////////////////////////////////////
 	// scene defination
 	#if TESTSCENE == 1 // diffuse, blogpost scene
-    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(vec3(.5,.5,.5)));
-    list[1] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
-    list[2] = new sphere(vec3(1,0,-1), 0.5, new lambertian(vec3(.7,.7,.7)));
-    list[3] = new sphere(vec3(-1,0,-1), 0.5, new lambertian(vec3(1,1,1)));
+    list[0] = new sphere(vec3(0,-(big_r+0.5),z), big_r, new lambertian(new constant_texture(vec3(.5,.5,.5))));
+    list[1] = new sphere(vec3(0,0,-1), 0.5, new lambertian(new constant_texture(vec3(0.1,0.2,0.5))));
+    list[2] = new sphere(vec3(1,0,-1), 0.5, new lambertian(new constant_texture(vec3(.7,.7,.7))));
+    list[3] = new sphere(vec3(-1,0,-1), 0.5, new lambertian(new constant_texture(vec3(1,1,1))));
 	
 	#elif TESTSCENE == 2 // metal, book scene
     list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8,0.3,0.3)));
@@ -243,7 +260,11 @@ int main() {
 	list[3] = new sphere(vec3( 1.15, 0, z), 0.5, new lambertian(new constant_texture(vec3(.8, .8, .8))));
 
 	#elif TESTSCENE == 10 // perlin
-	world = two_perlin_spheres();
+	world = two_spheres_scene();
+
+
+	#elif TESTSCENE == 11 // light
+	world = simple_light();
 
 	#elif TESTSCENE == 0 // cover image scene
 	world = random_scene();
@@ -277,11 +298,11 @@ int main() {
 	camera cam(lookfrom, lookat, vec3(0, 1, 0), vfov, float(nx) / float(ny), aperture, dist_to_focus, 0.0, 1.0);
 	
 	#elif TESTCAM == 0 // Camera cover image
-    vec3 lookfrom(11,2,3);
-    vec3 lookat(0,0.6,0);
-    float dist_to_focus = (lookfrom - lookat).length();
+    vec3 lookfrom(25, 5, 5); //lookfrom(11,2,3);
+    vec3 lookat(0,2,0); //lookat(0,0.6,0);
+	float dist_to_focus = (lookfrom - lookat).length();
     float aperture = 0.0;
-    camera cam(lookfrom, lookat, vec3(0,1,0), 20, float(nx)/float(ny), aperture,0.7*dist_to_focus, 0.0, 1.0);
+    camera cam(lookfrom, lookat, vec3(0,1,0), 20, float(nx)/float(ny), aperture, dist_to_focus, 0.0, 1.0);
 	
 	#endif //TESTCAM
 

@@ -69,10 +69,16 @@
     <ClInclude Include="..\..\..\code\noise_texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="image_texture.h">
+    <ClInclude Include="stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image.h">
+    <ClInclude Include="..\..\..\code\image_texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\diffuse_light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\xy_rect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
