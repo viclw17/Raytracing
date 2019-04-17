@@ -78,7 +78,7 @@
     <ClInclude Include="..\..\..\code\diffuse_light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\code\xy_rect.h">
+    <ClInclude Include="..\..\..\code\rect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

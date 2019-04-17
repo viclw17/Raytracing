@@ -137,7 +137,7 @@
     <ClInclude Include="..\..\..\code\sphere.h" />
     <ClInclude Include="..\..\..\code\texture.h" />
     <ClInclude Include="..\..\..\code\vec3.h" />
-    <ClInclude Include="..\..\..\code\xy_rect.h" />
+    <ClInclude Include="..\..\..\code\rect.h" />
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
