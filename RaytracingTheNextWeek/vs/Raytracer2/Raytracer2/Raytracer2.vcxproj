@@ -118,6 +118,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\code\aabb.h" />
+    <ClInclude Include="..\..\..\code\box.h" />
     <ClInclude Include="..\..\..\code\bvh.h" />
     <ClInclude Include="..\..\..\code\camera.h" />
     <ClInclude Include="..\..\..\code\checker_texture.h" />
@@ -134,8 +135,10 @@
     <ClInclude Include="..\..\..\code\noise_texture.h" />
     <ClInclude Include="..\..\..\code\perlin.h" />
     <ClInclude Include="..\..\..\code\ray.h" />
+    <ClInclude Include="..\..\..\code\rotate_y.h" />
     <ClInclude Include="..\..\..\code\sphere.h" />
     <ClInclude Include="..\..\..\code\texture.h" />
+    <ClInclude Include="..\..\..\code\translate.h" />
     <ClInclude Include="..\..\..\code\vec3.h" />
     <ClInclude Include="..\..\..\code\rect.h" />
     <ClInclude Include="stb_image.h" />

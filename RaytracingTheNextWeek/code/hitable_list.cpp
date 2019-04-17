@@ -12,7 +12,7 @@
          }
      }
      return hit_anything;
-     return true;
+     //return true;
  }
 
  bool hitable_list::bounding_box(float t0, float t1, aabb& box) const {

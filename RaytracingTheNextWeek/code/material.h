@@ -2,6 +2,9 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
+//struct hit_record;
+
+
 #include "hitable.h"
 #include "texture.h"
 
@@ -19,6 +22,12 @@ static bool refract(const vec3& v, const vec3& n, float ni_over_nt, vec3& refrac
 	}
 	else
 		return false;
+}
+
+static float schlick(float cosine, float ref_idx) {
+	float r0 = (1 - ref_idx) / (1 + ref_idx); // ref_idx = n2/n1
+	r0 = r0 * r0;
+	return r0 + (1 - r0) * pow((1 - cosine), 5);
 }
 
 static vec3 random_in_unit_sphere(){

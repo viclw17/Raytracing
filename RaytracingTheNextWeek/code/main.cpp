@@ -1,11 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
+#include "bvh.h"
 #include "sphere.h"
 #include "rect.h"
+#include "box.h"
 #include "moving_sphere.h"
 #include "hitable_list.h"
 #include "camera.h"
+
+#include "translate.h"
+#include "rotate_y.h"
 
 #include "lambertian.h"
 #include "metal.h"
@@ -155,27 +160,30 @@ hitable* simple_light() {
 	return new hitable_list(list, 4);
 }
 
-hitable *cornell_box() {
-	hitable **list = new hitable*[6];
+hitable* cornell_box() {
+	hitable** list = new hitable * [8];
 	int i = 0;
-	material *red = new lambertian(new constant_texture(vec3(0.65, 0.05, 0.05)));
-	material *white = new lambertian(new constant_texture(vec3(0.73, 0.73, 0.73)));
-	material *green = new lambertian(new constant_texture(vec3(0.12, 0.45, 0.15)));
-	material *light = new diffuse_light(new constant_texture(vec3(15, 15, 15)));
+	material* red = new lambertian(new constant_texture(vec3(0.65, 0.05, 0.05)));
+	material* white = new lambertian(new constant_texture(vec3(0.73, 0.73, 0.73)));
+	material* green = new lambertian(new constant_texture(vec3(0.12, 0.45, 0.15)));
+	material* light = new diffuse_light(new constant_texture(vec3(15, 15, 15)));
 	list[i++] = new flip_normals(new yz_rect(0, 555, 0, 555, 555, green));
 	list[i++] = new yz_rect(0, 555, 0, 555, 0, red);
 	list[i++] = new xz_rect(213, 343, 227, 332, 554, light);
 	list[i++] = new flip_normals(new xz_rect(0, 555, 0, 555, 555, white));
 	list[i++] = new xz_rect(0, 555, 0, 555, 0, white);
 	list[i++] = new flip_normals(new xy_rect(0, 555, 0, 555, 555, white));
+	list[i++] = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(165, 165, 165), white), -18), vec3(130, 0, 65));
+	list[i++] = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(165, 330, 165), white), 15), vec3(265, 0, 295));
 	return new hitable_list(list, i);
 }
 
 ////////////////////////////////////////////////////////////
 int main() {
 	// resolution
-	int nx = 100;
-	int ny = 50;
+	int nx, ny;
+	nx = 100; 
+	ny = 50;
 	nx = 200;
 	ny = 100;
 	nx = 800;
@@ -185,9 +193,9 @@ int main() {
 
 	// msaa
 	int ns = 1;
-	ns = 20;
+	//ns = 20;
 	ns = 50;
-	ns = 100;
+	//ns = 100;
 
     // create scene
     const int sphere_num = 5;
