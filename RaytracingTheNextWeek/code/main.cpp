@@ -2,7 +2,7 @@
 #include <fstream>
 #include <limits>
 #include "sphere.h"
-#include "xy_rect.h"
+#include "rect.h"
 #include "moving_sphere.h"
 #include "hitable_list.h"
 #include "camera.h"
@@ -22,7 +22,7 @@
 
 using namespace std;
 
-#define TESTSCENE 11
+#define TESTSCENE 12
 // 1 // diffuse, blogpost scene
 // 2 // metal, book scene
 // 3 // metal, blogpost scene
@@ -34,11 +34,13 @@ using namespace std;
 // 9 // escher
 // 10 // perlin
 // 11 // light
+// 12
 // 0 // cover image scene
-#define TESTCAM 0
+#define TESTCAM 4
 // 1 // Camera angled
 // 2 // Camera facing forward	
-// 3 // Camera escher 3 spheres	
+// 3 // Camera escher 3 spheres
+// 4
 // 0 // Camera cover image / 2 spheres
 
 // r: reference to a Ray object
@@ -142,6 +144,7 @@ hitable *two_spheres_scene() {
 	return two_spheres_scene;
 }
 
+
 hitable* simple_light() {
 	texture* pertext = new noise_texture(4.);
 	hitable** list = new hitable * [4];
@@ -152,6 +155,21 @@ hitable* simple_light() {
 	return new hitable_list(list, 4);
 }
 
+hitable *cornell_box() {
+	hitable **list = new hitable*[6];
+	int i = 0;
+	material *red = new lambertian(new constant_texture(vec3(0.65, 0.05, 0.05)));
+	material *white = new lambertian(new constant_texture(vec3(0.73, 0.73, 0.73)));
+	material *green = new lambertian(new constant_texture(vec3(0.12, 0.45, 0.15)));
+	material *light = new diffuse_light(new constant_texture(vec3(15, 15, 15)));
+	list[i++] = new flip_normals(new yz_rect(0, 555, 0, 555, 555, green));
+	list[i++] = new yz_rect(0, 555, 0, 555, 0, red);
+	list[i++] = new xz_rect(213, 343, 227, 332, 554, light);
+	list[i++] = new flip_normals(new xz_rect(0, 555, 0, 555, 555, white));
+	list[i++] = new xz_rect(0, 555, 0, 555, 0, white);
+	list[i++] = new flip_normals(new xy_rect(0, 555, 0, 555, 555, white));
+	return new hitable_list(list, i);
+}
 
 ////////////////////////////////////////////////////////////
 int main() {
@@ -167,8 +185,9 @@ int main() {
 
 	// msaa
 	int ns = 1;
-	//ns = 20;
+	ns = 20;
 	ns = 50;
+	ns = 100;
 
     // create scene
     const int sphere_num = 5;
@@ -266,6 +285,9 @@ int main() {
 	#elif TESTSCENE == 11 // light
 	world = simple_light();
 
+	#elif TESTSCENE == 12
+	world = cornell_box();
+
 	#elif TESTSCENE == 0 // cover image scene
 	world = random_scene();
 	
@@ -295,6 +317,14 @@ int main() {
 	float dist_to_focus = (lookfrom - lookat).length();
 	float aperture = .01;//0.01;
 	float vfov = 20; // human eye
+	camera cam(lookfrom, lookat, vec3(0, 1, 0), vfov, float(nx) / float(ny), aperture, dist_to_focus, 0.0, 1.0);
+
+	#elif TESTCAM == 4 // Camera cornell
+	vec3 lookfrom(278, 278, -800);
+	vec3 lookat(278, 278, 0);
+	float dist_to_focus = 10.0;
+	float aperture = 0.0;
+	float vfov = 40.0;
 	camera cam(lookfrom, lookat, vec3(0, 1, 0), vfov, float(nx) / float(ny), aperture, dist_to_focus, 0.0, 1.0);
 	
 	#elif TESTCAM == 0 // Camera cover image
