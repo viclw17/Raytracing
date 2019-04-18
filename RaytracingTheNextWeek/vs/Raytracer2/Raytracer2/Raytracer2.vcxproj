@@ -122,12 +122,14 @@
     <ClInclude Include="..\..\..\code\bvh.h" />
     <ClInclude Include="..\..\..\code\camera.h" />
     <ClInclude Include="..\..\..\code\checker_texture.h" />
+    <ClInclude Include="..\..\..\code\constant_medium.h" />
     <ClInclude Include="..\..\..\code\constant_texture.h" />
     <ClInclude Include="..\..\..\code\dielectric.h" />
     <ClInclude Include="..\..\..\code\diffuse_light.h" />
     <ClInclude Include="..\..\..\code\hitable.h" />
     <ClInclude Include="..\..\..\code\hitable_list.h" />
     <ClInclude Include="..\..\..\code\image_texture.h" />
+    <ClInclude Include="..\..\..\code\isotropic.h" />
     <ClInclude Include="..\..\..\code\lambertian.h" />
     <ClInclude Include="..\..\..\code\material.h" />
     <ClInclude Include="..\..\..\code\metal.h" />

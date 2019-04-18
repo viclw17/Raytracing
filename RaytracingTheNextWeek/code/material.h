@@ -2,7 +2,7 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
-//struct hit_record;
+struct hit_record;
 
 
 #include "hitable.h"
@@ -34,9 +34,9 @@ static vec3 random_in_unit_sphere(){
 	vec3 p;
 	do {
 		vec3 random_vector = vec3(
-			rand() % (100) / (float)(100), // xcode: drand48()
-			rand() % (100) / (float)(100),
-			rand() % (100) / (float)(100));
+			(rand() % (100))/ (float)(100), // xcode: drand48()
+			(rand() % (100)) / (float)(100),
+			(rand() % (100)) / (float)(100));
 		p = 2.0 * random_vector - vec3(1, 1, 1);
 	} while (p.squared_length() >= 1.0);
 	return p;

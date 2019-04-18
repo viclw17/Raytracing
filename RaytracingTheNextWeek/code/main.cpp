@@ -16,6 +16,7 @@
 #include "metal.h"
 #include "dielectric.h"
 #include "diffuse_light.h"
+#include "constant_medium.h"
 
 #include "constant_texture.h"
 #include "checker_texture.h"
@@ -58,26 +59,25 @@ vec3 color(const ray& r, hitable *world, int depth) {
         ray scattered;
         vec3 attenuation;
 		vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
-        if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
+
+        if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered))
 			return emitted + attenuation * color(scattered, world, depth + 1);
-        }
-        else {
+        else
 			return emitted;// vec3(0, 0, 0);
-        }
     }
-    else {
+    else 
 		return vec3(0, 0, 0);
 
 		// sky box
-        vec3 unit_direction = unit_vector(r.direction());
-        float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
-        return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
+        //vec3 unit_direction = unit_vector(r.direction());
+        //float t = 0.5*(unit_direction.y()+1.0); // -1~1 --> 0~1
+        //return (1.0-t)*vec3(1.0,1.0,1.0) + t*vec3(0.5,0.7,1.0); // lerp
 		
 		// escher env color
 		//return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * vec3(.81, .81, .8);
 
 		//return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * vec3(.8, .8, .8);
-    }
+ 
 }
 
 // Cover image scene
@@ -163,18 +163,27 @@ hitable* simple_light() {
 hitable* cornell_box() {
 	hitable** list = new hitable * [8];
 	int i = 0;
+
 	material* red = new lambertian(new constant_texture(vec3(0.65, 0.05, 0.05)));
 	material* white = new lambertian(new constant_texture(vec3(0.73, 0.73, 0.73)));
 	material* green = new lambertian(new constant_texture(vec3(0.12, 0.45, 0.15)));
-	material* light = new diffuse_light(new constant_texture(vec3(15, 15, 15)));
+	material* light = new diffuse_light(new constant_texture(vec3(15, 15, 15)));// old: 15
+
+	// walls
 	list[i++] = new flip_normals(new yz_rect(0, 555, 0, 555, 555, green));
 	list[i++] = new yz_rect(0, 555, 0, 555, 0, red);
-	list[i++] = new xz_rect(213, 343, 227, 332, 554, light);
+	list[i++] = new xz_rect(113, 443, 127, 432, 554, light); // light, smaller: 213, 343, 227, 332, 554
 	list[i++] = new flip_normals(new xz_rect(0, 555, 0, 555, 555, white));
 	list[i++] = new xz_rect(0, 555, 0, 555, 0, white);
 	list[i++] = new flip_normals(new xy_rect(0, 555, 0, 555, 555, white));
+	// boxes with rotation
 	list[i++] = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(165, 165, 165), white), -18), vec3(130, 0, 65));
 	list[i++] = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(165, 330, 165), white), 15), vec3(265, 0, 295));
+	//hitable* b1 = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(165, 165, 165), white), -18), vec3(130, 0, 65));
+	//hitable* b2 = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(165, 330, 165), white), 15), vec3(265, 0, 295));
+	//list[i++] = new constant_medium(b1, 0.01, new constant_texture(vec3(1.0, 1.0, 1.0)));
+	//list[i++] = new constant_medium(b2, 0.01, new constant_texture(vec3(0.0, 0.0, 0.0)));
+
 	return new hitable_list(list, i);
 }
 
@@ -184,18 +193,20 @@ int main() {
 	int nx, ny;
 	nx = 100; 
 	ny = 50;
-	nx = 200;
+	nx = 100;
 	ny = 100;
-	nx = 800;
-	ny = 400;
+	//nx = 800;
+	//ny = 400;
 	//nx = 1000;
 	//ny = 500;
 
 	// msaa
-	int ns = 1;
+	int ns;
+	ns = 1;
 	//ns = 20;
-	ns = 50;
-	//ns = 100;
+	//ns = 50;
+	ns = 100;
+	//ns = 1000;
 
     // create scene
     const int sphere_num = 5;
@@ -355,14 +366,18 @@ int main() {
 
     for(int j=ny-1; j>=0; j--) {
         for(int i=0; i<nx; i++) {
+
             counter++;
             vec3 col(0,0,0);
+
             for(int s=0; s < ns; s++) {
-                float u = float(i + rand() % (100) / (float)(100))/float(nx); // 0~1
-                float v = float(j + rand() % (100) / (float)(100))/float(ny); // xcode: drand48()
-                // float u = float(i) / float(nx);
-                // float v = float(j) / float(ny);
-                ray r = cam.get_ray(u,v); // generate ray per sample
+                float u = float(i + (rand() % (100)) / (float)(100)) / float(nx); // 0~1
+                float v = float(j + (rand() % (100)) / (float)(100)) / float(ny); // xcode: drand48()
+                
+				//float u = float(i) / float(nx);
+                //float v = float(j) / float(ny);
+                
+				ray r = cam.get_ray(u,v); // generate ray per sample
 
                 col += color(r, world, 0);
             }
