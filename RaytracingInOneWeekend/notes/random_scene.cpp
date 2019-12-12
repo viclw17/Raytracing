@@ -1,3 +1,13 @@
+#include <iostream>
+#include <fstream>
+#include <limits>
+#include "sphere.h"
+#include "hitable_list.h"
+#include "camera.h"
+#include "lambertian.h"
+#include "metal.h"
+#include "dielectric.h"
+using namespace std;
 
 // Cover image
 hitable *random_scene()
