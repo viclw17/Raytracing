@@ -22,20 +22,20 @@ def deterministicEstimateIntegral(g, low, high):
     sum = 0
     dx = (high-low)/N
     sampleLocations = [ low+(i+0.5)*dx for i in range(0,N)]
-    print (sampleLocations)
+    # print (sampleLocations)
 
     for x in sampleLocations:
         sum += g(x)*dx
     
-    print ([g(i) for i in sampleLocations])
-    plt.bar(sampleLocations, [g(i) for i in sampleLocations], width=dx, align='center', edgecolor='w')                   
-    plt.axis([low, high, 0, 5])
-    plt.show()
+    # print ([g(i) for i in sampleLocations])
+    # plt.bar(sampleLocations, [g(i) for i in sampleLocations], width=dx, align='center', edgecolor='w')                   
+    # plt.axis([low, high, 0, 5])
+    # plt.show()
 
     return sum
 
 def g(x): return x*x
-print (deterministicEstimateIntegral(g, 1, 2))
+# print (deterministicEstimateIntegral(g, 1, 2))
 
 # broken case
 # def h(x): return -math.cos(x*2*math.pi)
@@ -64,6 +64,6 @@ def uniformSample(A):
     # https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)#Probability_density_function
 
 
-# def h(x): return -math.cos(x*2*math.pi)
-# print(monteCarloEstimateIntegral(h, uniformSample, (0, 100), 100))
+def h(x): return -math.cos(x*2*math.pi)
+print(monteCarloEstimateIntegral(h, uniformSample, (0, 100), 100))
 
