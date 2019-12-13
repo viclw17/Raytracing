@@ -34,9 +34,9 @@ vec3 color(const ray& r, hitable *world, int depth) {
 	// In C++: use std::numeric_limits<float>::max(defined in <limits>).
     // You may still use C's FLT_MAX, but include <cfloat> instead.
     if(world->hit(r, 0.001, numeric_limits<float>::max(), rec)) {
-        ray scattered
+        ray scattered;
         vec3 attenuation;
-        if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
+        if(depth < 10 && rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
             return attenuation * color(scattered, world, depth + 1);
         }
         else {
@@ -64,8 +64,10 @@ int main() {
 
 	// msaa
 	int ns = 1;
-	// ns = 10;
+	ns = 10;
     ns = 20;
+    ns = 50;
+    // ns = 100;
 
     // create scene
     int sphere_num = 4;
@@ -116,21 +118,26 @@ int main() {
     list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
 
 	#elif TESTSCENE == 7 // dielectric, blogpost scene
-    list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
-    list[1] = new sphere(vec3(0, 0, z), 0.5, new dielectric(vec3(.9,.9,.9), 1.5));
-    list[2] = new sphere(vec3(-1.001, 0, z), 0.5, new lambertian(vec3(.8,.8,.8)));
-    list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.1)); //0.5
+    // list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
+    // list[1] = new sphere(vec3(0, 0, z), 0.5, new dielectric(vec3(.9,.9,.9), 1.5));
+    // list[2] = new sphere(vec3(-1.001, 0, z), 0.5, new lambertian(vec3(.8,.8,.8)));
+    // list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.1)); //0.5
     //list[4] = new sphere(vec3(0, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));r
 
-	#endif //TESTSCENE
+    list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
+    list[1] = new sphere(vec3(0, 0, z), 0.5,                new dielectric(vec3(.9, .9, .9), 1.2));
+    list[2] = new sphere(vec3(-1.001, 0, z), 0.5,           new dielectric(vec3(.9, .9, .9), 1.0));
+    list[3] = new sphere(vec3( 1.001, 0, z), 0.5,                new dielectric(vec3(.9, .9, .9), 1.5));
+#endif //TESTSCENE
 
 	////////////////////////////////////////////////////////////
     // camera defination
 	#if TESTCAM == 1 // Camera angled
-    vec3 lookfrom(-2, 1.5, 1);//(3, 3, 2);
+    // vec3 lookfrom(-2, 1.5, 1);//(3, 3, 2);
+    vec3 lookfrom(3, 1, 1);
     vec3 lookat(-0.2, 0, -1);
     float dist_to_focus = (lookfrom - lookat).length();
-	float aperture = 0.5;
+	float aperture = .01;//0.5;
     float theta = 40;//20
     camera cam(lookfrom, lookat, vec3(0, 1, 0), theta, float(nx) / float(ny), aperture, dist_to_focus);
 

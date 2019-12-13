@@ -28,7 +28,7 @@
 
 using namespace std;
 
-#define TESTSCENE 12
+#define TESTSCENE 1
 // 1 // diffuse, blogpost scene
 // 2 // metal, book scene
 // 3 // metal, blogpost scene
@@ -41,7 +41,6 @@ using namespace std;
 // 10 // perlin
 // 11 // light
 // 12
-// 0 // cover image scene
 #define TESTCAM 4
 // 1 // Camera angled
 // 2 // Camera facing forward	
@@ -55,12 +54,13 @@ vec3 color(const ray& r, hitable *world, int depth) {
 	// PC - numeric_limits<float>::max()
 	// Mac - MAXFLOAT
 	// In C++: use std::numeric_limits<float>::max(defined in <limits>).You may still use C's FLT_MAX, but include <cfloat> instead.
-	if(world->hit(r, 0.001, MAXFLOAT, rec)) {
-        ray scattered;
+	if (world->hit(r, 0.001, numeric_limits<float>::max(), rec))
+	{
+		ray scattered;
         vec3 attenuation;
 		vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
 
-        if(depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered))
+        if(depth < 10 && rec.mat_ptr->scatter(r, rec, attenuation, scattered))
 			return emitted + attenuation * color(scattered, world, depth + 1);
         else
 			return emitted;// vec3(0, 0, 0);
@@ -79,63 +79,6 @@ vec3 color(const ray& r, hitable *world, int depth) {
 		//return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * vec3(.8, .8, .8);
  
 }
-
-// Cover image scene
-hitable *random_scene() {
-    int n = 500;
-    hitable **list = new hitable *[n+1];
-    /*定义一个包含n+1个元素的数组，数组的每个元素是指向hitable对象的指针。然后将数组的指针赋值给list。所以，list是指针的指针。*/
-    list[0] = new sphere(vec3(0,-1000,0), 1000, new lambertian(new constant_texture(vec3(0.5, 0.5, 0.5))));
-    /*先创建一个中心在（0，-1000，0）半径为1000的超大漫射球，将其指针保存在list的第一个元素中。*/
-    int i = 1;
-    for (int a = -11; a < 11; a++) {
-        for (int b = -11; b < 11; b++) {
-            /*两个for循环中会产生（11+11）*(11+11)=484个随机小球*/
-            float choose_mat = (rand()%(100)/(float)(100));
-            /*产生一个（0，1）的随机数，作为设置小球材料的阀值*/
-            vec3 center(a+0.9*(rand()%(100)/(float)(100)), 0.2,
-                        b+0.9*(rand()%(100)/(float)(100)));
-            /*” a+0.9*(rand()%(100)/(float)(100))”配合[-11,11]产生（-11，11）之间的随机数，而不是[-11,11)之间的22个整数。使得球心的x,z坐标是（-11，11）之间的随机数*/
-            if ((center-vec3(4,0.2,0)).length() > 0.9) {
-                /*避免小球的位置和最前面的大球的位置太靠近*/
-                if (choose_mat < 0.8) {     //diffuse
-                    /*材料阀值小于0.8，则设置为漫反射球，漫反射球的衰减系数x,y,z都是（0，1）之间的随机数的平方*/
-                    list[i++] =
-                    new sphere(center, 0.2,
-                        new lambertian(new constant_texture(
-                            vec3(
-                                (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100)),
-                                (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100)),
-                                (rand()%(100)/(float)(100))*(rand()%(100)/(float)(100))
-                            ))
-                        )
-                    );
-                }
-                else if (choose_mat < 0.95) {
-                    /*材料阀值大于等于0.8小于0.95，则设置为镜面反射球，镜面反射球的衰减系数x,y,z及模糊系数都是（0，1）之间的随机数加一再除以2*/
-                    list[i++] =
-                    new sphere(center, 0.2,
-                        new metal(
-                            vec3(
-                                0.5*(1+(rand()%(100)/(float)(100))),
-                                0.5*(1+(rand()%(100)/(float)(100))),
-                                0.5*(1+(rand()%(100)/(float)(100)))),
-                            0.5*(1+(rand()%(100)/(float)(100)))));
-                }
-                else {
-                    /*材料阀值大于等于0.95，则设置为介质球*/
-                    list[i++] = new sphere(center, 0.2, new dielectric(vec3(1, 1,  1),1.5));
-                }
-            }
-        }
-    }
-    list[i++] = new sphere(vec3(0, 1, 0), 1.0, new dielectric(vec3(1, 1,  1),1.5));
-    list[i++] = new sphere(vec3(-4, 1, 0), 1.0, new lambertian(new constant_texture(vec3(0.4, 0.2,  0.1))));
-    list[i++] = new sphere(vec3(4, 1, 0), 1.0, new metal(vec3(0.7, 0.6, 0.5),  0.0));
-    /*定义三个大球*/
-
-    return new hitable_list(list, i);
-    }
 
 // Two spheres scene
 hitable *two_spheres_scene() {
@@ -192,14 +135,14 @@ int main() {
 	int nx, ny;
 	// nx = 100; 
 	// ny = 50;
-	// nx = 800;
-	// ny = 400;
+	nx = 800;
+	ny = 400;
 	//nx = 1000;
 	//ny = 500;
-	nx = 200;
-	ny = 200;
-	nx = 1000;
-	ny = 1000;
+	// nx = 200;
+	// ny = 200;
+	// nx = 1000;
+	// ny = 1000;
 
 	// msaa
 	int ns;
@@ -210,7 +153,7 @@ int main() {
 	//ns = 1000;
 
     // create scene
-    const int sphere_num = 5;
+    const int sphere_num = 4;
 	//hitable **list = new hitable *[sphere_num];
     hitable *list[sphere_num]; // 一个储存有sphere_num个“指向hitable对象的指针”的数组
     float big_r = 5000.0; // ground sphere
@@ -271,10 +214,10 @@ int main() {
 	// ... x = width, y = height, n = # 8-bit components per pixel ...
 	// ... replace '0' with '1'..'4' to force that many components per pixel
 	// ... but 'n' will always be the number that it would have been if you said 0
-	unsigned char *tex_data1 = stbi_load("earth.jpg", &nx1, &ny1, &nn, 0); // pass by reference
-	unsigned char *tex_data2 = stbi_load("moon.jpg", &nx2, &ny2, &nn, 0);
-	unsigned char *tex_data3 = stbi_load("mars.jpg", &nx3, &ny3, &nn, 0);
-	unsigned char *tex_data4 = stbi_load("jupiter.jpg", &nx4, &ny4, &nn, 0);
+	unsigned char *tex_data1 = stbi_load("../textures/earth.jpg", &nx1, &ny1, &nn, 0); // pass by reference
+	unsigned char *tex_data2 = stbi_load("../textures/moon.jpg", &nx2, &ny2, &nn, 0);
+	unsigned char *tex_data3 = stbi_load("../textures/mars.jpg", &nx3, &ny3, &nn, 0);
+	unsigned char *tex_data4 = stbi_load("../textures/jupiter.jpg", &nx4, &ny4, &nn, 0);
 	// image_texture(unsigned char *pixels, int A, int B) : data(pixels), nx(A), ny(B) {}
 	material *earth_mat   = new lambertian(new image_texture(tex_data1, nx1, ny1)); // pass by copy
 	material *moon_mat    = new lambertian(new image_texture(tex_data2, nx2, ny2));
@@ -307,9 +250,6 @@ int main() {
 
 	#elif TESTSCENE == 12
 	world = cornell_box();
-
-	#elif TESTSCENE == 0 // cover image scene
-	world = random_scene();
 	
 	#endif //TESTSCENE
 

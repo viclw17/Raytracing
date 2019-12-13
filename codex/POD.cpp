@@ -1,3 +1,4 @@
+// Plain Old Data
 #include<iostream>
 using namespace std;
 
@@ -8,8 +9,8 @@ using namespace std;
 int main(){
     const char* str = "Hello World";
     int x; // not initialized!
-    // cout << "&x = " << &x << endl;
-    // cout << "x = " << x << endl;
+    cout << "&x = " << &x << endl;
+    cout << "x = " << x << endl;
     // unintialized pointers will reference arbitrary memory locations
 
     for(int i = 0; str[i] != '\0'; ++i){
