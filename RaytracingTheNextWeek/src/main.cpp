@@ -28,7 +28,7 @@
 
 using namespace std;
 
-#define TESTSCENE 1
+#define TESTSCENE 7
 // 1 // diffuse, blogpost scene
 // 2 // metal, book scene
 // 3 // metal, blogpost scene
@@ -40,15 +40,13 @@ using namespace std;
 // 9 // escher
 // 10 // perlin
 // 11 // light
-// 12
-#define TESTCAM 4
+// 12 // cornell
+#define TESTCAM 2
 // 1 // Camera angled
 // 2 // Camera facing forward	
 // 3 // Camera escher 3 spheres
-// 4
-// 0 // Camera cover image / 2 spheres
+// 4 // cornell
 
-// r: reference to a Ray object
 vec3 color(const ray& r, hitable *world, int depth) {
     hit_record rec;
 	// PC - numeric_limits<float>::max()
@@ -60,13 +58,15 @@ vec3 color(const ray& r, hitable *world, int depth) {
         vec3 attenuation;
 		vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
 
-        if(depth < 10 && rec.mat_ptr->scatter(r, rec, attenuation, scattered))
+        if(depth < 5 && rec.mat_ptr->scatter(r, rec, attenuation, scattered))
 			return emitted + attenuation * color(scattered, world, depth + 1);
         else
 			return emitted;// vec3(0, 0, 0);
     }
     else 
-		return vec3(0, 0, 0);
+		// now return all black, need light!
+		// return vec3(0, 0, 0);
+		return vec3(1,1,1);
 
 		// sky box
         //vec3 unit_direction = unit_vector(r.direction());
@@ -135,8 +135,10 @@ int main() {
 	int nx, ny;
 	// nx = 100; 
 	// ny = 50;
-	nx = 800;
-	ny = 400;
+	// nx = 800;
+	// ny = 400;
+	nx = 400;
+	ny = 200;
 	//nx = 1000;
 	//ny = 500;
 	// nx = 200;
@@ -153,7 +155,7 @@ int main() {
 	//ns = 1000;
 
     // create scene
-    const int sphere_num = 4;
+    const int sphere_num = 5;
 	//hitable **list = new hitable *[sphere_num];
     hitable *list[sphere_num]; // 一个储存有sphere_num个“指向hitable对象的指针”的数组
     float big_r = 5000.0; // ground sphere
@@ -244,7 +246,6 @@ int main() {
 	#elif TESTSCENE == 10 // perlin
 	world = two_spheres_scene();
 
-
 	#elif TESTSCENE == 11 // light
 	world = simple_light();
 
@@ -286,14 +287,7 @@ int main() {
 	float aperture = 0.0;
 	float vfov = 40.0;
 	camera cam(lookfrom, lookat, vec3(0, 1, 0), vfov, float(nx) / float(ny), aperture, dist_to_focus, 0.0, 1.0);
-	
-	#elif TESTCAM == 0 // Camera cover image
-    vec3 lookfrom(25, 5, 5); //lookfrom(11,2,3);
-    vec3 lookat(0,2,0); //lookat(0,0.6,0);
-	float dist_to_focus = (lookfrom - lookat).length();
-    float aperture = 0.0;
-    camera cam(lookfrom, lookat, vec3(0,1,0), 20, float(nx)/float(ny), aperture, dist_to_focus, 0.0, 1.0);
-	
+
 	#endif //TESTCAM
 
     ////////////////////////////////////////////////////////////
