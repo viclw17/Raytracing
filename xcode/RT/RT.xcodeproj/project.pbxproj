@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9918389E258AA71C00C5036B /* lambertian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9918388D258AA71C00C5036B /* lambertian.cpp */; };
-		9918389F258AA71C00C5036B /* metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99183892258AA71C00C5036B /* metal.cpp */; };
-		991838A0258AA71C00C5036B /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99183894258AA71C00C5036B /* sphere.cpp */; };
-		991838A1258AA71C00C5036B /* hitable_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99183896258AA71C00C5036B /* hitable_list.cpp */; };
-		991838A2258AA71C00C5036B /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99183897258AA71C00C5036B /* camera.cpp */; };
-		991838A3258AA71C00C5036B /* dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9918389A258AA71C00C5036B /* dielectric.cpp */; };
-		991838A4258AA71C00C5036B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9918389B258AA71C00C5036B /* main.cpp */; };
 		991838B3258B170800C5036B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 991838B2258B170800C5036B /* main.cpp */; };
 		991838BA258B184B00C5036B /* Vector3.h in Sources */ = {isa = PBXBuildFile; fileRef = 999F94C125895281003B5D51 /* Vector3.h */; };
-		991838F6258B1BBB00C5036B /* dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 991838D8258B1BBA00C5036B /* dielectric.cpp */; };
-		991838F7258B1BBB00C5036B /* lambertian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 991838DF258B1BBA00C5036B /* lambertian.cpp */; };
-		991838F8258B1BBB00C5036B /* metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 991838E4258B1BBA00C5036B /* metal.cpp */; };
-		991838F9258B1BBB00C5036B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 991838E9258B1BBA00C5036B /* main.cpp */; };
-		991838FA258B1BBB00C5036B /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 991838F1258B1BBA00C5036B /* camera.cpp */; };
-		991838FB258B1BBB00C5036B /* hitable_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 991838F2258B1BBA00C5036B /* hitable_list.cpp */; };
-		991838FC258B1BBB00C5036B /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 991838F5258B1BBA00C5036B /* sphere.cpp */; };
+		999BA278258B1FC500B0E52F /* lambertian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA268258B1FC400B0E52F /* lambertian.cpp */; };
+		999BA279258B1FC500B0E52F /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA269258B1FC400B0E52F /* camera.cpp */; };
+		999BA27A258B1FC500B0E52F /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA26A258B1FC400B0E52F /* sphere.cpp */; };
+		999BA27B258B1FC500B0E52F /* dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA26B258B1FC400B0E52F /* dielectric.cpp */; };
+		999BA27C258B1FC500B0E52F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA270258B1FC400B0E52F /* main.cpp */; };
+		999BA27D258B1FC500B0E52F /* hitable_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA274258B1FC500B0E52F /* hitable_list.cpp */; };
+		999BA27E258B1FC500B0E52F /* metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA276258B1FC500B0E52F /* metal.cpp */; };
+		999BA2A4258B1FE100B0E52F /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA283258B1FE100B0E52F /* camera.cpp */; };
+		999BA2A5258B1FE100B0E52F /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA287258B1FE100B0E52F /* sphere.cpp */; };
+		999BA2A6258B1FE100B0E52F /* dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA291258B1FE100B0E52F /* dielectric.cpp */; };
+		999BA2A7258B1FE100B0E52F /* hitable_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA293258B1FE100B0E52F /* hitable_list.cpp */; };
+		999BA2A8258B1FE100B0E52F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA29A258B1FE100B0E52F /* main.cpp */; };
+		999BA2A9258B1FE100B0E52F /* lambertian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA29F258B1FE100B0E52F /* lambertian.cpp */; };
+		999BA2AA258B1FE100B0E52F /* metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA2A3258B1FE100B0E52F /* metal.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,59 +58,59 @@
 /* Begin PBXFileReference section */
 		99183878258AA6CC00C5036B /* function.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = function.cpp; sourceTree = "<group>"; };
 		99183880258AA70000C5036B /* RT1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RT1; sourceTree = BUILT_PRODUCTS_DIR; };
-		9918388D258AA71C00C5036B /* lambertian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lambertian.cpp; path = ../../RaytracingInOneWeekend/src/lambertian.cpp; sourceTree = "<group>"; };
-		9918388E258AA71C00C5036B /* sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sphere.h; path = ../../RaytracingInOneWeekend/src/sphere.h; sourceTree = "<group>"; };
-		9918388F258AA71C00C5036B /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vec3.h; path = ../../RaytracingInOneWeekend/src/vec3.h; sourceTree = "<group>"; };
-		99183890258AA71C00C5036B /* metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = metal.h; path = ../../RaytracingInOneWeekend/src/metal.h; sourceTree = "<group>"; };
-		99183891258AA71C00C5036B /* lambertian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lambertian.h; path = ../../RaytracingInOneWeekend/src/lambertian.h; sourceTree = "<group>"; };
-		99183892258AA71C00C5036B /* metal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = metal.cpp; path = ../../RaytracingInOneWeekend/src/metal.cpp; sourceTree = "<group>"; };
-		99183893258AA71C00C5036B /* material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = material.h; path = ../../RaytracingInOneWeekend/src/material.h; sourceTree = "<group>"; };
-		99183894258AA71C00C5036B /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sphere.cpp; path = ../../RaytracingInOneWeekend/src/sphere.cpp; sourceTree = "<group>"; };
-		99183895258AA71C00C5036B /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = ../../RaytracingInOneWeekend/src/camera.h; sourceTree = "<group>"; };
-		99183896258AA71C00C5036B /* hitable_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hitable_list.cpp; path = ../../RaytracingInOneWeekend/src/hitable_list.cpp; sourceTree = "<group>"; };
-		99183897258AA71C00C5036B /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera.cpp; path = ../../RaytracingInOneWeekend/src/camera.cpp; sourceTree = "<group>"; };
-		99183898258AA71C00C5036B /* dielectric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dielectric.h; path = ../../RaytracingInOneWeekend/src/dielectric.h; sourceTree = "<group>"; };
-		99183899258AA71C00C5036B /* hitable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hitable.h; path = ../../RaytracingInOneWeekend/src/hitable.h; sourceTree = "<group>"; };
-		9918389A258AA71C00C5036B /* dielectric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dielectric.cpp; path = ../../RaytracingInOneWeekend/src/dielectric.cpp; sourceTree = "<group>"; };
-		9918389B258AA71C00C5036B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../RaytracingInOneWeekend/src/main.cpp; sourceTree = "<group>"; };
-		9918389C258AA71C00C5036B /* ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ray.h; path = ../../RaytracingInOneWeekend/src/ray.h; sourceTree = "<group>"; };
-		9918389D258AA71C00C5036B /* hitable_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hitable_list.h; path = ../../RaytracingInOneWeekend/src/hitable_list.h; sourceTree = "<group>"; };
 		991838B2258B170800C5036B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		991838C7258B1B7700C5036B /* RT2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RT2; sourceTree = BUILT_PRODUCTS_DIR; };
-		991838D4258B1BBA00C5036B /* translate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = translate.h; path = ../../RaytracingTheNextWeek/src/translate.h; sourceTree = "<group>"; };
-		991838D5258B1BBA00C5036B /* checker_texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = checker_texture.h; path = ../../RaytracingTheNextWeek/src/checker_texture.h; sourceTree = "<group>"; };
-		991838D6258B1BBA00C5036B /* hitable_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hitable_list.h; path = ../../RaytracingTheNextWeek/src/hitable_list.h; sourceTree = "<group>"; };
-		991838D7258B1BBA00C5036B /* rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rect.h; path = ../../RaytracingTheNextWeek/src/rect.h; sourceTree = "<group>"; };
-		991838D8258B1BBA00C5036B /* dielectric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dielectric.cpp; path = ../../RaytracingTheNextWeek/src/dielectric.cpp; sourceTree = "<group>"; };
-		991838D9258B1BBA00C5036B /* image_texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image_texture.h; path = ../../RaytracingTheNextWeek/src/image_texture.h; sourceTree = "<group>"; };
-		991838DA258B1BBA00C5036B /* constant_texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = constant_texture.h; path = ../../RaytracingTheNextWeek/src/constant_texture.h; sourceTree = "<group>"; };
-		991838DB258B1BBA00C5036B /* bvh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bvh.h; path = ../../RaytracingTheNextWeek/src/bvh.h; sourceTree = "<group>"; };
-		991838DC258B1BBA00C5036B /* diffuse_light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = diffuse_light.h; path = ../../RaytracingTheNextWeek/src/diffuse_light.h; sourceTree = "<group>"; };
-		991838DD258B1BBA00C5036B /* moving_sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = moving_sphere.h; path = ../../RaytracingTheNextWeek/src/moving_sphere.h; sourceTree = "<group>"; };
-		991838DE258B1BBA00C5036B /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = ../../RaytracingTheNextWeek/src/camera.h; sourceTree = "<group>"; };
-		991838DF258B1BBA00C5036B /* lambertian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lambertian.cpp; path = ../../RaytracingTheNextWeek/src/lambertian.cpp; sourceTree = "<group>"; };
-		991838E0258B1BBA00C5036B /* ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ray.h; path = ../../RaytracingTheNextWeek/src/ray.h; sourceTree = "<group>"; };
-		991838E1258B1BBA00C5036B /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vec3.h; path = ../../RaytracingTheNextWeek/src/vec3.h; sourceTree = "<group>"; };
-		991838E2258B1BBA00C5036B /* rotate_y.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rotate_y.h; path = ../../RaytracingTheNextWeek/src/rotate_y.h; sourceTree = "<group>"; };
-		991838E3258B1BBA00C5036B /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture.h; path = ../../RaytracingTheNextWeek/src/texture.h; sourceTree = "<group>"; };
-		991838E4258B1BBA00C5036B /* metal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = metal.cpp; path = ../../RaytracingTheNextWeek/src/metal.cpp; sourceTree = "<group>"; };
-		991838E5258B1BBA00C5036B /* lambertian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lambertian.h; path = ../../RaytracingTheNextWeek/src/lambertian.h; sourceTree = "<group>"; };
-		991838E6258B1BBA00C5036B /* noise_texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = noise_texture.h; path = ../../RaytracingTheNextWeek/src/noise_texture.h; sourceTree = "<group>"; };
-		991838E7258B1BBA00C5036B /* sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sphere.h; path = ../../RaytracingTheNextWeek/src/sphere.h; sourceTree = "<group>"; };
-		991838E8258B1BBA00C5036B /* constant_medium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = constant_medium.h; path = ../../RaytracingTheNextWeek/src/constant_medium.h; sourceTree = "<group>"; };
-		991838E9258B1BBA00C5036B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../RaytracingTheNextWeek/src/main.cpp; sourceTree = "<group>"; };
-		991838EA258B1BBA00C5036B /* metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = metal.h; path = ../../RaytracingTheNextWeek/src/metal.h; sourceTree = "<group>"; };
-		991838EB258B1BBA00C5036B /* perlin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = perlin.h; path = ../../RaytracingTheNextWeek/src/perlin.h; sourceTree = "<group>"; };
-		991838EC258B1BBA00C5036B /* isotropic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = isotropic.h; path = ../../RaytracingTheNextWeek/src/isotropic.h; sourceTree = "<group>"; };
-		991838ED258B1BBA00C5036B /* material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = material.h; path = ../../RaytracingTheNextWeek/src/material.h; sourceTree = "<group>"; };
-		991838EE258B1BBA00C5036B /* dielectric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dielectric.h; path = ../../RaytracingTheNextWeek/src/dielectric.h; sourceTree = "<group>"; };
-		991838EF258B1BBA00C5036B /* aabb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aabb.h; path = ../../RaytracingTheNextWeek/src/aabb.h; sourceTree = "<group>"; };
-		991838F0258B1BBA00C5036B /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_image.h; path = ../../RaytracingTheNextWeek/src/stb_image.h; sourceTree = "<group>"; };
-		991838F1258B1BBA00C5036B /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera.cpp; path = ../../RaytracingTheNextWeek/src/camera.cpp; sourceTree = "<group>"; };
-		991838F2258B1BBA00C5036B /* hitable_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hitable_list.cpp; path = ../../RaytracingTheNextWeek/src/hitable_list.cpp; sourceTree = "<group>"; };
-		991838F3258B1BBA00C5036B /* hitable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hitable.h; path = ../../RaytracingTheNextWeek/src/hitable.h; sourceTree = "<group>"; };
-		991838F4258B1BBA00C5036B /* box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = box.h; path = ../../RaytracingTheNextWeek/src/box.h; sourceTree = "<group>"; };
-		991838F5258B1BBA00C5036B /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sphere.cpp; path = ../../RaytracingTheNextWeek/src/sphere.cpp; sourceTree = "<group>"; };
+		999BA267258B1FC400B0E52F /* lambertian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lambertian.h; path = ../../../RaytracingInOneWeekend/src/lambertian.h; sourceTree = "<group>"; };
+		999BA268258B1FC400B0E52F /* lambertian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lambertian.cpp; path = ../../../RaytracingInOneWeekend/src/lambertian.cpp; sourceTree = "<group>"; };
+		999BA269258B1FC400B0E52F /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera.cpp; path = ../../../RaytracingInOneWeekend/src/camera.cpp; sourceTree = "<group>"; };
+		999BA26A258B1FC400B0E52F /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sphere.cpp; path = ../../../RaytracingInOneWeekend/src/sphere.cpp; sourceTree = "<group>"; };
+		999BA26B258B1FC400B0E52F /* dielectric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dielectric.cpp; path = ../../../RaytracingInOneWeekend/src/dielectric.cpp; sourceTree = "<group>"; };
+		999BA26C258B1FC400B0E52F /* sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sphere.h; path = ../../../RaytracingInOneWeekend/src/sphere.h; sourceTree = "<group>"; };
+		999BA26D258B1FC400B0E52F /* dielectric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dielectric.h; path = ../../../RaytracingInOneWeekend/src/dielectric.h; sourceTree = "<group>"; };
+		999BA26E258B1FC400B0E52F /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = ../../../RaytracingInOneWeekend/src/camera.h; sourceTree = "<group>"; };
+		999BA26F258B1FC400B0E52F /* hitable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hitable.h; path = ../../../RaytracingInOneWeekend/src/hitable.h; sourceTree = "<group>"; };
+		999BA270258B1FC400B0E52F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../../RaytracingInOneWeekend/src/main.cpp; sourceTree = "<group>"; };
+		999BA271258B1FC400B0E52F /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vec3.h; path = ../../../RaytracingInOneWeekend/src/vec3.h; sourceTree = "<group>"; };
+		999BA272258B1FC400B0E52F /* material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = material.h; path = ../../../RaytracingInOneWeekend/src/material.h; sourceTree = "<group>"; };
+		999BA273258B1FC500B0E52F /* ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ray.h; path = ../../../RaytracingInOneWeekend/src/ray.h; sourceTree = "<group>"; };
+		999BA274258B1FC500B0E52F /* hitable_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hitable_list.cpp; path = ../../../RaytracingInOneWeekend/src/hitable_list.cpp; sourceTree = "<group>"; };
+		999BA275258B1FC500B0E52F /* hitable_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hitable_list.h; path = ../../../RaytracingInOneWeekend/src/hitable_list.h; sourceTree = "<group>"; };
+		999BA276258B1FC500B0E52F /* metal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = metal.cpp; path = ../../../RaytracingInOneWeekend/src/metal.cpp; sourceTree = "<group>"; };
+		999BA277258B1FC500B0E52F /* metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = metal.h; path = ../../../RaytracingInOneWeekend/src/metal.h; sourceTree = "<group>"; };
+		999BA282258B1FE100B0E52F /* lambertian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lambertian.h; path = ../../../RaytracingTheNextWeek/src/lambertian.h; sourceTree = "<group>"; };
+		999BA283258B1FE100B0E52F /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera.cpp; path = ../../../RaytracingTheNextWeek/src/camera.cpp; sourceTree = "<group>"; };
+		999BA284258B1FE100B0E52F /* constant_medium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = constant_medium.h; path = ../../../RaytracingTheNextWeek/src/constant_medium.h; sourceTree = "<group>"; };
+		999BA285258B1FE100B0E52F /* moving_sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = moving_sphere.h; path = ../../../RaytracingTheNextWeek/src/moving_sphere.h; sourceTree = "<group>"; };
+		999BA286258B1FE100B0E52F /* checker_texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = checker_texture.h; path = ../../../RaytracingTheNextWeek/src/checker_texture.h; sourceTree = "<group>"; };
+		999BA287258B1FE100B0E52F /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sphere.cpp; path = ../../../RaytracingTheNextWeek/src/sphere.cpp; sourceTree = "<group>"; };
+		999BA288258B1FE100B0E52F /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_image.h; path = ../../../RaytracingTheNextWeek/src/stb_image.h; sourceTree = "<group>"; };
+		999BA289258B1FE100B0E52F /* diffuse_light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = diffuse_light.h; path = ../../../RaytracingTheNextWeek/src/diffuse_light.h; sourceTree = "<group>"; };
+		999BA28A258B1FE100B0E52F /* ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ray.h; path = ../../../RaytracingTheNextWeek/src/ray.h; sourceTree = "<group>"; };
+		999BA28B258B1FE100B0E52F /* bvh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bvh.h; path = ../../../RaytracingTheNextWeek/src/bvh.h; sourceTree = "<group>"; };
+		999BA28C258B1FE100B0E52F /* material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = material.h; path = ../../../RaytracingTheNextWeek/src/material.h; sourceTree = "<group>"; };
+		999BA28D258B1FE100B0E52F /* metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = metal.h; path = ../../../RaytracingTheNextWeek/src/metal.h; sourceTree = "<group>"; };
+		999BA28E258B1FE100B0E52F /* aabb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aabb.h; path = ../../../RaytracingTheNextWeek/src/aabb.h; sourceTree = "<group>"; };
+		999BA28F258B1FE100B0E52F /* constant_texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = constant_texture.h; path = ../../../RaytracingTheNextWeek/src/constant_texture.h; sourceTree = "<group>"; };
+		999BA290258B1FE100B0E52F /* isotropic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = isotropic.h; path = ../../../RaytracingTheNextWeek/src/isotropic.h; sourceTree = "<group>"; };
+		999BA291258B1FE100B0E52F /* dielectric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dielectric.cpp; path = ../../../RaytracingTheNextWeek/src/dielectric.cpp; sourceTree = "<group>"; };
+		999BA292258B1FE100B0E52F /* noise_texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = noise_texture.h; path = ../../../RaytracingTheNextWeek/src/noise_texture.h; sourceTree = "<group>"; };
+		999BA293258B1FE100B0E52F /* hitable_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hitable_list.cpp; path = ../../../RaytracingTheNextWeek/src/hitable_list.cpp; sourceTree = "<group>"; };
+		999BA294258B1FE100B0E52F /* rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rect.h; path = ../../../RaytracingTheNextWeek/src/rect.h; sourceTree = "<group>"; };
+		999BA295258B1FE100B0E52F /* box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = box.h; path = ../../../RaytracingTheNextWeek/src/box.h; sourceTree = "<group>"; };
+		999BA296258B1FE100B0E52F /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vec3.h; path = ../../../RaytracingTheNextWeek/src/vec3.h; sourceTree = "<group>"; };
+		999BA297258B1FE100B0E52F /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture.h; path = ../../../RaytracingTheNextWeek/src/texture.h; sourceTree = "<group>"; };
+		999BA298258B1FE100B0E52F /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = ../../../RaytracingTheNextWeek/src/camera.h; sourceTree = "<group>"; };
+		999BA299258B1FE100B0E52F /* translate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = translate.h; path = ../../../RaytracingTheNextWeek/src/translate.h; sourceTree = "<group>"; };
+		999BA29A258B1FE100B0E52F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../../RaytracingTheNextWeek/src/main.cpp; sourceTree = "<group>"; };
+		999BA29B258B1FE100B0E52F /* hitable_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hitable_list.h; path = ../../../RaytracingTheNextWeek/src/hitable_list.h; sourceTree = "<group>"; };
+		999BA29C258B1FE100B0E52F /* image_texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image_texture.h; path = ../../../RaytracingTheNextWeek/src/image_texture.h; sourceTree = "<group>"; };
+		999BA29D258B1FE100B0E52F /* dielectric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dielectric.h; path = ../../../RaytracingTheNextWeek/src/dielectric.h; sourceTree = "<group>"; };
+		999BA29E258B1FE100B0E52F /* hitable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hitable.h; path = ../../../RaytracingTheNextWeek/src/hitable.h; sourceTree = "<group>"; };
+		999BA29F258B1FE100B0E52F /* lambertian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lambertian.cpp; path = ../../../RaytracingTheNextWeek/src/lambertian.cpp; sourceTree = "<group>"; };
+		999BA2A0258B1FE100B0E52F /* perlin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = perlin.h; path = ../../../RaytracingTheNextWeek/src/perlin.h; sourceTree = "<group>"; };
+		999BA2A1258B1FE100B0E52F /* rotate_y.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rotate_y.h; path = ../../../RaytracingTheNextWeek/src/rotate_y.h; sourceTree = "<group>"; };
+		999BA2A2258B1FE100B0E52F /* sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sphere.h; path = ../../../RaytracingTheNextWeek/src/sphere.h; sourceTree = "<group>"; };
+		999BA2A3258B1FE100B0E52F /* metal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = metal.cpp; path = ../../../RaytracingTheNextWeek/src/metal.cpp; sourceTree = "<group>"; };
 		999F94A5258942BE003B5D51 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		999F94AF258942F8003B5D51 /* const_pointer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = const_pointer.cpp; sourceTree = "<group>"; };
 		999F94B0258942F8003B5D51 /* class.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class.cpp; sourceTree = "<group>"; };
@@ -147,23 +147,23 @@
 		99183881258AA70100C5036B /* RT1 */ = {
 			isa = PBXGroup;
 			children = (
-				99183897258AA71C00C5036B /* camera.cpp */,
-				99183895258AA71C00C5036B /* camera.h */,
-				9918389A258AA71C00C5036B /* dielectric.cpp */,
-				99183898258AA71C00C5036B /* dielectric.h */,
-				99183896258AA71C00C5036B /* hitable_list.cpp */,
-				9918389D258AA71C00C5036B /* hitable_list.h */,
-				99183899258AA71C00C5036B /* hitable.h */,
-				9918388D258AA71C00C5036B /* lambertian.cpp */,
-				99183891258AA71C00C5036B /* lambertian.h */,
-				9918389B258AA71C00C5036B /* main.cpp */,
-				99183893258AA71C00C5036B /* material.h */,
-				99183892258AA71C00C5036B /* metal.cpp */,
-				99183890258AA71C00C5036B /* metal.h */,
-				9918389C258AA71C00C5036B /* ray.h */,
-				99183894258AA71C00C5036B /* sphere.cpp */,
-				9918388E258AA71C00C5036B /* sphere.h */,
-				9918388F258AA71C00C5036B /* vec3.h */,
+				999BA269258B1FC400B0E52F /* camera.cpp */,
+				999BA26E258B1FC400B0E52F /* camera.h */,
+				999BA26B258B1FC400B0E52F /* dielectric.cpp */,
+				999BA26D258B1FC400B0E52F /* dielectric.h */,
+				999BA274258B1FC500B0E52F /* hitable_list.cpp */,
+				999BA275258B1FC500B0E52F /* hitable_list.h */,
+				999BA26F258B1FC400B0E52F /* hitable.h */,
+				999BA268258B1FC400B0E52F /* lambertian.cpp */,
+				999BA267258B1FC400B0E52F /* lambertian.h */,
+				999BA270258B1FC400B0E52F /* main.cpp */,
+				999BA272258B1FC400B0E52F /* material.h */,
+				999BA276258B1FC500B0E52F /* metal.cpp */,
+				999BA277258B1FC500B0E52F /* metal.h */,
+				999BA273258B1FC500B0E52F /* ray.h */,
+				999BA26A258B1FC400B0E52F /* sphere.cpp */,
+				999BA26C258B1FC400B0E52F /* sphere.h */,
+				999BA271258B1FC400B0E52F /* vec3.h */,
 			);
 			path = RT1;
 			sourceTree = "<group>";
@@ -171,40 +171,40 @@
 		991838C8258B1B7700C5036B /* RT2 */ = {
 			isa = PBXGroup;
 			children = (
-				991838EF258B1BBA00C5036B /* aabb.h */,
-				991838F4258B1BBA00C5036B /* box.h */,
-				991838DB258B1BBA00C5036B /* bvh.h */,
-				991838F1258B1BBA00C5036B /* camera.cpp */,
-				991838DE258B1BBA00C5036B /* camera.h */,
-				991838D5258B1BBA00C5036B /* checker_texture.h */,
-				991838E8258B1BBA00C5036B /* constant_medium.h */,
-				991838DA258B1BBA00C5036B /* constant_texture.h */,
-				991838D8258B1BBA00C5036B /* dielectric.cpp */,
-				991838EE258B1BBA00C5036B /* dielectric.h */,
-				991838DC258B1BBA00C5036B /* diffuse_light.h */,
-				991838F2258B1BBA00C5036B /* hitable_list.cpp */,
-				991838D6258B1BBA00C5036B /* hitable_list.h */,
-				991838F3258B1BBA00C5036B /* hitable.h */,
-				991838D9258B1BBA00C5036B /* image_texture.h */,
-				991838EC258B1BBA00C5036B /* isotropic.h */,
-				991838DF258B1BBA00C5036B /* lambertian.cpp */,
-				991838E5258B1BBA00C5036B /* lambertian.h */,
-				991838E9258B1BBA00C5036B /* main.cpp */,
-				991838ED258B1BBA00C5036B /* material.h */,
-				991838E4258B1BBA00C5036B /* metal.cpp */,
-				991838EA258B1BBA00C5036B /* metal.h */,
-				991838DD258B1BBA00C5036B /* moving_sphere.h */,
-				991838E6258B1BBA00C5036B /* noise_texture.h */,
-				991838EB258B1BBA00C5036B /* perlin.h */,
-				991838E0258B1BBA00C5036B /* ray.h */,
-				991838D7258B1BBA00C5036B /* rect.h */,
-				991838E2258B1BBA00C5036B /* rotate_y.h */,
-				991838F5258B1BBA00C5036B /* sphere.cpp */,
-				991838E7258B1BBA00C5036B /* sphere.h */,
-				991838F0258B1BBA00C5036B /* stb_image.h */,
-				991838E3258B1BBA00C5036B /* texture.h */,
-				991838D4258B1BBA00C5036B /* translate.h */,
-				991838E1258B1BBA00C5036B /* vec3.h */,
+				999BA28E258B1FE100B0E52F /* aabb.h */,
+				999BA295258B1FE100B0E52F /* box.h */,
+				999BA28B258B1FE100B0E52F /* bvh.h */,
+				999BA283258B1FE100B0E52F /* camera.cpp */,
+				999BA298258B1FE100B0E52F /* camera.h */,
+				999BA286258B1FE100B0E52F /* checker_texture.h */,
+				999BA284258B1FE100B0E52F /* constant_medium.h */,
+				999BA28F258B1FE100B0E52F /* constant_texture.h */,
+				999BA291258B1FE100B0E52F /* dielectric.cpp */,
+				999BA29D258B1FE100B0E52F /* dielectric.h */,
+				999BA289258B1FE100B0E52F /* diffuse_light.h */,
+				999BA293258B1FE100B0E52F /* hitable_list.cpp */,
+				999BA29B258B1FE100B0E52F /* hitable_list.h */,
+				999BA29E258B1FE100B0E52F /* hitable.h */,
+				999BA29C258B1FE100B0E52F /* image_texture.h */,
+				999BA290258B1FE100B0E52F /* isotropic.h */,
+				999BA29F258B1FE100B0E52F /* lambertian.cpp */,
+				999BA282258B1FE100B0E52F /* lambertian.h */,
+				999BA29A258B1FE100B0E52F /* main.cpp */,
+				999BA28C258B1FE100B0E52F /* material.h */,
+				999BA2A3258B1FE100B0E52F /* metal.cpp */,
+				999BA28D258B1FE100B0E52F /* metal.h */,
+				999BA285258B1FE100B0E52F /* moving_sphere.h */,
+				999BA292258B1FE100B0E52F /* noise_texture.h */,
+				999BA2A0258B1FE100B0E52F /* perlin.h */,
+				999BA28A258B1FE100B0E52F /* ray.h */,
+				999BA294258B1FE100B0E52F /* rect.h */,
+				999BA2A1258B1FE100B0E52F /* rotate_y.h */,
+				999BA287258B1FE100B0E52F /* sphere.cpp */,
+				999BA2A2258B1FE100B0E52F /* sphere.h */,
+				999BA288258B1FE100B0E52F /* stb_image.h */,
+				999BA297258B1FE100B0E52F /* texture.h */,
+				999BA299258B1FE100B0E52F /* translate.h */,
+				999BA296258B1FE100B0E52F /* vec3.h */,
 			);
 			path = RT2;
 			sourceTree = "<group>";
@@ -341,13 +341,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				991838A0258AA71C00C5036B /* sphere.cpp in Sources */,
-				991838A1258AA71C00C5036B /* hitable_list.cpp in Sources */,
-				9918389E258AA71C00C5036B /* lambertian.cpp in Sources */,
-				9918389F258AA71C00C5036B /* metal.cpp in Sources */,
-				991838A4258AA71C00C5036B /* main.cpp in Sources */,
-				991838A2258AA71C00C5036B /* camera.cpp in Sources */,
-				991838A3258AA71C00C5036B /* dielectric.cpp in Sources */,
+				999BA27C258B1FC500B0E52F /* main.cpp in Sources */,
+				999BA27B258B1FC500B0E52F /* dielectric.cpp in Sources */,
+				999BA27A258B1FC500B0E52F /* sphere.cpp in Sources */,
+				999BA279258B1FC500B0E52F /* camera.cpp in Sources */,
+				999BA27D258B1FC500B0E52F /* hitable_list.cpp in Sources */,
+				999BA27E258B1FC500B0E52F /* metal.cpp in Sources */,
+				999BA278258B1FC500B0E52F /* lambertian.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,13 +355,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				991838FC258B1BBB00C5036B /* sphere.cpp in Sources */,
-				991838F8258B1BBB00C5036B /* metal.cpp in Sources */,
-				991838F7258B1BBB00C5036B /* lambertian.cpp in Sources */,
-				991838F9258B1BBB00C5036B /* main.cpp in Sources */,
-				991838F6258B1BBB00C5036B /* dielectric.cpp in Sources */,
-				991838FA258B1BBB00C5036B /* camera.cpp in Sources */,
-				991838FB258B1BBB00C5036B /* hitable_list.cpp in Sources */,
+				999BA2A5258B1FE100B0E52F /* sphere.cpp in Sources */,
+				999BA2A7258B1FE100B0E52F /* hitable_list.cpp in Sources */,
+				999BA2A9258B1FE100B0E52F /* lambertian.cpp in Sources */,
+				999BA2A4258B1FE100B0E52F /* camera.cpp in Sources */,
+				999BA2AA258B1FE100B0E52F /* metal.cpp in Sources */,
+				999BA2A8258B1FE100B0E52F /* main.cpp in Sources */,
+				999BA2A6258B1FE100B0E52F /* dielectric.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

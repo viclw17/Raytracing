@@ -64,9 +64,9 @@ int main() {
 
 	// msaa
 	int ns = 1;
-	ns = 10;
-    ns = 20;
-    ns = 50;
+	//ns = 10;
+    //ns = 20;
+    //ns = 50;
     // ns = 100;
 
     // create scene
@@ -118,16 +118,12 @@ int main() {
     list[3] = new sphere(vec3( 1,0,z), 0.5, new metal(vec3(0.8,0.3,0.3), 0.5));
 
 	#elif TESTSCENE == 7 // dielectric, blogpost scene
-    // list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
-    // list[1] = new sphere(vec3(0, 0, z), 0.5, new dielectric(vec3(.9,.9,.9), 1.5));
-    // list[2] = new sphere(vec3(-1.001, 0, z), 0.5, new lambertian(vec3(.8,.8,.8)));
-    // list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.1)); //0.5
-    //list[4] = new sphere(vec3(0, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));r
-
-    list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
-    list[1] = new sphere(vec3(0, 0, z), 0.5,                new dielectric(vec3(.9, .9, .9), 1.2));
-    list[2] = new sphere(vec3(-1.001, 0, z), 0.5,           new dielectric(vec3(.9, .9, .9), 1.0));
-    list[3] = new sphere(vec3( 1.001, 0, z), 0.5,                new dielectric(vec3(.9, .9, .9), 1.5));
+     list[0] = new sphere(vec3(0, -(big_r + 0.5), z), big_r, new lambertian(vec3(0.1, 0.2, 0.5)));
+     list[1] = new sphere(vec3(0, 0, z), 0.5, new dielectric(vec3(.9,.9,.9), 1.5));
+     list[2] = new sphere(vec3(-1.001, 0, z), 0.5, new lambertian(vec3(.8,.8,.8)));
+     list[3] = new sphere(vec3(1, 0, z), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.1)); //0.5
+     //list[4] = new sphere(vec3(0, 0, z), -0.45, new dielectric(vec3(1, 1, 1), 1.5));
+    
 #endif //TESTSCENE
 
 	////////////////////////////////////////////////////////////
