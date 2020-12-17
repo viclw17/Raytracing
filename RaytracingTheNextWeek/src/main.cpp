@@ -28,7 +28,7 @@
 
 using namespace std;
 
-#define TESTSCENE 7
+#define TESTSCENE 12
 // 1 // diffuse, blogpost scene
 // 2 // metal, book scene
 // 3 // metal, blogpost scene
@@ -41,7 +41,7 @@ using namespace std;
 // 10 // perlin
 // 11 // light
 // 12 // cornell
-#define TESTCAM 2
+#define TESTCAM 4
 // 1 // Camera angled
 // 2 // Camera facing forward	
 // 3 // Camera escher 3 spheres
@@ -131,28 +131,28 @@ hitable* cornell_box() {
 
 ////////////////////////////////////////////////////////////
 int main() {
-	// resolution
-	int nx, ny;
-	// nx = 100; 
-	// ny = 50;
-	// nx = 800;
-	// ny = 400;
-	nx = 400;
-	ny = 200;
-	//nx = 1000;
-	//ny = 500;
-	// nx = 200;
-	// ny = 200;
-	// nx = 1000;
-	// ny = 1000;
+    // resolution
+    int nx, ny;
+//    nx = 100;
+//    ny = 50;
+//    nx = 800;
+//    ny = 400;
+//    nx = 400;
+//    ny = 200;
+//    nx = 1000;
+//    ny = 500;
+    nx = 200;
+    ny = 200;
+//    nx = 1000;
+//    ny = 1000;
 
-	// msaa
-	int ns;
-	// ns = 1;
-	// ns = 20;
-	ns = 50;
-	// ns = 100;
-	//ns = 1000;
+    // msaa
+    int ns;
+    ns = 1;
+//    ns = 20;
+//    ns = 50;
+//    ns = 100;
+//    ns = 1000;
 
     // create scene
     const int sphere_num = 5;
@@ -307,20 +307,17 @@ int main() {
             for(int s=0; s < ns; s++) {
                 float u = float(i + (rand() % (100)) / (float)(100)) / float(nx); // 0~1
                 float v = float(j + (rand() % (100)) / (float)(100)) / float(ny); // xcode: drand48()
-                
-				//float u = float(i) / float(nx);
-                //float v = float(j) / float(ny);
-                
+
 				ray r = cam.get_ray(u,v); // generate ray per sample
 				// vec3 p = r.point_at_parameter(2.0);
                 col += color(r, world, 0);
             }
 
-            // int mod = counter / (total / 10);
-            // if (current != mod) {
-            //     current = mod;
-            //     cout << "*";
-            // }
+            int mod = counter / (total / 10);
+            if (current != mod) {
+                current = mod;
+                cout << "*";
+            }
 
             col /= float(ns);
             // gamma correction

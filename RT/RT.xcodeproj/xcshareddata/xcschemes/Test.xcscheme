@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "999F93A725869B12003B5D51"
-               BuildableName = "RTV1"
-               BlueprintName = "RTV1"
-               ReferencedContainer = "container:RTV1.xcodeproj">
+               BlueprintIdentifier = "999F94A4258942BE003B5D51"
+               BuildableName = "Test"
+               BlueprintName = "Test"
+               ReferencedContainer = "container:RT.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "999F93A725869B12003B5D51"
-            BuildableName = "RTV1"
-            BlueprintName = "RTV1"
-            ReferencedContainer = "container:RTV1.xcodeproj">
+            BlueprintIdentifier = "999F94A4258942BE003B5D51"
+            BuildableName = "Test"
+            BlueprintName = "Test"
+            ReferencedContainer = "container:RT.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "999F93A725869B12003B5D51"
-            BuildableName = "RTV1"
-            BlueprintName = "RTV1"
-            ReferencedContainer = "container:RTV1.xcodeproj">
+            BlueprintIdentifier = "999F94A4258942BE003B5D51"
+            BuildableName = "Test"
+            BlueprintName = "Test"
+            ReferencedContainer = "container:RT.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

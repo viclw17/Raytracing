@@ -17,10 +17,10 @@ public:
     }
 public:
     /* CONST MEMBER FUNCTION */
-    string isbn() const { // <=> string Sales_data::isbn(const Sales_data * const this)
+    string isbn() const { // <=> string Sales_data::isbn(CONST Sales_data * const this)
 //      bookNo = "shall we change the member variable here?"; // error because of "const" after isbn()
         // "const" makes implicit "this" pointer constant
-        // (by default "this" is a const pointer to non-const class type)
+        // (by default "this" is a CONST pointer to NON-const class type)
         // isbn() may READ but not WRITE to the data of the objects on which it is called
         return bookNo;
     }
@@ -55,14 +55,6 @@ ostream &print(ostream&, const Sales_data&);
 istream &read(istream&, Sales_data&);
 
 
-class BaseClass {
-public:
-    virtual bool scatter() const = 0;
-};
-
-class Class1 : BaseClass{
-    bool scatter() const;
-};
 
 int main(){
     Sales_data total1;
