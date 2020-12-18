@@ -23,7 +23,7 @@ void passByPointer(int* arg){
 // C++ provides a shorthand for passing arguments by address — a shorthand that enables you to avoid having to hassle with pointers.
 // (implicit pointer, no need to hassle with &(address-of) or *(dereference))
 // Notice that reference is not an actual type. Thus, the function’s full name is fn(int) and not fn(int&).
-void passByRef(int& arg){
+void passByRef(const int& arg){
     cout << "arg = " << arg << " address = " << &arg << " (pass by ref)" << endl;
     arg = 42;
     cout << "arg = " << arg << " address = " << &arg << " (pass by ref)" << endl;

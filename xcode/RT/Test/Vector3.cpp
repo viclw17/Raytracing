@@ -4,7 +4,8 @@
 //
 //  Created by Wei Li on 2020-12-15.
 //
-
+#include <iostream>
+using namespace std;
 class Vector3{
 public:
 //    Vector3(){};
@@ -28,10 +29,15 @@ public:
         return z;
     }
     
-    Vector3 operator+(const Vector3 &v) const { // will not mutate caller object
+    Vector3 operator+(const Vector3 &v) const {
+        // 1st const: will not mutate argument
+        //v = Vector3(0,0,0); // error!
+        // 2nd const: will not mutate caller object
+        // x=0; // error!
         return Vector3(x+v.x,y+v.y,z+v.z); // return a copy
     }
     Vector3& operator+=(const Vector3 &v) { // return a reference
+        // x=0; // allowed
         x += v.x; y += v.y; z += v.z;
         return *this;
     }
@@ -45,6 +51,7 @@ public:
     }
     
     Vector3 operator*(float s) const { // will not mutate caller object
+        // s = 0; // allowed, but mess up function!
         return Vector3(x*s,y*s,z*s); // return a copy
     }
     Vector3& operator*=(float s) { // return a reference
@@ -52,12 +59,12 @@ public:
         return *this;
     }
     
-    Vector3 operator/(float f) const {
-        float inv = (float)1 / f;
+    Vector3 operator/(float s) const {
+        float inv = (float)1 / s;
         return Vector3(x * inv, y * inv, z * inv);
     }
-    Vector3 &operator/=(float f) {
-        float inv = (float)1 / f;
+    Vector3 &operator/=(float s) {
+        float inv = (float)1 / s;
         x *= inv;
         y *= inv;
         z *= inv;
@@ -91,9 +98,28 @@ public:
                         (v1z * v2x) - (v1x * v2z),
                         (v1x * v2y) - (v1y * v2x));
     }
-
+    
+    void printVector(){
+        cout << "("<<x<<","<<y<<","<<z<<")"<<endl;
+    }
     
 };
 
+
+int main(){
+    Vector3 v1(1,2,3);
+    //v1[0] = 42; // using "float& []", mutating v1's data member (int x)
+    //cout << v1[0] << endl; // using float& []
+    const Vector3 v2(4,5,6);
+    //cout << v2[0] << endl; //using "float [] const", if no def, error: No viable overloaded operator[] for type 'const Vector3'
+    Vector3 v3(1,2,3);
+
+    (v1+v2).printVector();
+    (v1*2).printVector();
+    (v1/2).printVector();
+    (-v1).printVector();
+    
+    return 0;
+}
  
 
