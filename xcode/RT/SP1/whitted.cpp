@@ -112,6 +112,19 @@ inline
 Vec3f mix(const Vec3f &a, const Vec3f& b, const float &mixValue)
 { return a * (1 - mixValue) + b * mixValue; }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 struct Options
 {
     uint32_t width;
@@ -123,6 +136,8 @@ struct Options
     float bias;
 };
 
+
+
 class Light
 {
 public:
@@ -131,7 +146,11 @@ public:
     Vec3f intensity;
 };
 
-enum MaterialType { DIFFUSE_AND_GLOSSY, REFLECTION_AND_REFRACTION, REFLECTION };
+enum MaterialType {
+    DIFFUSE_AND_GLOSSY, // phong
+    REFLECTION_AND_REFRACTION, // glass
+    REFLECTION // mirror
+};
 
 class Object
 {
@@ -279,9 +298,10 @@ public:
 
     Vec3f evalDiffuseColor(const Vec2f &st) const
     {
-        float scale = 5;
-        float pattern = (fmodf(st.x * scale, 1) > 0.5) ^ (fmodf(st.y * scale, 1) > 0.5);
-        return mix(Vec3f(0.815, 0.235, 0.031), Vec3f(0.937, 0.937, 0.231), pattern);
+//        float scale = 5;
+//        float pattern = (fmodf(st.x * scale, 1) > 0.5) ^ (fmodf(st.y * scale, 1) > 0.5);
+//        return mix(Vec3f(0.815, 0.235, 0.031), Vec3f(0.937, 0.937, 0.231), pattern);
+        return Vec3f(1);
     }
 
     std::unique_ptr<Vec3f[]> vertices;
@@ -576,9 +596,9 @@ int main(int argc, char **argv)
     
     // setting up options
     Options options;
-    options.width = 640;
-    options.height = 480;
-    options.fov = 90;
+    options.width = 1280;//640;
+    options.height = 960;//480;
+    options.fov = 50;
     options.backgroundColor = Vec3f(0.235294, 0.67451, 0.843137);
     options.maxDepth = 5;
     options.bias = 0.00001;
