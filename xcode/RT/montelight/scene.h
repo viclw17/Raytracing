@@ -1,12 +1,14 @@
 //
 //  scene.h
-//  MinimalGI
+//  montelight
 //
 //  Created by Wei Li on 2020-12-20.
 //
 
 #ifndef scene_h
 #define scene_h
+
+#include "shape.h"
 
 // Set up our testing scenes
 // They're all Cornell box inspired: http://graphics.ucsd.edu/~henrik/images/cbox.html

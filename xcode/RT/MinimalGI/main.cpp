@@ -119,7 +119,7 @@ Vec3f castRay(
                 
                 Vec3f indirectLigthing = 0;
 #ifdef GI
-                uint32_t N = 8; /// (depth + 1);
+                uint32_t N = 4; /// (depth + 1);
                 Vec3f Nt, Nb;
                 createCoordinateSystem(hitNormal, Nt, Nb);
                 
@@ -127,15 +127,17 @@ Vec3f castRay(
                 float pdf = 1 / (2 * M_PI);
                 
                 for (uint32_t n = 0; n < N; ++n) {
-                    float r1 = distribution(generator);
+                    float r1 = distribution(generator); // // cos(theta) = N dot LightDirection
                     float r2 = distribution(generator);
                     Vec3f sample = uniformSampleHemisphere(r1, r2);
                     Vec3f sampleWorld(
                         sample.x * Nb.x + sample.y * hitNormal.x + sample.z * Nt.x,
                         sample.x * Nb.y + sample.y * hitNormal.y + sample.z * Nt.y,
                         sample.x * Nb.z + sample.y * hitNormal.z + sample.z * Nt.z);
-                    // don't forget to divide by PDF and multiply by cos(theta)
                     
+                    // don't forget to apply cosine law (i.e. multiply by cos(theta) = r1).
+                    // we should also divide the result by the PDF (1/2*M_PI) but we can do this after
+                
                     // Recurse
                     indirectLigthing += r1 * castRay(
                                                      hitPoint + sampleWorld * options.bias,
@@ -144,6 +146,9 @@ Vec3f castRay(
                 // divide by N
                 indirectLigthing /= (float)N;
 #endif
+                // (indirectDiffuse / (1 / 2 * M_PI) + directDiffuse) * albedo / M_PI
+                // (2 * M_PI * indirectDiffuse + directDiffuse) * albedo / M_PI
+                // (2 * indirectDiffuse + directDiffuse / M_PI) * albedo
                 hitColor += (directLighting / M_PI + 2 * indirectLigthing) * isect.hitObject->albedo;
                 break;
             } // switch
@@ -227,29 +232,14 @@ void render(
 
 int main(int argc, char **argv)
 {
-    // loading gemetry
     vector<unique_ptr<Object>> objects;
-    // lights
     vector<unique_ptr<Light>> lights;
     ImageOptions options;
-
-    // aliasing example
     options.fov = 39.89;
     options.width = 512;
     options.height = 512;
     options.cameraToWorld = Matrix44f(0.965926, 0, -0.258819, 0, 0.0066019, 0.999675, 0.0246386, 0, 0.258735, -0.0255078, 0.965612, 0, 0.764985, 0.791882, 5.868275, 1);
     
-//    TriangleMesh *plane = loadPolyMeshFromFile("./objects/planegi.geo", Matrix44f::kIdentity);
-//    if (plane != nullptr) {
-//        plane->albedo = Vec3f(0.225, 0.144, 0.144);
-//        objects.push_back(unique_ptr<Object>(plane));
-//    }
-//
-//    TriangleMesh *cube = loadPolyMeshFromFile("./objects/cubegi.geo", Matrix44f::kIdentity);
-//    if (cube != nullptr) {
-//        cube->albedo = Vec3f(0.188559, 0.287, 0.200726);
-//        objects.push_back(unique_ptr<Object>(cube));
-//    }
     
     Matrix44f xformSphere;
     xformSphere[3][1] = 1;
@@ -267,12 +257,14 @@ int main(int argc, char **argv)
     objects.push_back(unique_ptr<Object>(sph1));
     objects.push_back(unique_ptr<Object>(sph2));
 
-    Matrix44f l2w(0.916445, -0.218118, 0.335488, 0, 0.204618, -0.465058, -0.861309, 0, 0.343889, 0.857989, -0.381569, 0, 0, 0, 0, 1);
+    Matrix44f l2w(0.916445, -0.218118, 0.335488, 0,
+                  0.204618, -0.465058, -0.861309, 0,
+                  0.343889, 0.857989, -0.381569, 0,
+                  0, 0, 0, 1);
     lights.push_back(unique_ptr<Light>(new DistantLight(l2w, 1, 16)));
-//    lights.push_back(unique_ptr<Light>(new PointLight(l2w, 1, 1000)));
+//    lights.push_back(std::unique_ptr<Light>(new PointLight(l2w, 1, 200 00)));
 
     
-    // finally, render
     render(options, objects, lights);
 
     return 0;

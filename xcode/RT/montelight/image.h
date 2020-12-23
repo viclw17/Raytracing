@@ -1,6 +1,6 @@
 //
 //  image.h
-//  MinimalGI
+//  montelight
 //
 //  Created by Wei Li on 2020-12-20.
 //

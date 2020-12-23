@@ -24,7 +24,8 @@
 		999BA30B258C7BD000B0E52F /* whitted.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA308258C7BCF00B0E52F /* whitted.cpp */; };
 		999BA323258DE14B00B0E52F /* function_return.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA322258DE14B00B0E52F /* function_return.cpp */; };
 		999BA345258EC9F200B0E52F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BA344258EC9F200B0E52F /* main.cpp */; };
-		999BA36E258FDE7500B0E52F /* montelight.cc in Sources */ = {isa = PBXBuildFile; fileRef = 999BA36D258FDE7500B0E52F /* montelight.cc */; };
+		999BAD532591AD8C00B0E52F /* montelight.cc in Sources */ = {isa = PBXBuildFile; fileRef = 999BAD522591AD8C00B0E52F /* montelight.cc */; };
+		999BAD672591D3EE00B0E52F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999BAD662591D3EE00B0E52F /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +66,15 @@
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 		999BA358258FDE4300B0E52F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		999BAD622591D3EE00B0E52F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -141,7 +151,6 @@
 		999BA2A2258B1FE100B0E52F /* sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sphere.h; path = ../../../RaytracingTheNextWeek/src/sphere.h; sourceTree = "<group>"; };
 		999BA2A3258B1FE100B0E52F /* metal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = metal.cpp; path = ../../../RaytracingTheNextWeek/src/metal.cpp; sourceTree = "<group>"; };
 		999BA2D1258B619400B0E52F /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3.h; sourceTree = "<group>"; };
-		999BA2F0258C3A0100B0E52F /* objects */ = {isa = PBXFileReference; lastKnownFileType = folder; name = objects; path = DerivedData/RT/Build/Products/Debug/objects; sourceTree = "<group>"; };
 		999BA2F8258C7B7E00B0E52F /* SP1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SP1; sourceTree = BUILT_PRODUCTS_DIR; };
 		999BA307258C7BCF00B0E52F /* indirectdiffuse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = indirectdiffuse.cpp; sourceTree = "<group>"; };
 		999BA308258C7BCF00B0E52F /* whitted.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = whitted.cpp; sourceTree = "<group>"; };
@@ -155,7 +164,6 @@
 		999BA344258EC9F200B0E52F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		999BA350258ECB0200B0E52F /* vec2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vec2.h; sourceTree = "<group>"; };
 		999BA35A258FDE4300B0E52F /* montelight */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = montelight; sourceTree = BUILT_PRODUCTS_DIR; };
-		999BA36D258FDE7500B0E52F /* montelight.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = montelight.cc; path = "../../../montelight-cpp/montelight.cc"; sourceTree = "<group>"; };
 		999BA375258FE43700B0E52F /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
 		999BA377258FE47800B0E52F /* shape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
 		999BA378258FE4A900B0E52F /* image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = image.h; sourceTree = "<group>"; };
@@ -164,6 +172,15 @@
 		999BA38D2591191200B0E52F /* object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
 		999BA38E2591193D00B0E52F /* sphere.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sphere.h; sourceTree = "<group>"; };
 		999BA39525911A1300B0E52F /* light.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = light.h; sourceTree = "<group>"; };
+		999BAD0F2591A42E00B0E52F /* ray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ray.h; sourceTree = "<group>"; };
+		999BAD522591AD8C00B0E52F /* montelight.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = montelight.cc; sourceTree = "<group>"; };
+		999BAD642591D3EE00B0E52F /* MinimalPBR */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MinimalPBR; sourceTree = BUILT_PRODUCTS_DIR; };
+		999BAD662591D3EE00B0E52F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		999BAD79259289DB00B0E52F /* integrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = integrator.h; sourceTree = "<group>"; };
+		999BAD7A2592996400B0E52F /* shape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
+		999BAD8225929A2500B0E52F /* scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
+		999BAD8325929A6C00B0E52F /* camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
+		999BAD8425929AA400B0E52F /* film.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = film.h; sourceTree = "<group>"; };
 		999F94A5258942BE003B5D51 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		999F94AF258942F8003B5D51 /* const_pointer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = const_pointer.cpp; sourceTree = "<group>"; };
 		999F94B0258942F8003B5D51 /* class.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class.cpp; sourceTree = "<group>"; };
@@ -202,6 +219,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		999BA357258FDE4300B0E52F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		999BAD612591D3EE00B0E52F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -304,6 +328,7 @@
 				999BA38D2591191200B0E52F /* object.h */,
 				999BA38E2591193D00B0E52F /* sphere.h */,
 				999BA39525911A1300B0E52F /* light.h */,
+				999BAD0F2591A42E00B0E52F /* ray.h */,
 			);
 			path = MinimalGI;
 			sourceTree = "<group>";
@@ -311,7 +336,7 @@
 		999BA35B258FDE4300B0E52F /* montelight */ = {
 			isa = PBXGroup;
 			children = (
-				999BA36D258FDE7500B0E52F /* montelight.cc */,
+				999BAD522591AD8C00B0E52F /* montelight.cc */,
 				999BA375258FE43700B0E52F /* vector.h */,
 				999BA377258FE47800B0E52F /* shape.h */,
 				999BA378258FE4A900B0E52F /* image.h */,
@@ -321,16 +346,29 @@
 			path = montelight;
 			sourceTree = "<group>";
 		};
+		999BAD652591D3EE00B0E52F /* MinimalPBR */ = {
+			isa = PBXGroup;
+			children = (
+				999BAD662591D3EE00B0E52F /* main.cpp */,
+				999BAD79259289DB00B0E52F /* integrator.h */,
+				999BAD7A2592996400B0E52F /* shape.h */,
+				999BAD8225929A2500B0E52F /* scene.h */,
+				999BAD8325929A6C00B0E52F /* camera.h */,
+				999BAD8425929AA400B0E52F /* film.h */,
+			);
+			path = MinimalPBR;
+			sourceTree = "<group>";
+		};
 		999F9422258938CD003B5D51 = {
 			isa = PBXGroup;
 			children = (
-				999BA2F0258C3A0100B0E52F /* objects */,
 				999F94A6258942BE003B5D51 /* Test */,
 				99183881258AA70100C5036B /* RT1 */,
 				991838C8258B1B7700C5036B /* RT2 */,
 				999BA2F9258C7B7E00B0E52F /* SP1 */,
 				999BA331258EC9CA00B0E52F /* MinimalGI */,
 				999BA35B258FDE4300B0E52F /* montelight */,
+				999BAD652591D3EE00B0E52F /* MinimalPBR */,
 				999F942C258938CD003B5D51 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -344,6 +382,7 @@
 				999BA2F8258C7B7E00B0E52F /* SP1 */,
 				999BA330258EC9CA00B0E52F /* MinimalGI */,
 				999BA35A258FDE4300B0E52F /* montelight */,
+				999BAD642591D3EE00B0E52F /* MinimalPBR */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -453,6 +492,23 @@
 			productReference = 999BA35A258FDE4300B0E52F /* montelight */;
 			productType = "com.apple.product-type.tool";
 		};
+		999BAD632591D3EE00B0E52F /* MinimalPBR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 999BAD682591D3EE00B0E52F /* Build configuration list for PBXNativeTarget "MinimalPBR" */;
+			buildPhases = (
+				999BAD602591D3EE00B0E52F /* Sources */,
+				999BAD612591D3EE00B0E52F /* Frameworks */,
+				999BAD622591D3EE00B0E52F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MinimalPBR;
+			productName = MinimalPBR;
+			productReference = 999BAD642591D3EE00B0E52F /* MinimalPBR */;
+			productType = "com.apple.product-type.tool";
+		};
 		999F94A4258942BE003B5D51 /* Test */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 999F94A9258942BE003B5D51 /* Build configuration list for PBXNativeTarget "Test" */;
@@ -493,6 +549,9 @@
 					999BA359258FDE4300B0E52F = {
 						CreatedOnToolsVersion = 12.3;
 					};
+					999BAD632591D3EE00B0E52F = {
+						CreatedOnToolsVersion = 12.3;
+					};
 					999F94A4258942BE003B5D51 = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -517,6 +576,7 @@
 				999BA2F7258C7B7E00B0E52F /* SP1 */,
 				999BA32F258EC9CA00B0E52F /* MinimalGI */,
 				999BA359258FDE4300B0E52F /* montelight */,
+				999BAD632591D3EE00B0E52F /* MinimalPBR */,
 			);
 		};
 /* End PBXProject section */
@@ -570,7 +630,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				999BA36E258FDE7500B0E52F /* montelight.cc in Sources */,
+				999BAD532591AD8C00B0E52F /* montelight.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		999BAD602591D3EE00B0E52F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				999BAD672591D3EE00B0E52F /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +726,22 @@
 			name = Debug;
 		};
 		999BA360258FDE4300B0E52F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		999BAD692591D3EE00B0E52F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		999BAD6A2591D3EE00B0E52F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -836,6 +920,15 @@
 			buildConfigurations = (
 				999BA35F258FDE4300B0E52F /* Debug */,
 				999BA360258FDE4300B0E52F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		999BAD682591D3EE00B0E52F /* Build configuration list for PBXNativeTarget "MinimalPBR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				999BAD692591D3EE00B0E52F /* Debug */,
+				999BAD6A2591D3EE00B0E52F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -14,12 +14,9 @@
 enum MaterialType { kDiffuse };
 
 
-class Object
-{
+class Object{
  public:
-    // [comment]
     // Setting up the object-to-world and world-to-object matrix
-    // [/comment]
     Object(const Matrix44f &o2w) : objectToWorld(o2w), worldToObject(o2w.inverse()) {}
     virtual ~Object() {}
     virtual bool intersect(const Vec3f &, const Vec3f &, float &, uint32_t &, Vec2f &) const = 0;

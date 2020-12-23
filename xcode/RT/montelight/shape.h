@@ -1,6 +1,6 @@
 //
 //  shape.h
-//  MinimalGI
+//  montelight
 //
 //  Created by Wei Li on 2020-12-20.
 //
@@ -28,7 +28,8 @@ struct Sphere : Shape {
   //
   Sphere(const Vector center_, double radius_, const Vector color_, const Vector emit_) :
     Shape(color_, emit_), center(center_), radius(radius_) {}
-  double intersects(const Ray &r) const {
+  
+    double intersects(const Ray &r) const {
     // Find if, and at what distance, the ray intersects with this object
     // Equation follows from solving quadratic equation of (r - c) ^ 2
     // http://wiki.cgsociety.org/index.php/Ray_Sphere_Intersection
@@ -55,6 +56,7 @@ struct Sphere : Shape {
     }
     return 0;
   }
+    
   Vector randomPoint() const {
     // TODO: Improved methods of random point generation as this is not 100% even
     // See: https://www.jasondavies.com/maps/random-points/
@@ -68,6 +70,7 @@ struct Sphere : Shape {
     double dzr = radius * cos(theta);
     return Vector(center.x + dxr, center.y + dyr, center.z + dzr);
   }
+    
   Vector getNormal(const Vector &p) const {
     // Point must have collided with surface of sphere which is at radius
     // Normalize the normal by using radius instead of a sqrt call

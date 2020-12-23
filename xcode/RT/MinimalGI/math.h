@@ -67,4 +67,17 @@ Vec3f random_in_unit_disk() {
     return p;
 }
 
+Vec3f randomPoint(float radius, Vec3f center) {
+  // TODO: Improved methods of random point generation as this is not 100% even
+  // See: https://www.jasondavies.com/maps/random-points/
+  //
+  // Get random spherical coordinates on light
+    float theta = drand48() * M_PI;
+    float phi = drand48() * 2 * M_PI;
+  // Convert to Cartesian and scale by radius
+    float dxr = radius * sin(theta) * cos(phi);
+    float dyr = radius * sin(theta) * sin(phi);
+    float dzr = radius * cos(theta);
+  return Vec3f(center.x + dxr, center.y + dyr, center.z + dzr);
+}
 #endif
