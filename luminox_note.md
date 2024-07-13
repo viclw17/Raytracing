@@ -1,4 +1,5 @@
 # Ray class
+```
 class Ray {
   public:
     Vec3 origin;
@@ -17,7 +18,7 @@ class Ray {
       return (origin + t*direction);
     };
 };
-
+```
 
 
 # Primitive class
@@ -25,7 +26,7 @@ a shape with material; could be a light
 it will deal with generic intersect test regardless shape type
 
 btw Shape is abstract, could be sphere or plane - polymorphism!
-
+```
 public:
   std::shared_ptr<Shape> shape;
   std::shared_ptr<Material> material;
@@ -45,6 +46,7 @@ bool intersect(const Ray& ray, Hit& res) const {
     return false;
   }
 };
+```
 ^ note:
 supply a ref to a **Ray** object, res
 supply a ref to a **Hit** object
@@ -55,6 +57,7 @@ if shape->intersect(ray, tmp) passed, tmp Hit will be passed to res Hit
 
 # Hit class
 record hit result: ray t, position, normal, and hit primitive object
+```
 class Hit {
   public:
     float t; // hit at which distance on the ray?
@@ -64,17 +67,18 @@ class Hit {
 
     Hit() {}; 
 };
-
+```
 
 
 
 # Shape class
+```
 class Shape {
   public:
     virtual bool intersect(const Ray&, Hit& res) const = 0;
     virtual Vec3 sample(const Hit& res, Sampler& sampler, float& pdf_A) const = 0;
 };
-
+```
 **Shape** is a pure virtual class/abstract class
 intersect() is pure virtual function
 sample() is pure virtual
