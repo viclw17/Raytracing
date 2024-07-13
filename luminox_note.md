@@ -91,7 +91,7 @@ return a
 
 # Material class
 request a pointer to a texture object
-
+```
 class Material {
   public:
     std::shared_ptr<Texture> texture;
@@ -104,9 +104,28 @@ class Material {
 class Diffuse : public Material
 class Mirror : public Material
 class Glass : public Material
+```
+## class Diffuse
+Vec3 sample() is requesting wo_local, hit res, ref to a sampler for random num
 
+wi_local will be filled with local bounce direction (random)
+wi_local = sampleCosineHemisphere(u, v, pdf_w);
+it will be later used to generate next ray, in integrator:
+```
+//Generate Next Ray
+Vec3 wi = local2world(wi_local, s, n, t);
+ray = Ray(res.hitPos, wi);
+```
+
+pdf_w will be filled by sampleCosineHemisphere()
+
+return is texturecolor/pi:
+```
+return texture->eval(res) / M_PI;
+```
 
 # Sampler class
+```
 class Sampler { // abstract class
   public:
     virtual float getNext() = 0;
@@ -127,13 +146,15 @@ class UniformSampler : public Sampler {
       return dist(mt); // offer seed mt, return a uniform distributed random num btw 0 and 1
     };
 };
+```
 
 inline function, include header can just call, no need to call from an object
 return a vector on the hemisphere/sphere
+```
 inline Vec3 sampleCosineHemisphere(float u, float v, float& pdf) 
 inline Vec3 sampleUniformHemisphere(float u, float v, float& pdf) 
 inline Vec3 sampleUniformSphere(float u, float v, float& pdf)
-
+```
 
 
 
@@ -144,6 +165,7 @@ a camera object - Ray ray = camera->getRay(u, v);
 a sampler object - get random number
 sampler->getNext()
 
+```
 class Integrator {
   public:
     std::shared_ptr<Image> image;
@@ -167,8 +189,10 @@ class PurePathTracing : public Integrator {
   Vec3 integrate(const Ray& initRay, const Scene& scene){}
   void render(const Scene& scene){}
 };
+```
 
 
+```
 Vec3 integrate(const Ray& initRay, const Scene& scene) {
   Ray ray = initRay;
   
@@ -224,12 +248,13 @@ Vec3 integrate(const Ray& initRay, const Scene& scene) {
   }
   return accumulated_color;
 };
-
+```
 
 
 
 
 # Image class
+```
 class Image {
   public:
     int width;
@@ -249,6 +274,7 @@ class Image {
     void divide(float k) {};
     void ppm_output(const std::string& filename) const {};
 };
+```
 
 method to divide final pixel by sample amount to avoid blow out
 void divide(float k) {
